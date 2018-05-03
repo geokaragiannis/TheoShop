@@ -85,15 +85,16 @@
 
       <!-- List of Items -->
 
-      <f7-list>
+      <f7-list media-list no-hairlines-between='true'>
         <f7-list-group>
           <f7-list-item title="Drinks" group-title></f7-list-item>
-          <f7-list-item title="Hot Coffees"></f7-list-item>
+          <f7-list-item title="Hot Coffees" link='/sub-menu/' media="/img/logo.png"></f7-list-item>
           <f7-list-item title="Hot Teas"></f7-list-item>
           <f7-list-item title="Hot Drinks"></f7-list-item>
           <f7-list-item title="Cold Coffees"></f7-list-item>
           <f7-list-item title="Iced Teas"></f7-list-item>
           <f7-list-item title="Cold Drinks"></f7-list-item>
+          <f7-list-item  divider></f7-list-item>
         </f7-list-group>
         <f7-list-group>
           <f7-list-item title="Food" group-title></f7-list-item>
@@ -102,6 +103,7 @@
           <f7-list-item title="Lunch"></f7-list-item>
           <f7-list-item title="Sweets"></f7-list-item>
           <f7-list-item title="Sandwiches"></f7-list-item>
+          <f7-list-item  divider></f7-list-item>
         </f7-list-group>
         <f7-list-group>
           <f7-list-item title="Group 1" group-title></f7-list-item>
@@ -126,10 +128,31 @@
       </f7-list>
 
 
-      <f7-fab  @click="">
+      <f7-fab  href="/cart/">
         <f7-icon f7="icon-bag"></f7-icon>
       </f7-fab>
     </f7-page>
+  </template>
+
+  <template id="sub-menu">
+    <f7-page>
+      <f7-navbar title='Sub menu' sliding back-link="Back"></f7-navbar>
+
+
+
+
+      <f7-fab  href="/cart/">
+        <f7-icon f7="icon-bag"></f7-icon>
+      </f7-fab>
+    </f7-page>
+
+  </template>
+
+  <template id="cart">
+    <f7-page>
+      <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
+    </f7-page>
+
   </template>
 
   <!-- Dynamic Routing Page Template -->
