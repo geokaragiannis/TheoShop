@@ -46,7 +46,6 @@ Your custom styles go here
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: #000;
 }
 .demo-swiper .swiper-slide {
@@ -58,6 +57,11 @@ Your custom styles go here
   margin: 0px 0 35px;
   font-size: 18px;
   height: 120px;
+  /* overflow-x: scroll; */
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+  bottom: 0px;
 }
 .demo-swiper.demo-swiper-auto .swiper-slide {
   width: 85%;
