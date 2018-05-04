@@ -10,11 +10,12 @@
 
     sub_items: {
       'hot_coffees': ['Capuccino', 'Espresso', 'Latte', 'Americano']
-    }
+    },
     // drinks: ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
     // food: ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
-
+    item_selected: null
   };
+
 
   function init() {
 
@@ -30,6 +31,10 @@
       methods: {
         goToCart: function(){
 
+        },
+
+        goToSubMenu: function(is){
+          data.item_selected = is
         }
 
       }
@@ -38,7 +43,13 @@
       template: '#login-screen'
     })
     Vue.component('sub-menu', {
-      template: '#sub-menu'
+      template: '#sub-menu',
+      data: function(){
+        return data;
+      },
+      methods: {
+
+      }
     })
     Vue.component('cart', {
       template: '#cart'

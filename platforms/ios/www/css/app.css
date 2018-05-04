@@ -22,5 +22,6 @@ Your custom styles go here
 .list-group-title{
   padding-bottom: 10px;
   font-size: 2em;
-  background: #dbe8fd96 !important;
+  color: #2196f3ba !important;
+  background: #ffffff !important;
 }
