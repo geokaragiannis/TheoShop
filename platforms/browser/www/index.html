@@ -80,7 +80,7 @@
       <f7-block>
         <!-- <p>Here is main page!</p>
         <p>You can go <f7-link back>back</f7-link>.</p> -->
-        <f7-block-header>Menu</f7-block-header>
+        <f7-block-header></f7-block-header>
 
       </f7-block>
 
@@ -114,15 +114,14 @@
 
 
 
-      <f7-list media-list no-hairlines-between='true' inset>
+      <f7-list media-list no-hairlines-between='true' >
+        <f7-list-item  divider></f7-list-item>
         <f7-list-group v-for="par in parent_items">
           <f7-list-item group-title> {{par}} </f7-list-item>
           <f7-list-item  v-for="j in children_items[par]" :title='j' link='/sub-menu/'>
-            <img id='parent_items_img' src="img/logo.png" slot='content-start' >
-
-
+            <img id='parent_items_img' src="img/logo.png" slot='content-start'>
           </f7-list-item>
-          <f7-list-item  divider></f7-list-item>
+          <!-- <f7-list-item  divider></f7-list-item> -->
       </f7-list>
 
 
