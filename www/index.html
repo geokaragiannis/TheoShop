@@ -77,54 +77,52 @@
         <f7-nav-center sliding>Welcome to Fournos Theofilos</f7-nav-center>
       </f7-navbar>
       <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
-      <f7-block inner>
-        <p>Here is main page!</p>
-        <p>You can go <f7-link back>back</f7-link>.</p>
+      <f7-block>
+        <!-- <p>Here is main page!</p>
+        <p>You can go <f7-link back>back</f7-link>.</p> -->
+        <f7-block-header>Menu</f7-block-header>
 
       </f7-block>
 
       <!-- List of Items -->
 
-      <f7-list media-list no-hairlines-between='true'>
-        <f7-list-group>
-          <f7-list-item title="Drinks" group-title></f7-list-item>
-          <f7-list-item title="Hot Coffees" link='/sub-menu/' media="/img/logo.png"></f7-list-item>
-          <f7-list-item title="Hot Teas"></f7-list-item>
-          <f7-list-item title="Hot Drinks"></f7-list-item>
-          <f7-list-item title="Cold Coffees"></f7-list-item>
-          <f7-list-item title="Iced Teas"></f7-list-item>
-          <f7-list-item title="Cold Drinks"></f7-list-item>
+      <!-- <f7-list>
+        <f7-block  v-for="par in parent_items">
+          <f7-block-title id='block-title'>{{par}}</f7-block-title>
+          <p v-for="j in children_items[par]">{{j}}</p>
+
+        </f7-block>
+      </f7-list> -->
+
+      <!-- <div class="list media-list">
+        <ul>
+          <li>
+            <a href="/sub-menu/" class="item-link item-content">
+              <div class="item-media"><img src="img/screen-portrait.jpg" width="80"/></div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">Yellow Submarine</div>
+                  <div class="item-after">$15</div>
+                </div>
+                <div class="item-subtitle">Beatles</div>
+                <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div> -->
+
+
+
+      <f7-list media-list no-hairlines-between='true' inset>
+        <f7-list-group v-for="par in parent_items">
+          <f7-list-item group-title> {{par}} </f7-list-item>
+          <f7-list-item  v-for="j in children_items[par]" :title='j' link='/sub-menu/'>
+            <img id='parent_items_img' src="img/screen-portrait.jpg" slot='content-start' >
+
+
+          </f7-list-item>
           <f7-list-item  divider></f7-list-item>
-        </f7-list-group>
-        <f7-list-group>
-          <f7-list-item title="Food" group-title></f7-list-item>
-          <f7-list-item title="Breakfast"></f7-list-item>
-          <f7-list-item title="Bakery"></f7-list-item>
-          <f7-list-item title="Lunch"></f7-list-item>
-          <f7-list-item title="Sweets"></f7-list-item>
-          <f7-list-item title="Sandwiches"></f7-list-item>
-          <f7-list-item  divider></f7-list-item>
-        </f7-list-group>
-        <f7-list-group>
-          <f7-list-item title="Group 1" group-title></f7-list-item>
-          <f7-list-item title="Item 1"></f7-list-item>
-          <f7-list-item title="Item 2"></f7-list-item>
-        </f7-list-group>
-        <f7-list-group>
-          <f7-list-item title="Group 2" group-title></f7-list-item>
-          <f7-list-item title="Item 1"></f7-list-item>
-          <f7-list-item title="Item 2"></f7-list-item>
-        </f7-list-group>
-        <f7-list-group>
-          <f7-list-item title="Group 1" group-title></f7-list-item>
-          <f7-list-item title="Item 1"></f7-list-item>
-          <f7-list-item title="Item 2"></f7-list-item>
-        </f7-list-group>
-        <f7-list-group>
-          <f7-list-item title="Group 2" group-title></f7-list-item>
-          <f7-list-item title="Item 1"></f7-list-item>
-          <f7-list-item title="Item 2"></f7-list-item>
-        </f7-list-group>
       </f7-list>
 
 

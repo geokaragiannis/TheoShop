@@ -1,9 +1,11 @@
 (function () {
 
   var data = {
-    parent_items: {
-      'drinks': ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
-      'food': ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
+    parent_items: ['Drinks', 'Food', 'Products'],
+    children_items: {
+      'Drinks': ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
+      'Food': ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt'],
+      'Products': ['Honey', 'Cream', 'Feta Cheese']
     },
 
     sub_items: {

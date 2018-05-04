@@ -1,3 +1,21 @@
 /* =========
 Your custom styles go here
  ========= */
+
+#parent_items_img{
+  width: 20%;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+.item-inner{
+  margin: auto;
+}
+
+.item-title{
+  margin: 0 auto;
+}
+
+.list-group-title{
+  padding-bottom: 10px;
+}
