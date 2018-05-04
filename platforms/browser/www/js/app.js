@@ -63,6 +63,9 @@
     Vue.component('cart', {
       template: '#cart'
     })
+    Vue.component('final-page', {
+      template: '#final-page'
+    })
     Vue.component('page-dynamic-routing', {
       template: '#page-dynamic-routing'
     })
@@ -88,6 +91,10 @@
           {
             path: '/sub-menu/',
             component: 'sub-menu'
+          },
+          {
+            path: '/final-page/',
+            component: 'final-page'
           },
           {
             path: '/cart/',
