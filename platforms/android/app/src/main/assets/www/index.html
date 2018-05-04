@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>My App</title>
+  <link rel="stylesheet" href="css/framework7.ios.min.css">
+  <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/framework7-icons/css/framework7-icons.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Statusbar -->
+    <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
+    <!-- <f7-statusbar></f7-statusbar> -->
+
+
+    <f7-panel left reveal layout="dark">
+      <f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
+        <f7-navbar title="Left Panel"></f7-navbar>
+        <f7-pages>
+          <f7-page>
+            <f7-block inner>
+              <p>Left panel content goes here</p>
+            </f7-block>
+            <f7-block-title>Load page in main view</f7-block-title>
+            <f7-list>
+              <f7-list-item link="/main/" title="Main" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
+            </f7-list>
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-panel>
+    <!-- Main Views -->
+
+
+    <!-- Login Screen -->
+    <f7-views>
+      <f7-view>
+        <f7-pages>
+          <f7-page login-screen>
+            <f7-login-screen-title>Login</f7-login-screen-title>
+            <f7-list form>
+              <f7-list-item>
+                <f7-label>Username</f7-label>
+                <f7-input name="username" placeholder="Username" type="text"></f7-input>
+              </f7-list-item>
+              <f7-list-item>
+                <f7-label>Password</f7-label>
+                <f7-input name="password" type="password" placeholder="Password"></f7-input>
+              </f7-list-item>
+            </f7-list>
+            <f7-list>
+              <f7-list-button title="Sign In" link='/main/'></f7-list-button>
+              <f7-list-label>
+                <p>Click Sign In to close Login Screen</p>
+              </f7-list-label>
+            </f7-list>
+
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-views>
+  </div>
+
+  <!-- About Page Template -->
+  <template id="page-main">
+    <f7-page>
+      <!-- Navbar -->
+      <f7-navbar>
+        <f7-nav-left>
+          <f7-link icon="icon-bars" open-panel="left"></f7-link>
+        </f7-nav-left>
+        <f7-nav-center sliding>Welcome to Fournos Theofilos</f7-nav-center>
+      </f7-navbar>
+      <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
+      <f7-block>
+        <!-- <p>Here is main page!</p>
+        <p>You can go <f7-link back>back</f7-link>.</p> -->
+        <f7-block-header></f7-block-header>
+
+      </f7-block>
+
+      <!-- List of Items -->
+
+      <f7-list media-list no-hairlines-between='true' >
+        <f7-list-group v-for="par in parent_items">
+          <f7-list-item group-title> {{par}} </f7-list-item>
+          <f7-list-item  v-for="j in children_items[par]" :title='j' v-on:click='goToSubMenu(j)'link='/sub-menu/'>
+            <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+          </f7-list-item>
+          <!-- <f7-list-item  divider></f7-list-item> -->
+      </f7-list>
+
+
+      <f7-fab  href="/cart/">
+        <f7-icon f7="icon-bag"></f7-icon>
+      </f7-fab>
+    </f7-page>
+  </template>
+
+  <template id="sub-menu">
+    <f7-page>
+      <f7-navbar :title="item_selected" sliding back-link="Back"></f7-navbar>
+
+      <f7-fab  href="/cart/">
+        <f7-icon f7="icon-bag"></f7-icon>
+      </f7-fab>
+    </f7-page>
+
+  </template>
+
+  <template id="cart">
+    <f7-page>
+      <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
+    </f7-page>
+
+  </template>
+
+  <!-- Dynamic Routing Page Template -->
+  <template id="page-dynamic-routing">
+    <f7-page>
+      <f7-navbar title="Dynamic Route" back-link="Back" sliding></f7-navbar>
+      <f7-block inner>
+        <ul>
+          <li><b>Url:</b> {{$route.url}}</li>
+          <li><b>Path:</b> {{$route.path}}</li>
+          <li><b>Hash:</b> {{$route.hash}}</li>
+          <li><b>Params:</b>
+            <ul>
+              <li v-for="(value, key) in $route.params"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Query:</b>
+            <ul>
+              <li v-for="(value, key) in $route.query"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Route:</b> {{$route.route}}</li>
+        </ul>
+      </f7-block>
+      <f7-block inner>
+        <f7-link @click="$router.back()">Go back via Router API</f7-link>
+      </f7-block>
+    </f7-page>
+  </template>
+
+  <script src="cordova.js"></script>
+  <script src="js/framework7.min.js"></script>
+  <script src="js/vue.min.js"></script>
+  <script src="js/framework7-vue.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
