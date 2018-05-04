@@ -10,6 +10,19 @@ Your custom styles go here
   padding-top: 6px;
 }
 
+#img-swiper-row{
+  height: 60%;
+}
+
+#img-swiper-col{
+  height:100%;
+  margin: 0 auto;
+}
+
+#swiper-img{
+  height:100%;
+}
+
 .item-inner{
   margin: auto;
   font-size: 1.2em
@@ -33,13 +46,13 @@ Your custom styles go here
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
+
   color: #000;
 }
 .demo-swiper .swiper-slide {
   box-sizing: border-box;
-  border: 1px solid #ddd;
-  background: #fff;
+
+
 }
 .demo-swiper {
   margin: 0px 0 35px;

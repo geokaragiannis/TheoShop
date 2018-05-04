@@ -110,9 +110,20 @@
       <f7-block title="demo" inner > </f7-block>
 
       <div v-for='d in demo_list'>
-        <h3> {{d}} </h3>
+        <h2> {{d}} </h2>
         <f7-swiper scrollbar navigation :params="{speed:500, slidesPerView: 2, spaceBetween: 20}" navigation class='demo-swiper'>
-          <f7-swiper-slide v-for='itm in sub_demo_list[d]'>{{itm}}</f7-swiper-slide>
+          <f7-swiper-slide v-for='itm in sub_demo_list[d]'>
+            <div class='row' id='img-swiper-row'>
+              <div class='col' id='img-swiper-col'>
+                <img id='swiper-img' src='img/logo.png'> </img>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col' style="margin:0 auto">
+                <p>{{itm}}</p>
+              </div>
+            </div>
+          </f7-swiper-slide>
         </f7-swiper>
       </div>
 
