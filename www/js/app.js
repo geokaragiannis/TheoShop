@@ -1,5 +1,22 @@
 (function () {
 
+  var data = {
+    parent_items: ['Drinks', 'Food', 'Products'],
+    children_items: {
+      'Drinks': ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
+      'Food': ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt'],
+      'Products': ['Honey', 'Cream', 'Feta Cheese']
+    },
+
+    sub_items: {
+      'hot_coffees': ['Capuccino', 'Espresso', 'Latte', 'Americano']
+    },
+    // drinks: ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
+    // food: ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
+    item_selected: null
+  };
+
+
   function init() {
 
     // Init F7 Vue Plugin
@@ -7,10 +24,35 @@
 
     // Init Page Components
     Vue.component('page-main', {
-      template: '#page-main'
+      template: '#page-main',
+      data: function(){
+        return data;
+      },
+      methods: {
+        goToCart: function(){
+
+        },
+
+        goToSubMenu: function(is){
+          data.item_selected = is
+        }
+
+      }
     })
     Vue.component('login-screen', {
       template: '#login-screen'
+    })
+    Vue.component('sub-menu', {
+      template: '#sub-menu',
+      data: function(){
+        return data;
+      },
+      methods: {
+
+      }
+    })
+    Vue.component('cart', {
+      template: '#cart'
     })
     Vue.component('page-dynamic-routing', {
       template: '#page-dynamic-routing'
@@ -33,6 +75,14 @@
           {
             path: '/login/',
             component: 'login-screen'
+          },
+          {
+            path: '/sub-menu/',
+            component: 'sub-menu'
+          },
+          {
+            path: '/cart/',
+            component: 'cart'
           },
           {
             path: '/dynamic-route/blog/:blogId/post/:postId/',

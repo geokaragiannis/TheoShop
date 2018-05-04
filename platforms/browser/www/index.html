@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="css/framework7.ios.min.css">
   <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/framework7-icons/css/framework7-icons.css">
 </head>
 <body>
   <div id="app">
     <!-- Statusbar -->
     <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
-    <f7-statusbar></f7-statusbar>
+    <!-- <f7-statusbar></f7-statusbar> -->
 
 
     <f7-panel left reveal layout="dark">
@@ -24,14 +25,9 @@
             <f7-block inner>
               <p>Left panel content goes here</p>
             </f7-block>
-            <f7-block-title>Load page in panel</f7-block-title>
-            <f7-list>
-              <f7-list-item link="/about/" title="About"></f7-list-item>
-              <f7-list-item link="/form/" title="Form"></f7-list-item>
-            </f7-list>
             <f7-block-title>Load page in main view</f7-block-title>
             <f7-list>
-              <f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/main/" title="Main" link-view="#main-view" link-close-panel></f7-list-item>
               <f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
             </f7-list>
           </f7-page>
@@ -40,7 +36,7 @@
     </f7-panel>
     <!-- Main Views -->
 
-      
+
     <!-- Login Screen -->
     <f7-views>
       <f7-view>
@@ -81,13 +77,47 @@
         <f7-nav-center sliding>Welcome to Fournos Theofilos</f7-nav-center>
       </f7-navbar>
       <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
-      <f7-block inner>
-        <p>Here is main page!</p>
-        <p>You can go <f7-link back>back</f7-link>.</p>
-        <p>Mauris posuere sit amet metus id venenatis. Ut ante dolor, tempor nec commodo rutrum, varius at sem. Nullam ac nisi non neque ornare pretium. Nulla mauris mauris, consequat et elementum sit amet, egestas sed orci. In hac habitasse platea dictumst.</p>
-        <p>Fusce eros lectus, accumsan eget mi vel, iaculis tincidunt felis. Nulla tincidunt pharetra sagittis. Fusce in felis eros. Nulla sit amet aliquam lorem, et gravida ipsum. Mauris consectetur nisl non sollicitudin tristique. Praesent vitae metus ac quam rhoncus mattis vel et nisi. Aenean aliquet, felis quis dignissim iaculis, lectus quam tincidunt ligula, et venenatis turpis risus sed lorem. Morbi eu metus elit. Ut vel diam dolor.</p>
+      <f7-block>
+        <!-- <p>Here is main page!</p>
+        <p>You can go <f7-link back>back</f7-link>.</p> -->
+        <f7-block-header></f7-block-header>
+
       </f7-block>
+
+      <!-- List of Items -->
+
+      <f7-list media-list no-hairlines-between='true' >
+        <f7-list-group v-for="par in parent_items">
+          <f7-list-item group-title> {{par}} </f7-list-item>
+          <f7-list-item  v-for="j in children_items[par]" :title='j' v-on:click='goToSubMenu(j)'link='/sub-menu/'>
+            <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+          </f7-list-item>
+          <!-- <f7-list-item  divider></f7-list-item> -->
+      </f7-list>
+
+
+      <f7-fab  href="/cart/">
+        <f7-icon f7="icon-bag"></f7-icon>
+      </f7-fab>
     </f7-page>
+  </template>
+
+  <template id="sub-menu">
+    <f7-page>
+      <f7-navbar :title="item_selected" sliding back-link="Back"></f7-navbar>
+
+      <f7-fab  href="/cart/">
+        <f7-icon f7="icon-bag"></f7-icon>
+      </f7-fab>
+    </f7-page>
+
+  </template>
+
+  <template id="cart">
+    <f7-page>
+      <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
+    </f7-page>
+
   </template>
 
   <!-- Dynamic Routing Page Template -->

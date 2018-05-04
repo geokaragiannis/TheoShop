@@ -1,3 +1,27 @@
 /* =========
 Your custom styles go here
  ========= */
+
+#parent_items_img{
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+.item-inner{
+  margin: auto;
+  font-size: 1.2em
+}
+
+.item-title{
+  margin: 0 auto;
+}
+
+.list-group-title{
+  padding-bottom: 10px;
+  font-size: 2em;
+  color: #2196f3ba !important;
+  background: #ffffff !important;
+}
