@@ -11,6 +11,15 @@
     sub_items: {
       'hot_coffees': ['Capuccino', 'Espresso', 'Latte', 'Americano']
     },
+
+    demo_list: ['Capuccino', 'Espresso', 'Latte', 'Americano'],
+    sub_demo_list: {
+      'Capuccino': ['Cap 1', 'Cap2', 'Cap3'],
+      'Espresso': ['Espresso 1', 'Espresso 2', 'Espresso 3', 'Espresso 4'],
+      'Latte': ['Latte 1','Latte 2'],
+      'Americano': ['Americano 1','Americano 2', 'Americano 3']
+    },
+
     // drinks: ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
     // food: ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
     item_selected: null
