@@ -23,7 +23,11 @@
     // drinks: ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
     // food: ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
     item_selected: null,
+  };
 
+  var final_page_data = {
+
+    checkbox_enabled: false,
   };
 
 
@@ -65,7 +69,15 @@
       template: '#cart'
     })
     Vue.component('final-page', {
-      template: '#final-page'
+      template: '#final-page',
+      data: function(){
+        return final_page_data;
+      },
+      methods: {
+        checkbox_clicked(){
+          final_page_data.checkbox_enabled = true;
+        }
+      }
     })
     Vue.component('page-dynamic-routing', {
       template: '#page-dynamic-routing'
