@@ -35,7 +35,7 @@ Your custom styles go here
 .list-group-title{
   padding-bottom: 10px;
   font-size: 2em;
-  color: #2196f3ba !important;
+  color: cornflowerblue !important;
   background: #ffffff !important;
 }
 
@@ -84,4 +84,62 @@ Your custom styles go here
 }
 .demo-card-header-pic .card-content-padding .date{
   color: #8e8e93;
+}
+
+
+/* toolbar style in final page */
+
+.toolbar{
+  height: 88px;
+  background: cornflowerblue;
+  box-shadow: 0px -1px 6px 0px black;
+}
+
+#toolbar-usd{
+  border-right: 0.5px solid black;
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#toolbar-add{
+
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.toolbar-a{
+  color: #ffffff;
+  font-size: 23px;
+
+}
+
+.final-page-list{
+  margin-bottom: 100px;
+  margin-top: 45px;
+}
+
+/* card */
+
+.card{
+  margin: 0;
+}
+
+.card-header{
+  height: 65vw !important;
+}
+
+.card-image-title{
+  position: absolute;
+  bottom: 0;
+}
+
+.custom-header{
+  border-top: 1px solid #80808057;
 }

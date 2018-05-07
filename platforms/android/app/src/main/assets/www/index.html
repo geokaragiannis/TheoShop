@@ -14,7 +14,7 @@
   <div id="app">
     <!-- Statusbar -->
     <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
-    <!-- <f7-statusbar></f7-statusbar> -->
+    <f7-statusbar></f7-statusbar>
 
 
     <f7-panel left reveal layout="dark">
@@ -91,8 +91,10 @@
       </f7-list>
 
 
-      <f7-fab  href="/cart/">
-        <f7-icon f7="icon-bag"></f7-icon>
+      <f7-fab href="/cart/">
+        <f7-icon f7="icon-bag">
+          <f7-badge color="red">5</f7-badge>
+        </f7-icon>
       </f7-fab>
     </f7-page>
   </template>
@@ -102,30 +104,33 @@
       <f7-navbar :title="item_selected" sliding back-link="Back"></f7-navbar>
 
 
-      <f7-block title="demo" inner > </f7-block>
-
-      <div v-for='d in demo_list'>
-        <h2> {{d}} </h2>
-        <f7-swiper pagination navigation :params="{speed:500, slidesPerView: 3, spaceBetween: 0}" navigation class='demo-swiper'>
-          <f7-swiper-slide v-for='itm in sub_demo_list[d]'>
-              <a href='/final-page/'>
-                <div class='row' id='img-swiper-row'>
-                  <div class='col' id='img-swiper-col'>
-                    <img id='swiper-img' src='img/logo.png'></img>
+      <!-- <f7-block title="demo" inner > </f7-block> -->
+      <f7-list>
+        <div v-for='d in demo_list'>
+          <h2> {{d}} </h2>
+          <f7-swiper pagination navigation :params="{speed:500, slidesPerView: 3, spaceBetween: 0}" navigation class='demo-swiper'>
+            <f7-swiper-slide v-for='itm in sub_demo_list[d]'>
+                <a href='/final-page/'>
+                  <div class='row' id='img-swiper-row'>
+                    <div class='col' id='img-swiper-col'>
+                      <img id='swiper-img' src='img/logo.png'></img>
+                    </div>
+                  </div>
+                </a>
+                <div class='row'>
+                  <div class='col' style="margin:0 auto">
+                    <p style='margin-top: 2px'>{{itm}}</p>
                   </div>
                 </div>
-              </a>
-              <div class='row'>
-                <div class='col' style="margin:0 auto">
-                  <p style='margin-top: 2px'>{{itm}}</p>
-                </div>
-              </div>
-          </f7-swiper-slide>
-        </f7-swiper>
-      </div>
+            </f7-swiper-slide>
+          </f7-swiper>
+        </div>
+      </f7-list>
 
       <f7-fab href="/cart/">
-        <f7-icon f7="icon-bag"></f7-icon>
+        <f7-icon f7="icon-bag">
+          <f7-badge color="red">5</f7-badge>
+        </f7-icon>
       </f7-fab>
     </f7-page>
 
@@ -133,21 +138,43 @@
 
   <template id='final-page'>
     <f7-page>
-        <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar>
-        <f7-block title="demo" inner > </f7-block>
-
-
-        <div class="card demo-card-header-pic">
-          <div style="background-image:url(img/cap.jpg)" class="card-header align-items-flex-end">Journey To Mountains</div>
-          <div class="card-content card-content-padding">
-            <p class="date">Posted on January 21, 2015</p>
-            <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
+      <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar>
+      <f7-toolbar>
+        <div class="toolbar-inner">
+          <div id='toolbar-usd'>
+            <a class='toolbar-a' href='#'> $ </a>
           </div>
-          <div class="card-footer"><a href="#" class="link">Like</a><a href="#" class="link">Read more</a></div>
+          <div id='toolbar-add'>
+            <a class='toolbar-a' href='#'> Add To Cart</a>
+          </div>
         </div>
+      </f7-toolbar>
 
-        
+        <!-- <f7-block title="demo" inner > </f7-block> -->
 
+      <f7-page-content>
+        <f7-list class='final-page-list'>
+          <div class="card demo-card-header-pic">
+            <div style="background-image:url(img/cap.jpg)" class="card-header align-items-flex-end">
+              <p class="card-image-title">
+                Journey To Mountains
+              </p>
+            </div>
+            <div class="card-content card-content-padding">
+              <h3> Description goes here</h3>
+              <h2 class="custom-header">Size </h2>
+              <f7-list no-hairlines-between>
+                <!-- Additional "checkbox" prop to enable checkbox list item -->
+                <f7-list-item checkbox value="check_1" checked title="12oz"></f7-list-item>
+                <f7-list-item checkbox value="check_2" title="16oz"></f7-list-item>
+                <f7-list-item checkbox value="check_3" title="24oz"></f7-list-item>
+              </f7-list>
+            </div>
+
+
+
+        </f7-list>
+      </f7-page-content>
     </f7-page>
   </template>
 

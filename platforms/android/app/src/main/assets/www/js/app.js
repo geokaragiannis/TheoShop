@@ -22,7 +22,8 @@
 
     // drinks: ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
     // food: ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
-    item_selected: null
+    item_selected: null,
+
   };
 
 
