@@ -128,7 +128,7 @@ Your custom styles go here
 /* card */
 
 .card{
-  margin: 0;
+  /* margin: 0; */
 }
 
 .card-header{
@@ -173,6 +173,6 @@ Your custom styles go here
 }
 
 #extra-shot-number{
-  font-size: 30px;
+  font-size: 25px;
   margin: 0;
 }

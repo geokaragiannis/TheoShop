@@ -30,6 +30,10 @@
     checkbox_enabled: false,
     extra_shots: 2,
     extra_shot_price: 0.0,
+    quantity: 1,
+    extra: ['No sugar', 'Medium Sweet', 'Sweet', 'Extra Sugar', 'Brown Sugar', 'Stevia Sweetener', 'ppp'],
+    milk: ['Whole Milk', '2% Reduced Milk', 'Non Fat Milk', 'Soy Milk', 'Almond Milk'],
+    flavors: ['Chocolate', 'Vanilla', 'Caramel Sauce', 'Pumkin Sauce', 'Hazelnut Syrup']
   };
 
 
@@ -85,7 +89,14 @@
             final_page_data.extra_shots += num;
             console.log('extra shots ', final_page_data.extra_shots)
           }
-        }
+        },
+        change_quantity(num){
+
+          if (final_page_data.quantity > 1 || num >0){
+            final_page_data.quantity += num;
+            console.log('quantity ', final_page_data.quantity)
+          }
+        },
       }
     })
     Vue.component('page-dynamic-routing', {
