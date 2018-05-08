@@ -143,3 +143,20 @@ Your custom styles go here
 .custom-header{
   border-top: 1px solid #80808057;
 }
+
+/* extra shot  */
+
+#extra-shot-add{
+  margin-right: 15px;
+  align-self: center;
+}
+
+#extra-shot-delete{
+  margin-left: 40px;
+  align-self: center;
+}
+
+#extra-shot-number{
+  font-size: 30px;
+  margin: 0;
+}

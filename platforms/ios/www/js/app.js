@@ -28,6 +28,8 @@
   var final_page_data = {
 
     checkbox_enabled: false,
+    extra_shots: 2,
+    extra_shot_price: 0.0,
   };
 
 
@@ -76,6 +78,13 @@
       methods: {
         checkbox_clicked(){
           final_page_data.checkbox_enabled = true;
+        },
+        change_extra_shot(num){
+
+          if (final_page_data.extra_shots > 1 || num >0){
+            final_page_data.extra_shots += num;
+            console.log('extra shots ', final_page_data.extra_shots)
+          }
         }
       }
     })
