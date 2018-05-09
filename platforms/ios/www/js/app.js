@@ -143,11 +143,40 @@
 
   }
 
+  function onPause(){
+    console.log('onPause')
+  }
+
+  function onResume(){
+    console.log('onResume')
+  }
+
+  var onSuccess = function(position) {
+        console.log('Latitude: '    + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');
+    };
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        console.log('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
 
 
   // Handle device ready event
   // Note: You may want to check out the vue-cordova package on npm for cordova specific handling with vue - https://www.npmjs.com/package/vue-cordova
   document.addEventListener('deviceready', init, false)
+  document.addEventListener("pause", onPause, false);
+  document.addEventListener("resume", onResume, false);
+  navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 
 

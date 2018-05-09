@@ -8,12 +8,14 @@
       "android"
     ],
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-geolocation": {}
     }
   },
   "dependencies": {
     "cordova-ios": "~4.5.4",
     "cordova-plugin-whitelist": "1",
-    "cordova-android": "^7.0.0"
+    "cordova-android": "^7.0.0",
+    "cordova-plugin-geolocation": "^4.0.1"
   }
 }
