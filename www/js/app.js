@@ -23,6 +23,20 @@
     // drinks: ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
     // food: ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
     item_selected: null,
+
+    big_list: [
+			[{name: 'Drinks', id: 1, p_id: null, leaf: false}, {name: 'Food', 'id':2, p_id: null, leaf: false}],
+			[{name: 'Coffee', id: 10, p_id: 1, leaf: false}, {name: 'Tea', 'id':11, p_id: 1, leaf: false}, {name: 'Breakfast', 'id':12, p_id: 2, leaf: false}],
+			[{name: 'Cap', id: 20, p_id: 10, leaf: true}, {name: 'Esp', 'id':21, p_id: 10, leaf: true}, {name: 'Lipton', 'id':22, p_id: 11, leaf: true}, {name: 'Omelate', 'id':23, p_id: 12, leaf: true}]
+    ],
+    // big_list: [
+		// 	{name: 'Drinks', id: 1, p_id: null, leaf: true}, {name: 'Food', 'id':2, p_id: null, leaf: true},
+		// 	{name: 'Coffee', id: 10, p_id: 1, leaf: true}, {name: 'Tea', 'id':11, p_id: 1, leaf: true}, {name: 'Breakfast', 'id':12, p_id: 2, leaf: true},
+		// 	{name: 'Cap', id: 20, p_id: 10, leaf: true}, {name: 'Esp', 'id':21, p_id: 10, leaf: true}, {name: 'Lipton', 'id':22, p_id: 11, leaf: true}, {name: 'Omelate', 'id':23, p_id: 12, leaf: true}
+    // ],
+    big_list_index: 0,
+    link_to: '/sub-menu/',
+    sub_menu_navbar_title: 'Menu'
   };
 
   var final_page_data = {
@@ -55,7 +69,7 @@
 
         goToSubMenu: function(is){
           data.item_selected = is
-        }
+        },
 
       }
     })
@@ -68,6 +82,20 @@
         return data;
       },
       methods: {
+
+        goToSame: function(item){
+          data.big_list_index += 1;
+          if (item.leaf) {
+            data.sub_menu_navbar_title = item.name
+          }
+        },
+
+        backSubMenu: function(){
+          if (data.big_list_index != 0){
+            data.big_list_index -= 1
+          }
+
+        },
 
       }
     })

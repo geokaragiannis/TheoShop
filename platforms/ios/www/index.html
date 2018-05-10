@@ -14,7 +14,7 @@
   <div id="app">
     <!-- Statusbar -->
     <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
-    <f7-statusbar></f7-statusbar>
+    <!-- <f7-statusbar></f7-statusbar> -->
 
 
     <f7-panel left reveal layout="dark">
@@ -81,15 +81,9 @@
 
 
       <!-- List of Items -->
-
-      <f7-list media-list no-hairlines-between='true' >
-        <f7-list-group v-for="par in parent_items">
-          <f7-list-item group-title> {{par}} </f7-list-item>
-          <f7-list-item  v-for="j in children_items[par]" :title='j' v-on:click='goToSubMenu(j)' link='/sub-menu/'>
-            <img id='parent_items_img' src="img/logo.png" slot='content-start'>
-          </f7-list-item>
-          <!-- <f7-list-item  divider></f7-list-item> -->
-      </f7-list>
+      <f7-block style="padding-top: 100px">
+        <a href="/sub-menu/"> Go <a>
+      </f7-block>
 
 
       <f7-fab href="/cart/">
@@ -98,34 +92,57 @@
         </f7-icon>
       </f7-fab>
     </f7-page>
+
   </template>
+
+  <!--  SUB MENU HERE -------------------->
 
   <template id="sub-menu">
     <f7-page style="background: #ffffff">
-      <f7-navbar :title="item_selected" sliding back-link="Back"></f7-navbar>
+      <!-- <f7-navbar sliding="false">
+        <f7-nav-left sliding="false">
+          <f7-link sliding="false" v-if="big_list_index != 0" v-on:click="backSubMenu()" icon="icon-back"> Back </f7-link>
+          <f7-link sliding="false" v-else back-link-url="/main/" icon="icon-back"> Back </f7-link>
 
+        </f7-nav-left>
+        <f7-nav-title> Menu </f7-nav-title>
+        <f7-nav-right></f7-nav-right>
+      </f7-navbar> -->
 
-      <!-- <f7-block title="demo" inner > </f7-block> -->
-      <f7-list>
-        <div v-for='d in demo_list'>
-          <h2> {{d}} </h2>
-          <f7-swiper pagination navigation :params="{speed:500, slidesPerView: 3, spaceBetween: 0}" navigation class='demo-swiper'>
-            <f7-swiper-slide v-for='itm in sub_demo_list[d]'>
-                <a href='/final-page/'>
-                  <div class='row' id='img-swiper-row'>
-                    <div class='col' id='img-swiper-col'>
-                      <img id='swiper-img' src='img/logo.png'></img>
-                    </div>
-                  </div>
-                </a>
-                <div class='row'>
-                  <div class='col' style="margin:0 auto">
-                    <p style='margin-top: 2px'>{{itm}}</p>
-                  </div>
-                </div>
-            </f7-swiper-slide>
-          </f7-swiper>
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a href="#" class="back link">
+              <i v-on:click="backSubMenu()" class="icon icon-back"></i>
+              <!-- Back link text rendered only for iOS theme -->
+              <span v-on:click="backSubMenu()">Back</span>
+            </a>
+          </div>
+          <div class="title"> {{sub_menu_navbar_title}} </div>
+          <div class="right"> </div>
         </div>
+      </div>
+
+
+
+      <f7-list media-list no-hairlines-between='true' >
+        <f7-list-group v-for="big in big_list[big_list_index]">
+
+          <f7-list-item group-title> {{big.name}} </f7-list-item>
+
+          <div v-for="j in big_list[big_list_index + 1]">
+            <f7-list-item v-if="!j.leaf && j.p_id === big.id" :title='j.name' v-on:click='goToSame(j)' link="sub-menu">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            </f7-list-item>
+          </div>
+
+          <div v-for="j in big_list[big_list_index + 1]">
+
+            <f7-list-item v-if="j.leaf && j.p_id === big.id" :title='j.name' link="final-page">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            </f7-list-item>
+          </div>
+
       </f7-list>
 
       <f7-fab href="/cart/">
