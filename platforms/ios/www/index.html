@@ -130,21 +130,17 @@
 
           <f7-list-item group-title> {{par.name}} </f7-list-item>
 
-          <div v-if="!is_last_level" v-for="child in par.children">
-            <f7-list-item :title='child.name' v-on:click='goToSame(child)' link="sub-menu">
+          <div v-for="child in par.children">
+            <f7-list-item v-if="child.children != null" :title='child.name' v-on:click='goToSame(child)' link="sub-menu">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            </f7-list-item>
+            <f7-list-item v-else :title='child.name' link="final-page">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
           </div>
 
-          <div v-if="is_last_level" v-for="child in par.children">
+          <!-- <div v-if="is_last_level" v-for="child in par.children">
             <f7-list-item :title='child.name' link="final-page">
-              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
-            </f7-list-item>
-          </div>
-
-          <!-- <div v-for="j in big_list[big_list_index + 1]">
-
-            <f7-list-item v-if="j.leaf && j.p_id === big.id" :title='j.name' link="final-page">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
           </div> -->

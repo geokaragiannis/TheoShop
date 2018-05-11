@@ -40,10 +40,13 @@
     //   '3': [{name:'Cap' , id:30 , p_id:10 }, {name:'Esp' , id:31 , p_id:10 }, {name:'Mousakas' , id:32 , p_id:21}]
     // },
     big_list: [
-      {name:'Drinks' , id:1 , p_id:0, level: 1, children: [{name:'Coffee' , id:10 , p_id:1, level: 2, children:[{name:'Cap' , id:20 , p_id:10, level: 3},{name:'Esp' , id:21 , p_id:10, level: 3}] }, {name:'Tea' , id:11 , p_id:1, level: 2, children:[{name:'Engligh' , id:22 , p_id:11, level: 3},{name:'Greek' , id:23 , p_id:11, level: 3}]}]},
-      {name: 'Food', id: 2, p_id: 0, level: 1, children: [{name:'Breakfast' , id:30 , p_id:2, level: 2, children:[{name:'Omelate' , id:40 , p_id:30, level: 3},{name:'Bagel' , id:41 , p_id:30, level: 3}]}, {name:'Lunch' , id:31 , p_id:2, level: 2, children:[{name:'Mousakas' , id:42 , p_id:31, level: 3},{name:'Pastitsio' , id:43 , p_id:31, level: 3}]}]}
+      {name:'Drinks' ,is_leaf: false, id:1 , p_id:0, level: 1, children: [{name:'Coffee' ,is_leaf: false, id:10 , p_id:1, level: 2, children:[{name:'Cap' , is_leaf: true, id:20 , p_id:10, level: 3},{name:'Esp' , is_leaf: true, id:21 , p_id:10, level: 3}] }, {name:'Tea' , is_leaf: false, id:11 , p_id:1, level: 2, children:[{name:'Engligh' , is_leaf: true, id:22 , p_id:11, level: 3},{name:'Greek' , is_leaf: true, id:23 , p_id:11, level: 3}]}]},
+      {name: 'Food',is_leaf: false, id: 2, p_id: 0, level: 1, children: [{name:'Breakfast' ,is_leaf: false, id:30 , p_id:2, level: 2, children:[{name:'Omelate' , is_leaf: false, id:40 , p_id:30, level: 3, children: [{name:'Omelate2' , is_leaf: true, id:80 , p_id:40, level: 4}, {name:'Omelate3', is_leaf: true, id:81 , p_id:40, level: 4}, {name:'Omelate4' , is_leaf: true, id:82 , p_id:40, level: 4}]},{name:'Bagel' , is_leaf: false, id:41 , p_id:30, level: 3, children: [
+				{name:'Bagel2' , is_leaf: true, id:90 , p_id:41, level: 4},
+				{name:'Bagel3', is_leaf: true, id:92 , p_id:41, level: 4},
+				{name:'Bagel4' , is_leaf: true, id:92 , p_id:41, level: 4}
+			]}]}, {name:'Lunch' , is_leaf: false, id:31 , p_id:2, level: 2, children:[{name:'Mousakas' , is_leaf: true, id:42 , p_id:31, level: 3},{name:'Pastitsio' , is_leaf: true, id:43 , p_id:31, level: 3}]}]}
     ],
-    num_of_levels: 3,
     parent_list: [],
     children_list: [],
     parent_stack: [],
@@ -87,8 +90,6 @@
         goToSubMenu: function(is){
           data.parent_list = data.big_list
           data.parent_stack.push(data.big_list)
-          if(data.num_of_levels > 2)
-            data.is_last_level = false
         },
 
       }
@@ -104,8 +105,8 @@
       methods: {
 
         goToSame: function(item){
-          
-          if(data.num_of_levels - item.level < 2)
+
+          if(item.children[0].is_leaf)
             data.is_last_level = true;
 
           if(!data.is_last_level)
