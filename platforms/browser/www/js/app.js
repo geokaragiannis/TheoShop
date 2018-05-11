@@ -104,6 +104,7 @@
       methods: {
 
         goToSame: function(item){
+          
           if(data.num_of_levels - item.level < 2)
             data.is_last_level = true;
 
