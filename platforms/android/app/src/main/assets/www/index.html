@@ -126,12 +126,18 @@
 
 
       <f7-list media-list no-hairlines-between='true' >
-        <f7-list-group v-for="par in parent">
+        <f7-list-group v-for="par in parent_list">
 
           <f7-list-item group-title> {{par.name}} </f7-list-item>
 
-          <div v-for="child in big_list">
-            <f7-list-item v-if="child.p_id === par.id" :title='child.name' v-on:click='goToSame(child)' link="sub-menu">
+          <div v-if="!is_last_level" v-for="child in par.children">
+            <f7-list-item :title='child.name' v-on:click='goToSame(child)' link="sub-menu">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            </f7-list-item>
+          </div>
+
+          <div v-if="is_last_level" v-for="child in par.children">
+            <f7-list-item :title='child.name' link="final-page">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
           </div>

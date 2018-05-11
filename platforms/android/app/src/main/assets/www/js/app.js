@@ -29,15 +29,29 @@
 		// 	[{name: 'Coffee', id: 10, p_id: 1, leaf: false}, {name: 'Tea', id:11, p_id: 1, leaf: false}, {name: 'Breakfast', id:12, p_id: 2, leaf: false}],
 		// 	[{name: 'Cap', id: 20, p_id: 10, leaf: true}, {name: 'Esp', id:21, p_id: 10, leaf: true}, {name: 'Lipton', id:22, p_id: 11, leaf: true}, {name: 'Omelate', id:23, p_id: 12, leaf: true}]
     // ],
+    // big_list: [
+		// 	{name: 'Drinks', id: 1, p_id: 0, leaf: false}, {name: 'Food', id:2, p_id: 0, leaf: false},
+		// 	{name: 'Coffee', id: 10, p_id: 1, leaf: false}, {name: 'Tea', id:11, p_id: 1, leaf: false}, {name: 'Breakfast', id:12, p_id: 2, leaf: false},
+		// 	{name: 'Cap', id: 20, p_id: 10, leaf: true}, {name: 'Esp', id:21, p_id: 10, leaf: true}, {name: 'Lipton', id:22, p_id: 11, leaf: true}, {name: 'Omelate', id:23, p_id: 12, leaf: true}
+    // ],
+    // big_list: {
+    //   '1': [{name:'Drinks' , id:1 , p_id:0 }, {name:'Food' , id:2 , p_id:0 }],
+    //   '2': [{name:'Coffee' , id:10 , p_id:1 }, {name:'Tea' , id:11 , p_id:1 }, {name:'Iced Tea' , id:12 , p_id:1 }, {name:'Breakfast' , id:20 , p_id:2 }, {name:'Lunch' , id:21 , p_id:2 }, {name:'Dinner', id:22 , p_id:2 }],
+    //   '3': [{name:'Cap' , id:30 , p_id:10 }, {name:'Esp' , id:31 , p_id:10 }, {name:'Mousakas' , id:32 , p_id:21}]
+    // },
     big_list: [
-			{name: 'Drinks', id: 1, p_id: 0, leaf: false}, {name: 'Food', id:2, p_id: 0, leaf: false},
-			{name: 'Coffee', id: 10, p_id: 1, leaf: false}, {name: 'Tea', id:11, p_id: 1, leaf: false}, {name: 'Breakfast', id:12, p_id: 2, leaf: false},
-			{name: 'Cap', id: 20, p_id: 10, leaf: true}, {name: 'Esp', id:21, p_id: 10, leaf: true}, {name: 'Lipton', id:22, p_id: 11, leaf: true}, {name: 'Omelate', id:23, p_id: 12, leaf: true}
+      {name:'Drinks' , id:1 , p_id:0, level: 1, children: [{name:'Coffee' , id:10 , p_id:1, level: 2, children:[{name:'Cap' , id:20 , p_id:10, level: 3},{name:'Esp' , id:21 , p_id:10, level: 3}] }, {name:'Tea' , id:11 , p_id:1, level: 2, children:[{name:'Engligh' , id:22 , p_id:11, level: 3},{name:'Greek' , id:23 , p_id:11, level: 3}]}]},
+      {name: 'Food', id: 2, p_id: 0, level: 1, children: [{name:'Breakfast' , id:30 , p_id:2, level: 2, children:[{name:'Omelate' , id:40 , p_id:30, level: 3},{name:'Bagel' , id:41 , p_id:30, level: 3}]}, {name:'Lunch' , id:31 , p_id:2, level: 2, children:[{name:'Mousakas' , id:42 , p_id:31, level: 3},{name:'Pastitsio' , id:43 , p_id:31, level: 3}]}]}
     ],
-    big_list_index: 0,
-    p_id_next: 0,
-    parent: [],
+    num_of_levels: 3,
+    parent_list: [],
+    children_list: [],
     parent_stack: [],
+    big_list_index: 0,
+    parent_level: 1,
+    parent_selected: 0,
+    children_level: 2,
+    is_last_level: false,
     link_to: '/sub-menu/',
     sub_menu_navbar_title: 'Menu'
   };
@@ -71,18 +85,10 @@
         },
 
         goToSubMenu: function(is){
-          data.item_selected = is
-          data.parent = []
-
-          for(i = 0; i < data.big_list.length; i++){
-            if (data.big_list[i].p_id === 0){
-              data.parent.push(data.big_list[i])
-            }
-          }
-
-          data.parent_stack.push(data.parent)
-
-          console.log("parent list: ", data.parent)
+          data.parent_list = data.big_list
+          data.parent_stack.push(data.big_list)
+          if(data.num_of_levels > 2)
+            data.is_last_level = false
         },
 
       }
@@ -98,26 +104,31 @@
       methods: {
 
         goToSame: function(item){
-          data.parent = []
-          for(i = 0; i < data.big_list.length; i++){
-            if (data.big_list[i].id === item.id){
-              data.parent.push(data.big_list[i])
-            }
+          if(data.num_of_levels - item.level < 2)
+            data.is_last_level = true;
+
+          if(!data.is_last_level)
+            data.parent_list = item.children
+          else
+            data.parent_list = [item]
+
+          data.parent_stack.push(data.parent_list)
+
+          for (x in data.parent_list){
+            console.log('lala ', x)
           }
 
-          data.parent_stack.push(data.parent)
-          // if (item.leaf) {
-          //   data.sub_menu_navbar_title = item.name
-          // }
+          console.log('is_last_level: ', data.is_last_level);
+          console.log('parent: ', data.parent_list);
+
         },
 
         backSubMenu: function(){
-          console.log('before slicing ', data.parent_stack)
           data.parent_stack.pop()
-          console.log('after slicing ', data.parent_stack)
-          data.parent = data.parent_stack[data.parent_stack.length - 1]
-          console.log('parent ', data.parent)
-
+          data.parent_list = data.parent_stack[data.parent_stack.length - 1]
+          data.is_last_level = false
+          console.log('parent stack: ', data.parent_stack);
+          console.log('parent: ', data.parent_list);
         },
 
       }
