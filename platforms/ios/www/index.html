@@ -79,10 +79,29 @@
       </f7-navbar>
       <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
 
+      <div class="block block-main">
+        <div class="row">
+          <f7-button button-big button-raised class="col button-main ">
+            <i class="f7-icons inside-button-main inside-button-main-i">person</i>
+            <p class="inside-button-main inside-button-main-p"> Profile </p>
+          </f7-button>
+          <f7-button button-big button-raised class="col button-main">
+            <i class="f7-icons inside-button-main inside-button-main-i">compass</i>
+            <p class="inside-button-main inside-button-main-p"> Stores </p>
+          </f7-button>
+        </div>
+        <div class="row-main row">
+          <f7-button v-on:click="goToSubMenu(0)" href="/sub-menu/" button-big button-raised class="col-100 button-main">
+            <i class="f7-icons inside-button-main inside-button-main-i"> book</i>
+            <p class="inside-button-main inside-button-main-p"> Menu </p>
+          </f7-button>
+
+        </div>
+      </div>
 
       <!-- List of Items -->
 
-      <f7-button class="main-page-button" text='Order Now' v-on:click="goToSubMenu(0)" href="/sub-menu/" round big fill> </f7-button>
+      <!-- <f7-button class="main-page-button" text='Order Now' v-on:click="goToSubMenu(0)" href="/sub-menu/" round big fill> </f7-button>  -->
 
     </f7-page>
 
