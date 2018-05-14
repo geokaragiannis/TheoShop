@@ -2,6 +2,19 @@
 Your custom styles go here
  ========= */
 
+ /* main page  */
+
+ .main-page-button{
+   position: absolute;
+   width: 100%;
+   bottom: 8px;
+   font-size: 3.5vh;
+   height: 6vh;
+   line-height: 6vh;
+   text-align: center;
+
+ }
+
 #parent_items_img{
   width: 4em;
   height: 4em;

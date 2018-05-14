@@ -1,44 +1,7 @@
 (function () {
 
   var data = {
-    parent_items: ['Drinks', 'Food', 'Products'],
-    children_items: {
-      'Drinks': ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
-      'Food': ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt'],
-      'Products': ['Honey', 'Cream', 'Feta Cheese']
-    },
 
-    sub_items: {
-      'hot_coffees': ['Capuccino', 'Espresso', 'Latte', 'Americano']
-    },
-
-    demo_list: ['Capuccino', 'Espresso', 'Latte', 'Americano'],
-    sub_demo_list: {
-      'Capuccino': ['Cap 1', 'Cap2', 'Cap3'],
-      'Espresso': ['Espresso 1', 'Espresso 2', 'Espresso 3', 'Espresso 4'],
-      'Latte': ['Latte 1','Latte 2'],
-      'Americano': ['Americano 1','Americano 2', 'Americano 3']
-    },
-
-    // drinks: ['Hot Coffees', 'Hot Teas', 'Hot Drinks', 'Cold Coffees', 'Cold Drinks', 'Iced Teas'],
-    // food: ['Breakfast', 'Bakery', 'Lunch', 'Snacks', 'Sweets', 'Yogurt']
-    item_selected: null,
-
-    // big_list: [
-		// 	[{name: 'Drinks', id: 1, p_id: null, leaf: false}, {name: 'Food', id:2, p_id: null, leaf: false}],
-		// 	[{name: 'Coffee', id: 10, p_id: 1, leaf: false}, {name: 'Tea', id:11, p_id: 1, leaf: false}, {name: 'Breakfast', id:12, p_id: 2, leaf: false}],
-		// 	[{name: 'Cap', id: 20, p_id: 10, leaf: true}, {name: 'Esp', id:21, p_id: 10, leaf: true}, {name: 'Lipton', id:22, p_id: 11, leaf: true}, {name: 'Omelate', id:23, p_id: 12, leaf: true}]
-    // ],
-    // big_list: [
-		// 	{name: 'Drinks', id: 1, p_id: 0, leaf: false}, {name: 'Food', id:2, p_id: 0, leaf: false},
-		// 	{name: 'Coffee', id: 10, p_id: 1, leaf: false}, {name: 'Tea', id:11, p_id: 1, leaf: false}, {name: 'Breakfast', id:12, p_id: 2, leaf: false},
-		// 	{name: 'Cap', id: 20, p_id: 10, leaf: true}, {name: 'Esp', id:21, p_id: 10, leaf: true}, {name: 'Lipton', id:22, p_id: 11, leaf: true}, {name: 'Omelate', id:23, p_id: 12, leaf: true}
-    // ],
-    // big_list: {
-    //   '1': [{name:'Drinks' , id:1 , p_id:0 }, {name:'Food' , id:2 , p_id:0 }],
-    //   '2': [{name:'Coffee' , id:10 , p_id:1 }, {name:'Tea' , id:11 , p_id:1 }, {name:'Iced Tea' , id:12 , p_id:1 }, {name:'Breakfast' , id:20 , p_id:2 }, {name:'Lunch' , id:21 , p_id:2 }, {name:'Dinner', id:22 , p_id:2 }],
-    //   '3': [{name:'Cap' , id:30 , p_id:10 }, {name:'Esp' , id:31 , p_id:10 }, {name:'Mousakas' , id:32 , p_id:21}]
-    // },
     big_list: [
       {name:'Drinks' ,is_leaf: false, id:1 , p_id:0, level: 1, children: [{name:'Coffee' ,is_leaf: false, id:10 , p_id:1, level: 2, children:[{name:'Cap' , is_leaf: true, id:20 , p_id:10, level: 3},{name:'Esp' , is_leaf: true, id:21 , p_id:10, level: 3}] }, {name:'Tea' , is_leaf: false, id:11 , p_id:1, level: 2, children:[{name:'Engligh' , is_leaf: true, id:22 , p_id:11, level: 3},{name:'Greek' , is_leaf: true, id:23 , p_id:11, level: 3}]}]},
       {name: 'Food',is_leaf: false, id: 2, p_id: 0, level: 1, children: [{name:'Breakfast' ,is_leaf: false, id:30 , p_id:2, level: 2, children:[{name:'Omelate' , is_leaf: false, id:40 , p_id:30, level: 3, children: [{name:'Omelate2' , is_leaf: true, id:80 , p_id:40, level: 4}, {name:'Omelate3', is_leaf: true, id:81 , p_id:40, level: 4}, {name:'Omelate4' , is_leaf: true, id:82 , p_id:40, level: 4}]},{name:'Bagel' , is_leaf: false, id:41 , p_id:30, level: 3, children: [
@@ -106,19 +69,21 @@
 
         goToSame: function(item){
 
+          // if the child of the item selected is a leaf, then
+          // we enable is_last_level
           if(item.children[0].is_leaf)
             data.is_last_level = true;
 
+          // if not is_last_level then the categories (in blue font)
+          // are the children of the item selected
+          // else the category is just the item selected
           if(!data.is_last_level)
             data.parent_list = item.children
           else
             data.parent_list = [item]
 
+          // parent_stack is used for the history aka back button
           data.parent_stack.push(data.parent_list)
-
-          for (x in data.parent_list){
-            console.log('lala ', x)
-          }
 
           console.log('is_last_level: ', data.is_last_level);
           console.log('parent: ', data.parent_list);
@@ -127,7 +92,10 @@
 
         backSubMenu: function(){
           data.parent_stack.pop()
+          // parent_list is now the top element in the stack
           data.parent_list = data.parent_stack[data.parent_stack.length - 1]
+          // since we went back one level, if is_last_level was true, it is now false
+          // if it was false, it remains false
           data.is_last_level = false
           console.log('parent stack: ', data.parent_stack);
           console.log('parent: ', data.parent_list);
