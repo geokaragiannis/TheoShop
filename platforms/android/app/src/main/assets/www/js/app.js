@@ -37,7 +37,7 @@
   function init() {
 
     // Init F7 Vue Plugin
-    Vue.use(Framework7Vue)
+    Vue.use(Framework7Vue, Framework7)
 
     // Init Page Components
     Vue.component('page-main', {
@@ -51,6 +51,7 @@
         },
 
         goToSubMenu: function(is){
+          console.log('aa ', this.$f7)
           data.parent_list = data.big_list
           data.parent_stack.push(data.big_list)
         },
@@ -66,6 +67,10 @@
         return data;
       },
       methods: {
+
+        onPageBack(f7){
+          console.log('bam ')
+        },
 
         goToSame: function(item){
 
