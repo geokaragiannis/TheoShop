@@ -68,9 +68,6 @@
       },
       methods: {
 
-        onPageBack(f7){
-          console.log('bam ')
-        },
 
         goToSame: function(item){
 
@@ -149,6 +146,8 @@
         root: '#app',
         /* Uncomment to enable Material theme: */
         // material: true,
+        // swipeBackPage: false,
+
         routes: [
           {
             path: '/main/',

@@ -39,7 +39,7 @@
 
     <!-- Login Screen -->
     <f7-views>
-      <f7-view>
+      <f7-view >
         <f7-pages>
           <f7-page login-screen>
             <f7-login-screen-title>Login</f7-login-screen-title>
@@ -91,7 +91,8 @@
   <!--  SUB MENU HERE -------------------->
 
   <template id="sub-menu">
-    <f7-page style="background: #ffffff">
+
+    <f7-page style="background: #ffffff" name="sub-menu" @page:back="backSubMenu()">
       <!-- <f7-navbar sliding="false">
         <f7-nav-left sliding="false">
           <f7-link sliding="false" v-if="big_list_index != 0" v-on:click="backSubMenu()" icon="icon-back"> Back </f7-link>
