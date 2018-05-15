@@ -23,12 +23,13 @@
         <f7-pages>
           <f7-page>
             <f7-block inner>
-              <p>Left panel content goes here</p>
+              <p>Welcome</p>
             </f7-block>
             <f7-block-title>Load page in main view</f7-block-title>
             <f7-list>
-              <f7-list-item link="/main/" title="Main" link-view="#main-view" link-close-panel></f7-list-item>
-              <f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/profile-page/" title="Profile" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/cart/" title="Shopping Cart" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/map/" title="Stores" link-view="#main-view" link-close-panel></f7-list-item>
             </f7-list>
           </f7-page>
         </f7-pages>
@@ -39,7 +40,7 @@
 
     <!-- Login Screen -->
     <f7-views>
-      <f7-view >
+      <f7-view id="main-view">
         <f7-pages>
           <f7-page login-screen>
             <f7-login-screen-title>Login</f7-login-screen-title>
