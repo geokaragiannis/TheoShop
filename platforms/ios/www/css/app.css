@@ -260,4 +260,9 @@ Your custom styles go here
 
 .inside-profile-change-button{
   margin: 0;
+  color: white;
+}
+
+.profile-button{
+  background: #2196f375;
 }

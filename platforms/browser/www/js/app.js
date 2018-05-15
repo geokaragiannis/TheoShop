@@ -161,6 +161,18 @@
           // toggle the value of disabled_data
           profile_page_data.disabled_data = !profile_page_data.disabled_data
         },
+
+        profileCancel: function(){
+          $$('#name-input').val(profile_page_data.name)
+          $$('#email-input').val(profile_page_data.email)
+          $$('#phone-input').val(profile_page_data.phone)
+          $$('#gender-input').val(profile_page_data.gender)
+          $$('#birthday-input').val(profile_page_data.birthday)
+
+          // toggle disabled_data
+          profile_page_data.disabled_data = !profile_page_data.disabled_data
+        },
+
         profileSave: function(){
 
 
@@ -172,6 +184,8 @@
 
           // toggle disabled_data
           profile_page_data.disabled_data = !profile_page_data.disabled_data
+
+          // TODO make an Ajax POST of the data
 
           console.log('gender and birthday: ',profile_page_data.gender, ' ', profile_page_data.birthday )
           console.log('name, email and phone saved: ', profile_page_data.name, ' ', profile_page_data.email, ' ', profile_page_data.phone)

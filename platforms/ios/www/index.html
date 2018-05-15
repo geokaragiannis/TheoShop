@@ -347,15 +347,17 @@
 
       </f7-list>
 
-      <div class="row inset">
+      <div class="row inset list-block">
         <div class="col-50">
-          <f7-button v-on:click="profileChange()">
-            <p class="inside-profile-change-button" v-if="disabled_data"> Change </p>
-            <p class="inside-profile-change-button" v-else> Cancel </p>
+          <f7-button big class="profile-button">
+            <p class="inside-profile-change-button" v-on:click="profileChange()" v-if="disabled_data"> Change </p>
+            <p class="inside-profile-change-button" v-on:click="profileCancel()" v-else> Cancel </p>
           </f7-button>
         </div>
         <div class="col-50">
-          <f7-button v-if="!disabled_data" v-on:click="profileSave()"> Save </f7-button>
+          <f7-button big class="profile-button" v-if="!disabled_data" v-on:click="profileSave()" back>
+            <p class="inside-profile-change-button"> Save </p>
+         </f7-button>
         </div>
       </div>
 
