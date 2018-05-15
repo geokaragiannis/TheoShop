@@ -67,7 +67,8 @@
     </f7-views>
   </div>
 
-  <!-- About Page Template -->
+  <!-- Main Page -->
+
   <template id="page-main">
     <f7-page>
 
@@ -86,7 +87,7 @@
       <div>
         <div class="block block-main">
           <div class="row row-main-2">
-            <f7-button button-big button-raised class="col button-main ">
+            <f7-button button-big button-raised href="/profile-page/" class="col button-main ">
               <i class="f7-icons inside-button-main inside-button-main-i">person</i>
               <p class="inside-button-main inside-button-main-p"> Profile </p>
             </f7-button>
@@ -302,6 +303,66 @@
     </f7-page>
 
   </template>
+
+  <!---               Profile Page                     --------->
+
+
+  <template id="profile-page">
+    <f7-page>
+      <f7-navbar title="Your Profile" back-link="Back" sliding></f7-navbar>
+
+      <f7-list inline-labels inset no-hairlines-between class="profile-list" :disabled="disabled_data">
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="person" slot="media"></f7-icon>
+          <f7-label>Name</f7-label>
+          <f7-input id="name-input" type="text" placeholder="Your name" :value="name" clear-button></f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="email" slot="media"></f7-icon>
+          <f7-label>E-mail</f7-label>
+          <f7-input id="email-input" type="email" placeholder="Your e-mail" :value="email" clear-button></f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="phone" slot="media"></f7-icon>
+          <f7-label>Phone</f7-label>
+          <f7-input id="phone-input" type="tel" placeholder="Your phone number" :value="phone" clear-button></f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="persons" slot="media"></f7-icon>
+          <f7-label>Gender</f7-label>
+          <f7-input id="gender-input" type="select" placeholder="Please choose..." :value="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="calendar" slot="media"></f7-icon>
+          <f7-label>Birthday</f7-label>
+          <f7-input id="birthday-input" type="date" placeholder="Please choose..." :value="birthday"></f7-input>
+        </f7-list-item>
+
+      </f7-list>
+
+      <div class="row inset">
+        <div class="col-50">
+          <f7-button v-on:click="profileChange()">
+            <p class="inside-profile-change-button" v-if="disabled_data"> Change </p>
+            <p class="inside-profile-change-button" v-else> Cancel </p>
+          </f7-button>
+        </div>
+        <div class="col-50">
+          <f7-button v-if="!disabled_data" v-on:click="profileSave()"> Save </f7-button>
+        </div>
+      </div>
+
+    </f7-page>
+  </template>
+
+
 
   <!-- Dynamic Routing Page Template -->
   <template id="page-dynamic-routing">

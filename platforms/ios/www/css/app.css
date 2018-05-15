@@ -247,3 +247,17 @@ Your custom styles go here
   font-size: 25px;
   margin: 0;
 }
+
+/* Profile Page */
+
+.profile-list{
+  padding-top: 20px;
+}
+
+.profile-page-list-item{
+  padding-bottom: 1.5vh;
+}
+
+.inside-profile-change-button{
+  margin: 0;
+}

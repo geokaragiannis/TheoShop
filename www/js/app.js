@@ -33,8 +33,22 @@
     flavors: ['Chocolate', 'Vanilla', 'Caramel Sauce', 'Pumkin Sauce', 'Hazelnut Syrup']
   };
 
+  var profile_page_data = {
+
+    // these will be from an ajax call
+    name: "George Papadopoulos",
+    email: "example@gmlail.com",
+    phone: "111111111",
+    gender: "Male",
+    birthday: "1998-04-22",
+    disabled_data: true,
+    profile_change_pressed: false,
+
+  }
 
   function init() {
+
+    var $$ = Dom7;
 
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7)
@@ -137,6 +151,37 @@
       template: '#page-dynamic-routing'
     })
 
+    Vue.component('profile-page', {
+      template: '#profile-page',
+      data: function(){
+        return profile_page_data
+      },
+      methods: {
+        profileChange: function(){
+          // toggle the value of disabled_data
+          profile_page_data.disabled_data = !profile_page_data.disabled_data
+        },
+        profileSave: function(){
+
+
+          profile_page_data.name = $$('#name-input').val();
+          profile_page_data.email = $$('#email-input').val();
+          profile_page_data.phone = $$('#phone-input').val();
+          profile_page_data.gender = $$('#gender-input').val();
+          profile_page_data.birthday = $$('#birthday-input').val();
+
+          // toggle disabled_data
+          profile_page_data.disabled_data = !profile_page_data.disabled_data
+
+          console.log('gender and birthday: ',profile_page_data.gender, ' ', profile_page_data.birthday )
+          console.log('name, email and phone saved: ', profile_page_data.name, ' ', profile_page_data.email, ' ', profile_page_data.phone)
+        },
+        profileInput: function(item){
+          console.log('input ', item)
+        }
+      }
+    })
+
 
     // Init App
     new Vue({
@@ -172,6 +217,10 @@
           {
             path: '/dynamic-route/blog/:blogId/post/:postId/',
             component: 'page-dynamic-routing'
+          },
+          {
+            path: '/profile-page/',
+            component: 'profile-page'
           }
         ],
       }
