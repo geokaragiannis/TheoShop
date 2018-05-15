@@ -70,35 +70,40 @@
   <!-- About Page Template -->
   <template id="page-main">
     <f7-page>
-      <!-- Navbar -->
-      <f7-navbar>
-        <f7-nav-left>
-          <f7-link icon="icon-bars" open-panel="left"></f7-link>
-        </f7-nav-left>
-        <f7-nav-center sliding>Welcome to Fournos Theofilos</f7-nav-center>
-      </f7-navbar>
+
       <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
-
-      <div class="block block-main">
-        <div class="row">
-          <f7-button button-big button-raised class="col button-main ">
-            <i class="f7-icons inside-button-main inside-button-main-i">person</i>
-            <p class="inside-button-main inside-button-main-p"> Profile </p>
-          </f7-button>
-          <f7-button button-big button-raised class="col button-main">
-            <i class="f7-icons inside-button-main inside-button-main-i">compass</i>
-            <p class="inside-button-main inside-button-main-p"> Stores </p>
-          </f7-button>
+      <div class="row row-main-1">
+        <div class="">
+          <a href="#" data-panel="left" class="color-white open-panel icon-only link" id="panel-icon">
+            <i class="icon f7-icons" style="font-size: 5vh">bars</i></a>
         </div>
-        <div class="row-main row">
-          <f7-button v-on:click="goToSubMenu(0)" href="/sub-menu/" button-big button-raised class="col-100 button-main">
-            <i class="f7-icons inside-button-main inside-button-main-i"> book</i>
-            <p class="inside-button-main inside-button-main-p"> Menu </p>
-          </f7-button>
-
+        <hr align="left" style="margin: 0 36px 0 36px" width="100%">
+        <div class="">
+          <h2 class="main-text deepshadow"> Welcome to Fournos Theofilos </h2>
         </div>
       </div>
 
+      <div>
+        <div class="block block-main">
+          <div class="row row-main-2">
+            <f7-button button-big button-raised class="col button-main ">
+              <i class="f7-icons inside-button-main inside-button-main-i">person</i>
+              <p class="inside-button-main inside-button-main-p"> Profile </p>
+            </f7-button>
+            <f7-button button-big button-raised class="col button-main">
+              <i class="f7-icons inside-button-main inside-button-main-i">compass</i>
+              <p class="inside-button-main inside-button-main-p"> Stores </p>
+            </f7-button>
+          </div>
+          <div class="row-main-3 row">
+            <f7-button v-on:click="goToSubMenu(0)" href="/sub-menu/" button-big button-raised class="col-100 button-main">
+              <i class="f7-icons inside-button-main inside-button-main-i"> book</i>
+              <p class="inside-button-main inside-button-main-p"> Menu </p>
+            </f7-button>
+
+          </div>
+        </div>
+      </div>
       <!-- List of Items -->
 
       <!-- <f7-button class="main-page-button" text='Order Now' v-on:click="goToSubMenu(0)" href="/sub-menu/" round big fill> </f7-button>  -->

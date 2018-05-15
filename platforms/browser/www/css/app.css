@@ -4,40 +4,38 @@ Your custom styles go here
 
  /* main page  */
 
- .main-page-button{
-   position: absolute;
-   width: 100%;
-   bottom: 8px;
-   font-size: 3.5vh;
-   height: 6vh;
-   line-height: 6vh;
-   text-align: center;
-
- }
 
  .block-main{
    position: absolute;
    top: 0;
    bottom: 0;
    width: 85%;
-   height: 35vmax;
+   height: 35vh;
    margin: auto;
    left: 0;
    right: 0;
  }
 
- .row-main{
+ .row-main-3{
 
    padding-top:4%;
  }
+
+ .row-main-1{
+   background: #2196f375;
+ }
+
+
  .button-main{
 
-  height: 18vmax !important;
+  height: 18vh !important;
   width: 48%;
+  background: #2196f375;
  }
 
  .inside-button-main{
-   font-size: 5vmax !important;
+   font-size: 5vh !important;
+   color: white;
  }
 
  .inside-button-main-p{
@@ -57,6 +55,23 @@ Your custom styles go here
    margin: auto;
 
  }
+
+ .main-text{
+   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+   color: white;
+   font-weight: 100;
+   letter-spacing: 0.1em;
+   font-size: 3vh;
+   padding: 3vh;
+   text-align: center;
+   text-transform: uppercase;
+   text-rendering: optimizeLegibility;
+ }
+
+ .deepshadow{
+
+
+}
 
 #parent_items_img{
   width: 4em;
