@@ -1,0 +1,4 @@
+#Wed May 16 14:25:02 EEST 2018
+base.0=/Users/georgekaragiannis/Desktop/myApp/platforms/android/app/build/intermediates/transforms/dexMerger/debug/68
+renamed.0=classes.dex
+file.0=/Users/georgekaragiannis/Desktop/myApp/platforms/android/app/build/intermediates/transforms/dexMerger/debug/68/classes.dex

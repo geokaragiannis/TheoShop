@@ -1,0 +1,268 @@
+/* =========
+Your custom styles go here
+ ========= */
+
+ /* main page  */
+
+
+ .block-main{
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   width: 85%;
+   height: 35vh;
+   margin: auto;
+   left: 0;
+   right: 0;
+ }
+
+ .row-main-3{
+
+   padding-top:4%;
+ }
+
+ .row-main-1{
+   background: cornflowerblue;
+ }
+
+
+ .button-main{
+
+  height: 18vh !important;
+  width: 48%;
+  background: cornflowerblue;
+ }
+
+ .inside-button-main{
+   font-size: 5vh !important;
+   color: white;
+ }
+
+ .inside-button-main-p{
+   position: absolute;
+   bottom: -27px;
+   left: 0;
+   right: 0;
+ }
+
+ .inside-button-main-i{
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   height: 50%;
+   margin: auto;
+
+ }
+
+ .main-text{
+   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+   color: white;
+   font-weight: 100;
+   letter-spacing: 0.1em;
+   font-size: 3vh;
+   padding: 3vh;
+   text-align: center;
+   text-transform: uppercase;
+   text-rendering: optimizeLegibility;
+ }
+
+ .deepshadow{
+
+
+}
+
+#parent_items_img{
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+#img-swiper-row{
+  height: 60%;
+}
+
+#img-swiper-col{
+  height:100%;
+  margin: 0 auto;
+}
+
+#swiper-img{
+  height:100%;
+}
+
+.item-inner{
+  margin: auto;
+  font-size: 1.2em
+}
+
+.item-title{
+  margin: 0 auto;
+}
+
+.list-group-title{
+  padding-bottom: 10px;
+  font-size: 2em;
+  color: cornflowerblue !important;
+  background: #ffffff !important;
+}
+
+/* A bit of demo styles */;
+.demo-swiper .swiper-slide {
+  font-size: 25px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+.demo-swiper .swiper-slide {
+  box-sizing: border-box;
+
+
+}
+.demo-swiper {
+  margin: 0px 0 35px;
+  font-size: 18px;
+  height: 120px;
+  /* overflow-x: scroll; */
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+  bottom: 0px;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide {
+  width: 85%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
+  width: 70%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
+  width: 30%;
+}
+
+
+/* cards */
+
+.demo-card-header-pic .card-header {
+  height: 40vw;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+.demo-card-header-pic .card-content-padding .date{
+  color: #8e8e93;
+}
+
+
+/* toolbar style in final page */
+
+.toolbar{
+  height: 88px;
+  background: cornflowerblue;
+  box-shadow: 0px -1px 6px 0px black;
+}
+
+#toolbar-usd{
+  border-right: 0.5px solid black;
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#toolbar-add{
+
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.toolbar-a{
+  color: #ffffff;
+  font-size: 23px;
+
+}
+
+.final-page-list{
+  margin-bottom: 100px;
+  margin-top: 45px;
+}
+
+/* card */
+
+.card{
+  /* margin: 0; */
+}
+
+.card-header{
+  height: 65vw !important;
+}
+
+.card-image-title{
+  position: absolute;
+  bottom: 0;
+}
+
+.custom-header{
+  border-top: 1px solid #80808057;
+}
+
+/* extra shot  */
+
+.extra-shot-div{
+  justify-content: center;
+}
+
+.add-delete-icons{
+  justify-content: center;
+  align-self: center;
+  display: flex;
+}
+
+.add-delete-icons-child{
+
+}
+
+#extra-shot-add{
+  right: 15px;
+  align-self: center;
+  position: absolute;
+}
+
+#extra-shot-delete{
+  right: 70px;
+  align-self: center;
+  position: absolute;
+}
+
+#extra-shot-number{
+  font-size: 25px;
+  margin: 0;
+}
+
+/* Profile Page */
+
+.profile-list{
+  padding-top: 20px;
+}
+
+.profile-page-list-item{
+  padding-bottom: 1.5vh;
+}
+
+.inside-profile-change-button{
+  margin: 0;
+  color: white;
+}
+
+.profile-button{
+  background: #2196f375;
+}

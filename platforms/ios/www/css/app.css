@@ -22,7 +22,7 @@ Your custom styles go here
  }
 
  .row-main-1{
-   background: #2196f375;
+   background: cornflowerblue;
  }
 
 
@@ -30,7 +30,7 @@ Your custom styles go here
 
   height: 18vh !important;
   width: 48%;
-  background: #2196f375;
+  background: cornflowerblue;
  }
 
  .inside-button-main{
@@ -264,5 +264,5 @@ Your custom styles go here
 }
 
 .profile-button{
-  background: #2196f375;
+  background: cornflowerblue;
 }

@@ -147,8 +147,8 @@
         },
       }
     })
-    Vue.component('page-dynamic-routing', {
-      template: '#page-dynamic-routing'
+    Vue.component('stores', {
+      template: '#stores'
     })
 
     Vue.component('profile-page', {
@@ -196,7 +196,6 @@
       }
     })
 
-
     // Init App
     new Vue({
       el: '#app',
@@ -229,13 +228,14 @@
             component: 'cart'
           },
           {
-            path: '/dynamic-route/blog/:blogId/post/:postId/',
-            component: 'page-dynamic-routing'
+            path: '/stores/',
+            component: 'stores'
           },
           {
             path: '/profile-page/',
             component: 'profile-page'
-          }
+          },
+
         ],
       }
     });
