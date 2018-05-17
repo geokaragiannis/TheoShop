@@ -70,6 +70,8 @@
           data.parent_stack.push(data.big_list)
         },
 
+
+
       }
     })
     Vue.component('login-screen', {
@@ -140,7 +142,7 @@
         },
         change_quantity(num){
 
-          if (final_page_data.quantity > 1 || num >0){
+          if (final_page_data.quantity > 1 || num > 0){
             final_page_data.quantity += num;
             console.log('quantity ', final_page_data.quantity)
           }
@@ -175,7 +177,6 @@
 
         profileSave: function(){
 
-
           profile_page_data.name = $$('#name-input').val();
           profile_page_data.email = $$('#email-input').val();
           profile_page_data.phone = $$('#phone-input').val();
@@ -196,6 +197,42 @@
       }
     })
 
+    Vue.component('stores', {
+      template: '#stores',
+      methods: {
+        loadMap: function() {
+          const GOOGLE = {"lat": 37.422476, "lng": -122.08425};
+
+          console.log('aaaadwd ', document)
+
+          var div = document.getElementById("map_canvas")
+          console.log('map: ', div)
+
+          // Create a Google Maps native view under the map_canvas div.
+          var map = plugin.google.maps.Map.getMap(div, {
+            'camera': {
+              'latLng': GOOGLE,
+              'zoom': 17
+            }
+          });
+
+         map.one(plugin.google.maps.event.MAP_READY,  function() {// Add a marker
+            console.log('in MAP ready')
+            map.addMarker({
+              'position': GOOGLE,
+              'title': "Hello GoogleMap for Cordova!"
+            }, function(marker) {
+
+              // Show the infoWindow
+              marker.showInfoWindow();
+
+            });
+          });
+
+        }
+      }
+    })
+
 
     // Init App
     new Vue({
@@ -203,6 +240,9 @@
       // Init Framework7 by passing parameters here
       framework7: {
         root: '#app',
+        data: {
+          show_map: false
+        },
         /* Uncomment to enable Material theme: */
         // material: true,
         // swipeBackPage: false,
@@ -235,6 +275,10 @@
           {
             path: '/profile-page/',
             component: 'profile-page'
+          },
+          {
+            path: '/stores/',
+            component: 'stores'
           }
         ],
       }
