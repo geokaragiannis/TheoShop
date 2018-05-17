@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>TheoShop</title>
+  <link rel="stylesheet" href="css/framework7.ios.min.css">
+  <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/framework7-icons/css/framework7-icons.css">
+
+  <script type="text/javascript">
+      document.addEventListener("deviceready", function() {
+        var div = document.getElementById("map_canvas");
+
+        // Create a Google Maps native view under the map_canvas div.
+        var map = plugin.google.maps.Map.getMap(div);
+
+        // If you click the button, do something...
+        var button = document.getElementById("button");
+        button.addEventListener("click", function() {
+
+          // Move to the position with animation
+          map.animateCamera({
+            target: {lat: 37.422359, lng: -122.084344},
+            zoom: 17,
+            tilt: 60,
+            bearing: 140,
+            duration: 5000
+          });
+
+          // Add a maker
+          var marker = map.addMarker({
+            position: {lat: 37.422359, lng: -122.084344},
+            title: "Welecome to \n" +
+                   "Cordova GoogleMaps plugin for iOS and Android",
+            snippet: "This plugin is awesome!",
+            animation: plugin.google.maps.Animation.BOUNCE
+          });
+
+          // Show the info window
+          marker.showInfoWindow();
+
+        });
+
+      }, false);
+
+      </script>
+      <style type="text/css">
+      #map_canvas { /* Must bigger size than 100x100 pixels */
+        width: 100%;
+        height: 500px;
+      }
+      button {
+        padding: .5em;
+        margin: .5em;
+      }
+  </style>
+
+
+</head>
+<body>
+  <div id="app">
+    <!-- Statusbar -->
+    <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
+    <!-- <f7-statusbar></f7-statusbar> -->
+
+
+    <f7-panel left reveal layout="dark">
+      <f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
+        <f7-navbar title="Left Panel"></f7-navbar>
+        <f7-pages>
+          <f7-page>
+            <f7-block inner>
+              <p>Welcome</p>
+            </f7-block>
+            <f7-block-title>Load page in main view</f7-block-title>
+            <f7-list>
+              <f7-list-item link="/profile-page/" title="Profile" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/cart/" title="Shopping Cart" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/stores/" title="Stores" link-view="#main-view" link-close-panel></f7-list-item>
+            </f7-list>
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-panel>
+    <!-- Main Views -->
+
+
+    <!-- Login Screen -->
+    <f7-views>
+      <f7-view id="main-view">
+        <f7-pages>
+          <f7-page login-screen>
+            <f7-login-screen-title>Login</f7-login-screen-title>
+            <f7-list form>
+              <f7-list-item>
+                <f7-label>Username</f7-label>
+                <f7-input name="username" placeholder="Username" type="text"></f7-input>
+              </f7-list-item>
+              <f7-list-item>
+                <f7-label>Password</f7-label>
+                <f7-input name="password" type="password" placeholder="Password"></f7-input>
+              </f7-list-item>
+            </f7-list>
+            <f7-list>
+              <f7-list-button title="Sign In" link='/main/'></f7-list-button>
+              <f7-list-label>
+                <p>Click Sign In to close Login Screen</p>
+              </f7-list-label>
+            </f7-list>
+
+
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-views>
+  </div>
+
+  <!-- Main Page -->
+
+  <template id="page-main">
+    <f7-page>
+
+      <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
+      <div class="row row-main-1">
+        <div class="">
+          <a href="#" data-panel="left" class="color-white open-panel icon-only link" id="panel-icon">
+            <i class="icon f7-icons" style="font-size: 5vh">bars</i></a>
+        </div>
+        <hr align="left" style="margin: 0 36px 0 36px" width="100%">
+        <div class="">
+          <h2 class="main-text deepshadow"> Welcome to Fournos Theofilos </h2>
+        </div>
+      </div>
+
+      <div>
+        <div class="block block-main">
+          <div class="row row-main-2">
+            <f7-button button-big button-raised href="/profile-page/" class="col button-main ">
+              <i class="f7-icons inside-button-main inside-button-main-i">person</i>
+              <p class="inside-button-main inside-button-main-p"> Profile </p>
+            </f7-button>
+            <f7-button button-big button-raised href="/stores/" class="col button-main">
+              <i class="f7-icons inside-button-main inside-button-main-i">compass</i>
+              <p class="inside-button-main inside-button-main-p"> Stores </p>
+            </f7-button>
+          </div>
+          <div class="row-main-3 row">
+            <f7-button v-on:click="goToSubMenu(0)" href="/sub-menu/" button-big button-raised class="col-100 button-main">
+              <i class="f7-icons inside-button-main inside-button-main-i"> book</i>
+              <p class="inside-button-main inside-button-main-p"> Menu </p>
+            </f7-button>
+
+          </div>
+        </div>
+      </div>
+      <!-- List of Items -->
+
+      <!-- <f7-button class="main-page-button" text='Order Now' v-on:click="goToSubMenu(0)" href="/sub-menu/" round big fill> </f7-button>  -->
+
+    </f7-page>
+
+  </template>
+
+  <!--  SUB MENU HERE -------------------->
+
+  <template id="sub-menu">
+
+    <f7-page style="background: #ffffff" name="sub-menu" @page:back="backSubMenu()">
+      <!-- <f7-navbar sliding="false">
+        <f7-nav-left sliding="false">
+          <f7-link sliding="false" v-if="big_list_index != 0" v-on:click="backSubMenu()" icon="icon-back"> Back </f7-link>
+          <f7-link sliding="false" v-else back-link-url="/main/" icon="icon-back"> Back </f7-link>
+
+        </f7-nav-left>
+        <f7-nav-title> Menu </f7-nav-title>
+        <f7-nav-right></f7-nav-right>
+      </f7-navbar> -->
+
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a href="#" class="back link">
+              <i v-on:click="backSubMenu()" class="icon icon-back"></i>
+              <!-- Back link text rendered only for iOS theme -->
+              <span>Back</span>
+            </a>
+          </div>
+          <div class="title"> {{sub_menu_navbar_title}} </div>
+          <div class="right"> </div>
+        </div>
+      </div>
+
+
+
+      <f7-list media-list no-hairlines-between='true' >
+        <f7-list-group v-for="par in parent_list">
+
+          <f7-list-item group-title> {{par.name}} </f7-list-item>
+
+          <div v-for="child in par.children">
+            <f7-list-item v-if="child.children != null" :title='child.name' v-on:click='goToSame(child)' link="sub-menu">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            </f7-list-item>
+            <f7-list-item v-else :title='child.name' link="final-page">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            </f7-list-item>
+          </div>
+
+          <!-- <div v-if="is_last_level" v-for="child in par.children">
+            <f7-list-item :title='child.name' link="final-page">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            </f7-list-item>
+          </div> -->
+
+      </f7-list>
+
+      <f7-fab href="/cart/">
+        <f7-icon f7="icon-bag">
+          <f7-badge color="red">5</f7-badge>
+        </f7-icon>
+      </f7-fab>
+    </f7-page>
+
+  </template>
+
+  <template id='final-page'>
+    <f7-page>
+      <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar>
+      <f7-toolbar>
+        <div class="toolbar-inner">
+          <div id='toolbar-usd'>
+            <a class='toolbar-a' href='#'> $ </a>
+          </div>
+          <div id='toolbar-add'>
+            <a class='toolbar-a' href='#'> Add To Cart</a>
+          </div>
+        </div>
+      </f7-toolbar>
+
+        <!-- <f7-block title="demo" inner > </f7-block> -->
+
+      <f7-page-content>
+        <f7-list class='final-page-list'>
+          <div class="card demo-card-header-pic">
+            <div style="background-image:url(img/cap.jpg)" class="card-header align-items-flex-end">
+              <p class="card-image-title">
+                Journey To Mountains
+              </p>
+            </div>
+            <div class="card-content card-content-padding">
+              <h3> Description goes here</h3>
+            </div>
+          </div>
+          <h2 class="custom-header">Size </h2>
+          <f7-block inset strong>
+            <f7-list no-hairlines-between>
+              <!-- Additional "checkbox" prop to enable checkbox list item -->
+              <f7-list-item radio value="12oz" title="12oz" name="size-radio" checked></f7-list-item>
+              <f7-list-item radio value="16oz" title="16oz" name="size-radio"></f7-list-item>
+              <f7-list-item radio value="20oz" title="20oz" name="size-radio"></f7-list-item>
+            </f7-list>
+          </f7-block>
+
+          <h2 class="custom-header">Espresso Shots </h2>
+          <f7-block inset strong>
+            <div class='extra-shot-div row'>
+              <div class="col-60">
+                <label class="item-content" id="extra-shot-number"> {{extra_shots}} Shots </label>
+              </div>
+              <div class="add-delete-icons col-40">
+                <div class="row add-delete-icons-child">
+                  <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
+                  <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+                  <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
+                </div>
+              </div>
+            </div>
+          </f7-block>
+
+          <h2 class="custom-header"> Extra </h2>
+          <f7-block inset strong>
+            <div v-for="itm in extra" class='extra-shot-div row'>
+              <div class="col-60">
+                <label class="item-content" id="extra-shot-number"> {{itm}} </label>
+              </div>
+              <div class="add-delete-icons col-40">
+                <div class="row add-delete-icons-child">
+                  <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
+                  <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+                  <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
+                </div>
+              </div>
+          </div>
+        </f7-block>
+
+        <h2 class="custom-header"> Milk </h2>
+        <f7-block inset strong>
+          <div v-for="itm in milk" class='extra-shot-div row'>
+            <div class="col-60">
+              <label class="item-content" id="extra-shot-number"> {{itm}} </label>
+            </div>
+            <div class="add-delete-icons col-40">
+              <div class="row add-delete-icons-child">
+                <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
+                <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+                <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
+              </div>
+            </div>
+        </div>
+      </f7-block>
+
+      <h2 class="custom-header"> Flavors </h2>
+      <f7-block inset strong>
+        <div v-for="itm in flavors" class='extra-shot-div row'>
+          <div class="col-60">
+            <label class="item-content" id="extra-shot-number"> {{itm}} </label>
+          </div>
+          <div class="add-delete-icons col-40">
+            <div class="row add-delete-icons-child">
+              <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
+              <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+              <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
+            </div>
+          </div>
+        </div>
+      </f7-block>
+
+      <h2 class="custom-header"> Quantity </h2>
+      <f7-block inset strong>
+        <div class='extra-shot-div row'>
+          <div class="col-60">
+            <label class="item-content" id="extra-shot-number"> {{quantity}} </label>
+          </div>
+          <div class="add-delete-icons col-40">
+            <div class="row add-delete-icons-child">
+              <i v-on:click="change_quantity(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
+              <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+              <i v-on:click="change_quantity(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
+            </div>
+          </div>
+        </div>
+      </f7-block>
+        </f7-list>
+      </f7-page-content>
+    </f7-page>
+  </template>
+
+  <template id="cart">
+    <f7-page>
+      <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
+    </f7-page>
+
+  </template>
+
+  <!---               Profile Page                     --------->
+
+
+  <template id="profile-page">
+    <f7-page>
+      <f7-navbar title="Your Profile" back-link="Back" sliding></f7-navbar>
+
+      <f7-list inline-labels inset no-hairlines-between class="profile-list" :disabled="disabled_data">
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="person" slot="media"></f7-icon>
+          <f7-label>Name</f7-label>
+          <f7-input id="name-input" type="text" placeholder="Your name" :value="name" clear-button></f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="email" slot="media"></f7-icon>
+          <f7-label>E-mail</f7-label>
+          <f7-input id="email-input" type="email" placeholder="Your e-mail" :value="email" clear-button></f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="phone" slot="media"></f7-icon>
+          <f7-label>Phone</f7-label>
+          <f7-input id="phone-input" type="tel" placeholder="Your phone number" :value="phone" clear-button></f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="persons" slot="media"></f7-icon>
+          <f7-label>Gender</f7-label>
+          <f7-input id="gender-input" type="select" placeholder="Please choose..." :value="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </f7-input>
+        </f7-list-item>
+
+        <f7-list-item class="profile-page-list-item">
+          <f7-icon f7="calendar" slot="media"></f7-icon>
+          <f7-label>Birthday</f7-label>
+          <f7-input id="birthday-input" type="date" placeholder="Please choose..." :value="birthday"></f7-input>
+        </f7-list-item>
+
+      </f7-list>
+
+      <div class="row inset list-block">
+        <div class="col-50">
+          <f7-button big class="profile-button">
+            <p class="inside-profile-change-button" v-on:click="profileChange()" v-if="disabled_data"> Change </p>
+            <p class="inside-profile-change-button" v-on:click="profileCancel()" v-else> Cancel </p>
+          </f7-button>
+        </div>
+        <div class="col-50">
+          <f7-button big class="profile-button" v-if="!disabled_data" v-on:click="profileSave()" back>
+            <p class="inside-profile-change-button"> Save </p>
+         </f7-button>
+        </div>
+      </div>
+
+    </f7-page>
+  </template>
+
+  <template id="stores">
+    <f7-page>
+      <div id="map_canvas" style="height: 500px; width: 500px">
+        <button id="button">Click me!</button>
+      </div>
+    </f7-page>
+
+  </template>
+
+
+
+  <!-- Dynamic Routing Page Template -->
+  <template id="page-dynamic-routing">
+    <f7-page>
+      <f7-navbar title="Dynamic Route" back-link="Back" sliding></f7-navbar>
+      <f7-block inner>
+        <ul>
+          <li><b>Url:</b> {{$route.url}}</li>
+          <li><b>Path:</b> {{$route.path}}</li>
+          <li><b>Hash:</b> {{$route.hash}}</li>
+          <li><b>Params:</b>
+            <ul>
+              <li v-for="(value, key) in $route.params"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Query:</b>
+            <ul>
+              <li v-for="(value, key) in $route.query"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Route:</b> {{$route.route}}</li>
+        </ul>
+      </f7-block>
+      <f7-block inner>
+        <f7-link @click="$router.back()">Go back via Router API</f7-link>
+      </f7-block>
+    </f7-page>
+  </template>
+
+  <script src="cordova.js"></script>
+  <script src="js/framework7.min.js"></script>
+  <script src="js/vue.min.js"></script>
+  <script src="js/framework7-vue.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
