@@ -365,15 +365,28 @@
     </f7-page>
   </template>
 
-  <template id="stores">
-    <f7-page>
-      <f7-navbar title="Map" back-link="Back" sliding></f7-navbar>
+  <!--    STORES    -->
 
-      <f7-button style="padding-top: 50px" id='map_button' v-on:click="loadMap()"> Load Map </f7-button>
-      <div id="map_canvas" style="height: 500px; width: 500px">
+  <template id="stores">
+    <f7-page style="background: #ffffff" name="stores" @page:back="backStores()">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a href="#" class="back link">
+              <i v-on:click="backStores()" class="icon icon-back"></i>
+              <!-- Back link text rendered only for iOS theme -->
+              <span>Back</span>
+            </a>
+          </div>
+          <div class="title"> Map </div>
+          <div class="right"> </div>
+        </div>
+      </div>
+
+      <f7-button style="margin-top: 100px" id='map_button' v-on:click="loadMap()"> Load Map </f7-button>
+      <div id="map_canvas" style="height: 100%; width: 300px">
 
       </div>
-    </f7-page>
 
   </template>
 

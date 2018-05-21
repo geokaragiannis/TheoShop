@@ -573,7 +573,18 @@
     Vue.component('stores', {
       template: '#stores',
       methods: {
+
+        backStores: function(){
+          $$('.page-on-left').show();
+        },
+
         loadMap: function() {
+          // hide the previous pages
+          $$('.page-on-left').hide();
+
+          console.log('page on left: ', $$('page-on-left'))
+
+
           const GOOGLE = {"lat": 37.422476, "lng": -122.08425};
 
           console.log('aaaadwd ', document)
@@ -604,6 +615,7 @@
 
         }
       }
+
     })
 
 
