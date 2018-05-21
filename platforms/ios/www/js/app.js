@@ -438,6 +438,7 @@
         },
 
         goToSubMenu: function(is){
+          // console.log('test map_canvas ', $$('#map_canvas').hasClass('pipa'));
           console.log('aa ', this.$f7)
           data.parent_list = data.big_list
           data.parent_stack.push(data.big_list)
@@ -448,8 +449,18 @@
       }
     })
     Vue.component('login-screen', {
-      template: '#login-screen'
+      template: '#login-screen',
+      methods: {
+        makeMap: function(){
+          var map = $$('div')
+          map.addClass('map_div')
+          map.attr({id: 'map_canvas'})
+
+          console.log('map: ', map)
+        }
+      }
     })
+
     Vue.component('sub-menu', {
       template: '#sub-menu',
       data: function(){
@@ -575,15 +586,19 @@
       methods: {
 
         backStores: function(){
-          $$('.page-on-left').show();
+          $$('#app').removeClass('changed-body')
+          $$('#map_canvas').remove()
         },
 
         loadMap: function() {
           // hide the previous pages
-          $$('.page-on-left').hide();
+          // $$('.page-on-left').hide()
 
-          console.log('page on left: ', $$('page-on-left'))
-
+          var body = $$('body')
+          var app = $$('#app')
+          app.addClass('changed-body')
+          map_div = '<div class="map_div" id="map_canvas"> </div>'
+          body.append(map_div)
 
           const GOOGLE = {"lat": 37.422476, "lng": -122.08425};
 
@@ -614,7 +629,7 @@
           });
 
         }
-      }
+      },
 
     })
 
@@ -622,6 +637,10 @@
     // Init App
     new Vue({
       el: '#app',
+      methods: {
+        makeMap: function(){
+        }
+      },
       // Init Framework7 by passing parameters here
       framework7: {
         root: '#app',

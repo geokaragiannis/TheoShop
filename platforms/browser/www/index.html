@@ -14,7 +14,7 @@
   <div id="app">
     <!-- Statusbar -->
     <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
-    <!-- <f7-statusbar></f7-statusbar> -->
+    <f7-statusbar></f7-statusbar>
 
 
     <f7-panel left reveal layout="dark">
@@ -42,7 +42,7 @@
     <f7-views>
       <f7-view id="main-view">
         <f7-pages>
-          <f7-page login-screen>
+          <f7-page @page:init="makeMap" login-screen>
             <f7-login-screen-title>Login</f7-login-screen-title>
             <f7-list form>
               <f7-list-item>
@@ -368,7 +368,7 @@
   <!--    STORES    -->
 
   <template id="stores">
-    <f7-page style="background: #ffffff" name="stores" @page:back="backStores()">
+    <f7-page style="background: #ffffff" name="stores" @page:init="loadMap()" @page:back="backStores()">
       <div class="navbar">
         <div class="navbar-inner">
           <div class="left">
@@ -383,8 +383,7 @@
         </div>
       </div>
 
-      <f7-button style="margin-top: 100px" id='map_button' v-on:click="loadMap()"> Load Map </f7-button>
-      <div id="map_canvas" style="height: 100%; width: 300px">
+      <!-- <f7-button style="margin-top: 100px" id='map_button' v-on:click="loadMap()"> Load Map </f7-button> -->
 
       </div>
 
