@@ -591,6 +591,36 @@
         },
 
         loadMap: function() {
+          var data = [
+            {
+              position: {lng: -122.1180187, lat: 37.3960513},
+              title: "Ardis G Egan Intermediate School"
+            },
+            {
+              position: {lng: -122.1102408, lat: 37.3943847},
+              title: "Portola School"
+            },
+            {
+              position: {lng: -122.0848257, lat: 37.3818032},
+              title: "Isaac Newton Graham Middle School"
+            },
+            {
+              position: {lng: -122.1082962, lat: 37.3863294},
+              title: "Los Altos High School"
+            },
+            {
+              position: {lng: -122.013571, lat: 37.3874409},
+              title: "The Kings Academy"
+            },
+            {
+              position: {lng: -122.082462, lat: 37.3627189},
+              title: "Georgina P Blach Intermediate School"
+            },
+            {
+              position: {lng: -122.0421832, lat: 37.3766077},
+              title: "Benner Junior High School"
+            }
+          ];
           // hide the previous pages
           // $$('.page-on-left').hide()
 
@@ -615,18 +645,38 @@
             }
           });
 
-         map.one(plugin.google.maps.event.MAP_READY,  function() {// Add a marker
-            console.log('in MAP ready')
-            map.addMarker({
-              'position': GOOGLE,
-              'title': "Hello GoogleMap for Cordova!"
-            }, function(marker) {
+          // Add markers
+          var baseArrayClass = new plugin.google.maps.BaseArrayClass(data);
 
-              // Show the infoWindow
-              marker.showInfoWindow();
 
-            });
+          map.one(plugin.google.maps.event.MAP_READY,  function() {// Add a marker
+
+            baseArrayClass.map(function(options, cb) {
+            // The variable "options" contains each element of the data.
+            //
+            // The variable "cb" is a callback function of iteration.
+            map.addMarker(options, cb);
+
+          }, function(markers) {
+
+            // Set a camera position that includes all markers.
+            var bounds = [];
+            data.forEach(function(POI) {
+            bounds.push(POI.position);
+           });
+
+          map.moveCamera({
+            target: bounds
+           }, function() {
+
+             // After camera moves open the last marker.
+             markers[markers.length - 1].showInfoWindow();
+           });
+
           });
+
+
+        });
 
         }
       },
@@ -639,6 +689,7 @@
       el: '#app',
       methods: {
         makeMap: function(){
+
         }
       },
       // Init Framework7 by passing parameters here
