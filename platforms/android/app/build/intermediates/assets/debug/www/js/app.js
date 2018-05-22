@@ -1,388 +1,12 @@
 (function () {
 
+  var app_data = {
+    big_list: []
+  }
+
   var data = {
 
-    // big_list: [
-    //   {name:'Drinks' ,is_leaf: false, id:1 , p_id:0, level: 1, children: [{name:'Coffee' ,is_leaf: false, id:10 , p_id:1, level: 2, children:[{name:'Cap' , is_leaf: true, id:20 , p_id:10, level: 3},{name:'Esp' , is_leaf: true, id:21 , p_id:10, level: 3}] }, {name:'Tea' , is_leaf: false, id:11 , p_id:1, level: 2, children:[{name:'Engligh' , is_leaf: true, id:22 , p_id:11, level: 3},{name:'Greek' , is_leaf: true, id:23 , p_id:11, level: 3}]}]},
-    //   {name: 'Food',is_leaf: false, id: 2, p_id: 0, level: 1, children: [{name:'Breakfast' ,is_leaf: false, id:30 , p_id:2, level: 2, children:[{name:'Omelate' , is_leaf: false, id:40 , p_id:30, level: 3, children: [{name:'Omelate2' , is_leaf: true, id:80 , p_id:40, level: 4}, {name:'Omelate3', is_leaf: true, id:81 , p_id:40, level: 4}, {name:'Omelate4' , is_leaf: true, id:82 , p_id:40, level: 4}]},{name:'Bagel' , is_leaf: false, id:41 , p_id:30, level: 3, children: [
-		// 		{name:'Bagel2' , is_leaf: true, id:90 , p_id:41, level: 4},
-		// 		{name:'Bagel3', is_leaf: true, id:92 , p_id:41, level: 4},
-		// 		{name:'Bagel4' , is_leaf: true, id:92 , p_id:41, level: 4}
-		// 	]}]}, {name:'Lunch' , is_leaf: false, id:31 , p_id:2, level: 2, children:[{name:'Mousakas' , is_leaf: true, id:42 , p_id:31, level: 3},{name:'Pastitsio' , is_leaf: true, id:43 , p_id:31, level: 3}]}]}
-    // ],
-
-    big_list: [
-              	{
-              		"id": 15,
-              		"parentId": null,
-              		"descr": "FOOD",
-              		"typ": "CAT",
-              		"price": null,
-              		"compCd": "001",
-              		"lev": 1,
-              		"isLeaf": 0,
-              		"child": [
-              			{
-              				"id": 17,
-              				"parentId": 15,
-              				"descr": "BREAKFAST",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 18,
-              						"parentId": 17,
-              						"descr": "HOT",
-              						"typ": "CAT",
-              						"price": null,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 0,
-              						"child": [
-              							{
-              								"id": 10000,
-              								"parentId": 18,
-              								"descr": "OMELATE",
-              								"typ": "ITEM",
-              								"price": 3,
-              								"compCd": "001",
-              								"lev": 4,
-              								"isLeaf": 1
-              							},
-              							{
-              								"id": 10001,
-              								"parentId": 18,
-              								"descr": "TOAST",
-              								"typ": "ITEM",
-              								"price": 2,
-              								"compCd": "001",
-              								"lev": 4,
-              								"isLeaf": 1
-              							}
-              						]
-              					},
-              					{
-              						"id": 19,
-              						"parentId": 17,
-              						"descr": "COLD",
-              						"typ": "CAT",
-              						"price": null,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 0,
-              						"child": [
-              							{
-              								"id": 10002,
-              								"parentId": 19,
-              								"descr": "BAGEL",
-              								"typ": "ITEM",
-              								"price": 2,
-              								"compCd": "001",
-              								"lev": 4,
-              								"isLeaf": 1
-              							}
-              						]
-              					}
-              				]
-              			},
-              			{
-              				"id": 20,
-              				"parentId": 15,
-              				"descr": "LUNCH",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 10003,
-              						"parentId": 20,
-              						"descr": "MOUSAKAS",
-              						"typ": "ITEM",
-              						"price": 5,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10005,
-              						"parentId": 20,
-              						"descr": "PASTITSIO",
-              						"typ": "ITEM",
-              						"price": 6,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					}
-              				]
-              			},
-              			{
-              				"id": 25,
-              				"parentId": 15,
-              				"descr": "DINNER",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 10007,
-              						"parentId": 25,
-              						"descr": "STEAK",
-              						"typ": "ITEM",
-              						"price": 7,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10008,
-              						"parentId": 25,
-              						"descr": "PIZZA",
-              						"typ": "ITEM",
-              						"price": 7,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					}
-              				]
-              			},
-              			{
-              				"id": 26,
-              				"parentId": 15,
-              				"descr": "SNACKS",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 10009,
-              						"parentId": 26,
-              						"descr": "CAPRESE SANDWICH",
-              						"typ": "ITEM",
-              						"price": 4,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10010,
-              						"parentId": 26,
-              						"descr": "CHIPS",
-              						"typ": "ITEM",
-              						"price": 3,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10011,
-              						"parentId": 26,
-              						"descr": "GREEK CHOCOLATE",
-              						"typ": "ITEM",
-              						"price": 2,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					}
-              				]
-              			}
-              		]
-              	},
-              	{
-              		"id": 15,
-              		"parentId": null,
-              		"descr": "FOOD",
-              		"typ": "CAT",
-              		"price": null,
-              		"compCd": "001",
-              		"lev": 1,
-              		"isLeaf": 0,
-              		"child": [
-              			{
-              				"id": 17,
-              				"parentId": 15,
-              				"descr": "BREAKFAST",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 18,
-              						"parentId": 17,
-              						"descr": "HOT",
-              						"typ": "CAT",
-              						"price": null,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 0,
-              						"child": [
-              							{
-              								"id": 10000,
-              								"parentId": 18,
-              								"descr": "OMELATE",
-              								"typ": "ITEM",
-              								"price": 3,
-              								"compCd": "001",
-              								"lev": 4,
-              								"isLeaf": 1
-              							},
-              							{
-              								"id": 10001,
-              								"parentId": 18,
-              								"descr": "TOAST",
-              								"typ": "ITEM",
-              								"price": 2,
-              								"compCd": "001",
-              								"lev": 4,
-              								"isLeaf": 1
-              							}
-              						]
-              					},
-              					{
-              						"id": 19,
-              						"parentId": 17,
-              						"descr": "COLD",
-              						"typ": "CAT",
-              						"price": null,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 0,
-              						"child": [
-              							{
-              								"id": 10002,
-              								"parentId": 19,
-              								"descr": "BAGEL",
-              								"typ": "ITEM",
-              								"price": 2,
-              								"compCd": "001",
-              								"lev": 4,
-              								"isLeaf": 1
-              							}
-              						]
-              					}
-              				]
-              			},
-              			{
-              				"id": 20,
-              				"parentId": 15,
-              				"descr": "LUNCH",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 10003,
-              						"parentId": 20,
-              						"descr": "MOUSAKAS",
-              						"typ": "ITEM",
-              						"price": 5,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10005,
-              						"parentId": 20,
-              						"descr": "PASTITSIO",
-              						"typ": "ITEM",
-              						"price": 6,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					}
-              				]
-              			},
-              			{
-              				"id": 25,
-              				"parentId": 15,
-              				"descr": "DINNER",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 10007,
-              						"parentId": 25,
-              						"descr": "STEAK",
-              						"typ": "ITEM",
-              						"price": 7,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10008,
-              						"parentId": 25,
-              						"descr": "PIZZA",
-              						"typ": "ITEM",
-              						"price": 7,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					}
-              				]
-              			},
-              			{
-              				"id": 26,
-              				"parentId": 15,
-              				"descr": "SNACKS",
-              				"typ": "CAT",
-              				"price": null,
-              				"compCd": "001",
-              				"lev": 2,
-              				"isLeaf": 0,
-              				"child": [
-              					{
-              						"id": 10009,
-              						"parentId": 26,
-              						"descr": "CAPRESE SANDWICH",
-              						"typ": "ITEM",
-              						"price": 4,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10010,
-              						"parentId": 26,
-              						"descr": "CHIPS",
-              						"typ": "ITEM",
-              						"price": 3,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					},
-              					{
-              						"id": 10011,
-              						"parentId": 26,
-              						"descr": "GREEK CHOCOLATE",
-              						"typ": "ITEM",
-              						"price": 2,
-              						"compCd": "001",
-              						"lev": 3,
-              						"isLeaf": 1
-              					}
-              				]
-              			}
-              		]
-              	}
-              ],
-
-
+    big_list: [],
     parent_list: [],
     children_list: [],
     parent_stack: [],
@@ -397,6 +21,7 @@
 
   var final_page_data = {
 
+    item_pressed: null,
     checkbox_enabled: false,
     extra_shots: 2,
     extra_shot_price: 0.0,
@@ -424,7 +49,7 @@
     var $$ = Dom7;
 
     // Init F7 Vue Plugin
-    Vue.use(Framework7Vue, Framework7)
+    Vue.use(Framework7Vue, Framework7);
 
     // Init Page Components
     Vue.component('page-main', {
@@ -438,25 +63,35 @@
         },
 
         goToSubMenu: function(is){
-          console.log('aa ', this.$f7)
-          data.parent_list = data.big_list
-          data.parent_stack.push(data.big_list)
+          // console.log('test map_canvas ', $$('#map_canvas').hasClass('pipa'));
+          // console.log('aa ', this.$f7)
+          console.log('main page big_list ', app_data.big_list)
+          data.parent_list = app_data.big_list
+          console.log('parent_list: ', data.parent_list)
+          data.parent_stack.push(app_data.big_list)
         },
-
-
 
       }
     })
     Vue.component('login-screen', {
-      template: '#login-screen'
+      template: '#login-screen',
+      methods: {
+        makeMap: function(){
+          var map = $$('div')
+          map.addClass('map_div')
+          map.attr({id: 'map_canvas'})
+
+          console.log('map: ', map)
+        }
+      }
     })
+
     Vue.component('sub-menu', {
       template: '#sub-menu',
       data: function(){
         return data;
       },
       methods: {
-
 
         goToSame: function(item){
 
@@ -481,6 +116,11 @@
 
         },
 
+        goToFinal(item){
+          final_page_data.item_pressed = item
+          console.log('item pressed: ', final_page_data.item_pressed)
+        },
+
         backSubMenu: function(){
           data.parent_stack.pop()
           // parent_list is now the top element in the stack
@@ -500,7 +140,7 @@
     Vue.component('final-page', {
       template: '#final-page',
       data: function(){
-        return final_page_data;
+        return final_page_data
       },
       methods: {
         checkbox_clicked(){
@@ -514,6 +154,7 @@
           }
         },
         change_quantity(num){
+          console.log('item: ', final_page_data.item_pressed)
 
           if (final_page_data.quantity > 1 || num > 0){
             final_page_data.quantity += num;
@@ -573,7 +214,52 @@
     Vue.component('stores', {
       template: '#stores',
       methods: {
+
+        backStores: function(){
+          $$('#app').removeClass('changed-body')
+          $$('#map_canvas').remove()
+        },
+
         loadMap: function() {
+          var data = [
+            {
+              position: {lng: -122.1180187, lat: 37.3960513},
+              title: "Ardis G Egan Intermediate School"
+            },
+            {
+              position: {lng: -122.1102408, lat: 37.3943847},
+              title: "Portola School"
+            },
+            {
+              position: {lng: -122.0848257, lat: 37.3818032},
+              title: "Isaac Newton Graham Middle School"
+            },
+            {
+              position: {lng: -122.1082962, lat: 37.3863294},
+              title: "Los Altos High School"
+            },
+            {
+              position: {lng: -122.013571, lat: 37.3874409},
+              title: "The Kings Academy"
+            },
+            {
+              position: {lng: -122.082462, lat: 37.3627189},
+              title: "Georgina P Blach Intermediate School"
+            },
+            {
+              position: {lng: -122.0421832, lat: 37.3766077},
+              title: "Benner Junior High School"
+            }
+          ];
+          // hide the previous pages
+          // $$('.page-on-left').hide()
+
+          var body = $$('body')
+          var app = $$('#app')
+          app.addClass('changed-body')
+          map_div = '<div class="map_div" id="map_canvas"> </div>'
+          body.append(map_div)
+
           const GOOGLE = {"lat": 37.422476, "lng": -122.08425};
 
           console.log('aaaadwd ', document)
@@ -589,28 +275,81 @@
             }
           });
 
-         map.one(plugin.google.maps.event.MAP_READY,  function() {// Add a marker
-            console.log('in MAP ready')
-            map.addMarker({
-              'position': GOOGLE,
-              'title': "Hello GoogleMap for Cordova!"
-            }, function(marker) {
+          // Add markers
+          var baseArrayClass = new plugin.google.maps.BaseArrayClass(data);
 
-              // Show the infoWindow
-              marker.showInfoWindow();
 
-            });
+          map.one(plugin.google.maps.event.MAP_READY,  function() {// Add a marker
+
+            baseArrayClass.map(function(options, cb) {
+            // The variable "options" contains each element of the data.
+            //
+            // The variable "cb" is a callback function of iteration.
+            map.addMarker(options, cb);
+
+          }, function(markers) {
+
+            // Set a camera position that includes all markers.
+            var bounds = [];
+            data.forEach(function(POI) {
+            bounds.push(POI.position);
+           });
+
+          map.moveCamera({
+            target: bounds
+           }, function() {
+
+             // After camera moves open the last marker.
+             markers[markers.length - 1].showInfoWindow();
+           });
+
           });
 
+
+        });
+
         }
-      }
+      },
 
     })
-
-
     // Init App
     new Vue({
       el: '#app',
+      data: function(){
+        return app_data
+      },
+      methods: {
+        makeMap: function(){
+
+        }
+      },
+      mounted: function(){
+        console.log('app mounted')
+        // make ajax call
+        url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
+        success =
+        user = "eshop|002"
+        pass = "123"
+
+        $$.ajax({
+          type: "GET",
+          dataType: "json",
+          url: url,
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));
+          },
+          success: function(data){
+            console.log('json: ', data)
+            app_data.big_list = data
+            console.log('big_list: ', app_data.big_list)
+          },
+          error: function() {
+            console.log('error in ajax call')
+          }
+
+        });
+
+      },
       // Init Framework7 by passing parameters here
       framework7: {
         root: '#app',

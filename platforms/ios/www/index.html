@@ -154,8 +154,9 @@
             <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)' link="sub-menu">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
-            <f7-list-item v-else :title='child.descr' v-on:click='goToFinal(child)' link="final-page">
-              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            <f7-list-item v-else :title='child.descr' :after="child.price" v-on:click='goToFinal(child)' link="final-page">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'> </img>
+
             </f7-list-item>
           </div>
 
@@ -226,7 +227,8 @@
             <f7-block inset strong>
               <f7-list v-if="cat.descr === 'SIZE' " no-hairlines-between>
                 <f7-list-item v-for="s in cat.child" radio value='12oz' name="size-radio">
-                  {{s.descr}}
+                  <p> {{s.descr}} </p>
+                  <p class='extra-price-size' v-if="s.price !== null"> + {{s.price}} </p>
                 </f7-list-item>
               </f7-list>
               <f7-list v-else no-hairlines-between>
