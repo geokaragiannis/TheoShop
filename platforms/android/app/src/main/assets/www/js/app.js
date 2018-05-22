@@ -467,8 +467,7 @@
         return data;
       },
       methods: {
-
-
+        
         goToSame: function(item){
 
           // if the child of the item selected is a leaf, then
