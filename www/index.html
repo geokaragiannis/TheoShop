@@ -197,22 +197,13 @@
           <div class="card demo-card-header-pic">
             <div style="background-image:url(img/cap.jpg)" class="card-header align-items-flex-end">
               <p class="card-image-title">
-                Journey To Mountains
+                {{item_pressed.descr}}
               </p>
             </div>
-            <div class="card-content card-content-padding">
-              <h3> Description goes here</h3>
-            </div>
+            <!-- <div class="card-content card-content-padding">
+              <h3> </h3>
+            </div> -->
           </div>
-          <h2 class="custom-header">Size </h2>
-          <f7-block inset strong>
-            <f7-list no-hairlines-between>
-              <!-- Additional "checkbox" prop to enable checkbox list item -->
-              <f7-list-item radio value="12oz" title="12oz" name="size-radio" checked></f7-list-item>
-              <f7-list-item radio value="16oz" title="16oz" name="size-radio"></f7-list-item>
-              <f7-list-item radio value="20oz" title="20oz" name="size-radio"></f7-list-item>
-            </f7-list>
-          </f7-block>
 
           <h2 class="custom-header">Espresso Shots </h2>
           <f7-block inset strong>
@@ -230,69 +221,31 @@
             </div>
           </f7-block>
 
-          <h2 class="custom-header"> Extra </h2>
-          <f7-block inset strong>
-            <div v-for="itm in extra" class='extra-shot-div row'>
-              <div class="col-60">
-                <label class="item-content" id="extra-shot-number"> {{itm}} </label>
-              </div>
-              <div class="add-delete-icons col-40">
-                <div class="row add-delete-icons-child">
-                  <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-                  <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
-                  <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
+          <div v-for="cat in item_pressed.child">
+            <h2 class="custom-header"> {{cat.descr}} </h2>
+            <f7-block inset strong>
+              <f7-list v-if="cat.descr === 'SIZE' " no-hairlines-between>
+                <f7-list-item v-for="s in cat.child" radio value='12oz' name="size-radio">
+                  {{s.descr}}
+                </f7-list-item>
+              </f7-list>
+              <f7-list v-else no-hairlines-between>
+                <div v-for="s in cat.child" class='extra-shot-div row'>
+                  <div class="col-60">
+                    <label class="item-content" id="extra-shot-number"> {{s.descr}} </label>
+                  </div>
+                  <div class="add-delete-icons col-40">
+                    <div class="row add-delete-icons-child">
+                      <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
+                      <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+                      <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
+                    </div>
+                  </div>
                 </div>
-              </div>
-          </div>
-        </f7-block>
+              </f7-list>
 
-        <h2 class="custom-header"> Milk </h2>
-        <f7-block inset strong>
-          <div v-for="itm in milk" class='extra-shot-div row'>
-            <div class="col-60">
-              <label class="item-content" id="extra-shot-number"> {{itm}} </label>
-            </div>
-            <div class="add-delete-icons col-40">
-              <div class="row add-delete-icons-child">
-                <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-                <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
-                <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
-              </div>
-            </div>
-        </div>
-      </f7-block>
-
-      <h2 class="custom-header"> Flavors </h2>
-      <f7-block inset strong>
-        <div v-for="itm in flavors" class='extra-shot-div row'>
-          <div class="col-60">
-            <label class="item-content" id="extra-shot-number"> {{itm}} </label>
+            </f7-block>
           </div>
-          <div class="add-delete-icons col-40">
-            <div class="row add-delete-icons-child">
-              <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-              <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
-              <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
-            </div>
-          </div>
-        </div>
-      </f7-block>
-
-      <h2 class="custom-header"> Quantity </h2>
-      <f7-block inset strong>
-        <div class='extra-shot-div row'>
-          <div class="col-60">
-            <label class="item-content" id="extra-shot-number"> {{quantity}} </label>
-          </div>
-          <div class="add-delete-icons col-40">
-            <div class="row add-delete-icons-child">
-              <i v-on:click="change_quantity(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-              <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
-              <i v-on:click="change_quantity(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
-            </div>
-          </div>
-        </div>
-      </f7-block>
         </f7-list>
       </f7-page-content>
     </f7-page>

@@ -21,6 +21,7 @@
 
   var final_page_data = {
 
+    item_pressed: null,
     checkbox_enabled: false,
     extra_shots: 2,
     extra_shot_price: 0.0,
@@ -116,7 +117,8 @@
         },
 
         goToFinal(item){
-          console.log('item pressed: ', item)
+          final_page_data.item_pressed = item
+          console.log('item pressed: ', final_page_data.item_pressed)
         },
 
         backSubMenu: function(){
@@ -138,7 +140,7 @@
     Vue.component('final-page', {
       template: '#final-page',
       data: function(){
-        return final_page_data;
+        return final_page_data
       },
       methods: {
         checkbox_clicked(){
@@ -152,6 +154,7 @@
           }
         },
         change_quantity(num){
+          console.log('item: ', final_page_data.item_pressed)
 
           if (final_page_data.quantity > 1 || num > 0){
             final_page_data.quantity += num;
