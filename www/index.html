@@ -197,7 +197,7 @@
 
       <f7-page-content>
         <f7-list class='final-page-list'>
-          <div class="card demo-card-header-pic">
+          <div class="card demo-card-header-pic" style="box-shadow: 3px 6px 10px;">
             <div style="background-image:url(img/cap.jpg)" class="card-header align-items-flex-end">
               <p class="card-image-title">
                 {{item_pressed.descr}}
@@ -208,7 +208,7 @@
             </div> -->
           </div>
 
-          <h2 class="custom-header">Espresso Shots </h2>
+          <!-- <h2 class="custom-header">Espresso Shots </h2>
           <f7-block >
             <div class='extra-shot-div row'>
               <div class="col-60">
@@ -217,16 +217,16 @@
               <div class="add-delete-icons col-40">
                 <div class="row add-delete-icons-child">
                   <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-                  <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+
                   <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
                 </div>
               </div>
             </div>
-          </f7-block>
+          </f7-block> -->
 
           <div v-for="cat in item_pressed.child">
             <!-- <h2 class="custom-header"> {{cat.descr}} </h2> -->
-            <f7-block style="padding:0">
+            <f7-block style="padding:0; box-shadow: 3px 6px 10px">
               <f7-list v-if="cat.descr === 'SIZE' " no-hairlines-between>
                 <f7-list-group>
                   <f7-list-item :title="cat.descr" group-title></f7-list-item>
@@ -236,32 +236,23 @@
                   </f7-list-item>
                 </f7-list-group>
               </f7-list>
-              <!-- <f7-list v-else no-hairlines-between>
-                <div v-for="s in cat.child" class='extra-shot-div row'>
-                  <div class="col-60">
-                    <label class="item-content" id="extra-shot-number"> {{s.descr}} </label>
-                  </div>
-                  <div class="add-delete-icons col-40">
-                    <div class="row add-delete-icons-child">
-                      <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
 
-                      <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
-                    </div>
-                  </div>
-                </div>
-              </f7-list> -->
               <f7-list v-else>
                 <f7-list-group>
                   <f7-list-item :title="cat.descr" group-title></f7-list-item>
                   <f7-list-item v-for="s in cat.child">
                     <div class="row" style="width: 100%">
-                      <div class="col-70">
+                      <div class="col-60">
                         <p class="extra-descr">{{s.descr}} </p>
                       </div>
-                      <div class="col-30 add-delete-buttons-div">
-                        <i class="icon f7-icons col" id="extra-delete"> delete </i>
+                      <div class=" row col-40 add-delete-buttons-div">
+                        <f7-button id="extra-delete">
+                          <i class="icon f7-icons col" > delete </i>
+                        </f7-button>
                         <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
-                        <i class="icon f7-icons col" id="extra-add"> add </i>
+                        <f7-button id="extra-add">
+                        <i class="icon f7-icons col" > add </i>
+                        </f7-button>
                       </div>
                   </f7-list-item>
                 </f7-list-group>
