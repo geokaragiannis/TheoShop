@@ -151,10 +151,10 @@
           <f7-list-item group-title> {{par.descr}} </f7-list-item>
 
           <div v-for="child in par.child">
-            <f7-list-item v-if="child.child != null" :title='child.descr' v-on:click='goToSame(child)' link="sub-menu">
+            <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)' link="sub-menu">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
-            <f7-list-item v-else :title='child.descr' link="final-page">
+            <f7-list-item v-else :title='child.descr' v-on:click='goToFinal(child)' link="final-page">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
           </div>

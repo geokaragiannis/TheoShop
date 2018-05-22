@@ -115,6 +115,10 @@
 
         },
 
+        goToFinal(item){
+          console.log('item pressed: ', item)
+        },
+
         backSubMenu: function(){
           data.parent_stack.pop()
           // parent_list is now the top element in the stack
