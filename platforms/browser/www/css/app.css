@@ -238,6 +238,33 @@ Your custom styles go here
   color: cornflowerblue;
 }
 
+.accordion-item-toggle{
+  font-size: 1.3em;
+  padding-bottom: 0.5em;
+}
+
+.accordion-item-contnent{
+  text-align: right;
+  font-size: 1em !important;
+}
+
+.extra-descr{
+
+}
+
+.add-delete-buttons-div{
+  line-height: 59px;
+  text-align: right;
+}
+
+#extra-delete{
+  margin-right: 50px;
+}
+
+#extra-add{
+
+}
+
 /* extra shot  */
 
 .extra-shot-div{
