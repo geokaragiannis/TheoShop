@@ -254,19 +254,29 @@ Your custom styles go here
 
 
 .add-delete-buttons-div{
-  line-height: 59px;
-  text-align: right;
-  padding-top: 20px
+
+  align-self: center
+}
+
+.extra-delete-button{
+  width: 50px;
+  background: cornflowerblue !important;
+}
+
+.extra-add-button{
+  width: 50px;
+  background: cornflowerblue !important;
 }
 
 #extra-delete{
   /* margin-right: 50px; */
-  /* padding-top: 20px; */
   font-weight: 900;
+  font-size: 1.2em;
 }
 
 #extra-add{
   font-weight: 900;
+  font-size: 1.2em;
 }
 
 /* extra shot  */
