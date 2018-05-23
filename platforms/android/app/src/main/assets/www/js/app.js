@@ -44,6 +44,11 @@
 
   }
 
+  var store_data = {
+    store_selected: null,
+    button_enabled: false
+  }
+
   function init() {
 
     var $$ = Dom7;
@@ -51,6 +56,7 @@
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7);
 
+    // var dialog = Framework7.dialog.create({ text: 'lala'})
 
     // Init Page Components
     Vue.component('page-main', {
@@ -74,8 +80,8 @@
 
       }
     })
-    Vue.component('login-screen', {
-      template: '#login-screen',
+    Vue.component('login-page', {
+      template: '#login-page',
       methods: {
         makeMap: function(){
           var map = $$('div')
@@ -211,6 +217,22 @@
         }
       }
     })
+
+    Vue.component('select-store-page', {
+      template: '#select-store-page',
+      data: function() {
+        return store_data;
+      },
+
+      methods: {
+
+        goToMain: function(){
+          console.log('store selected: ', store_data.store_selected)
+        }
+      }
+    })
+
+
 
     Vue.component('stores', {
       template: '#stores',
@@ -348,7 +370,7 @@
             app_data.big_list = data
             console.log('big_list: ', app_data.big_list)
 
-            // f7.mainView.router.load({url: '/main/'})
+            f7.mainView.router.load({url: '/select-store-page/'})
 
 
           },
@@ -376,7 +398,7 @@
           },
           {
             path: '/login/',
-            component: 'login-screen'
+            component: 'login-page'
           },
           {
             path: '/sub-menu/',
@@ -401,6 +423,10 @@
           {
             path: '/stores/',
             component: 'stores'
+          },
+          {
+            path: '/select-store-page/',
+            component: 'select-store-page'
           }
         ],
       }

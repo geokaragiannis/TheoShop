@@ -2,11 +2,18 @@
 Your custom styles go here
  ========= */
 
+/* select store */
  .main-preloader{
    position: absolute;
    top: 45%;
    left: 40%;
  }
+
+ .select-store-button{
+   background: cornflowerblue !important
+ }
+
+ /*  */
 
  .changed-body{
    height: 5%
