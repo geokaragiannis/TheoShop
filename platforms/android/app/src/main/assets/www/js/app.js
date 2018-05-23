@@ -51,6 +51,7 @@
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7);
 
+
     // Init Page Components
     Vue.component('page-main', {
       template: '#page-main',
@@ -320,6 +321,7 @@
       },
       methods: {
         makeMap: function(){
+          f7.router.load({path: 'page-main'})
 
         }
       },
@@ -330,6 +332,9 @@
         success =
         user = "eshop|002"
         pass = "123"
+        // router.push({path: '/main/'})
+
+
 
         $$.ajax({
           type: "GET",
@@ -342,6 +347,10 @@
             console.log('json: ', data)
             app_data.big_list = data
             console.log('big_list: ', app_data.big_list)
+
+            // f7.mainView.router.load({url: '/main/'})
+
+
           },
           error: function() {
             console.log('error in ajax call')

@@ -2,6 +2,12 @@
 Your custom styles go here
  ========= */
 
+ .main-preloader{
+   position: absolute;
+   top: 45%;
+   left: 40%;
+ }
+
  .changed-body{
    height: 5%
  }

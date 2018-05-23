@@ -40,33 +40,49 @@
 
     <!-- Login Screen -->
     <f7-views>
-      <f7-view id="main-view">
+      <f7-view main id="main-view">
         <f7-pages>
-          <f7-page @page:init="makeMap" login-screen>
-            <f7-login-screen-title>Login</f7-login-screen-title>
-            <f7-list form>
-              <f7-list-item>
-                <f7-label>Username</f7-label>
-                <f7-input name="username" placeholder="Username" type="text"></f7-input>
-              </f7-list-item>
-              <f7-list-item>
-                <f7-label>Password</f7-label>
-                <f7-input name="password" type="password" placeholder="Password"></f7-input>
-              </f7-list-item>
-            </f7-list>
-            <f7-list>
-              <f7-list-button title="Sign In" link='/main/'></f7-list-button>
-              <f7-list-label>
-                <p>Click Sign In to close Login Screen</p>
-              </f7-list-label>
-            </f7-list>
-
-
+          <f7-page class="load-screen">
+            <f7-preloader color="blue" size="50px" class="main-preloader"></f7-preloader>
           </f7-page>
         </f7-pages>
       </f7-view>
     </f7-views>
   </div>
+
+  <template id="select-store-page">
+    <f7-page>
+      <f7-list class="select-list">
+  <!-- Additional "radio" prop to enable radio list item -->
+        <f7-list-item radio value="check_1" name="demo-radio" checked title="Radio 1"></f7-list-item>
+        <f7-list-item radio value="check_2" name="demo-radio" title="Radio 2"></f7-list-item>
+      </f7-list>
+    </f7-page>
+
+  </template>
+
+  <template id="login-page">
+    <f7-page v-if="!logged_in" @page:init="makeMap" login-screen>
+      <f7-login-screen-title>Login</f7-login-screen-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-label>Username</f7-label>
+          <f7-input name="username" placeholder="Username" type="text"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Password</f7-label>
+          <f7-input name="password" type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+      </f7-list>
+      <f7-list>
+        <f7-list-button title="Sign In" link='/main/'></f7-list-button>
+        <f7-list-label>
+          <p>Click Sign In to close Login Screen</p>
+        </f7-list-label>
+      </f7-list>
+    </f7-page>
+  </template>
+
 
   <!-- Main Page -->
 
