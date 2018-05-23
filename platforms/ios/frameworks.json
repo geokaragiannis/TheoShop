@@ -12,5 +12,6 @@
     "OpenGLES.framework": 1,
     "QuartzCore.framework": 1,
     "SystemConfiguration.framework": 1,
-    "UIKit.framework": 1
+    "UIKit.framework": 1,
+    "AudioToolbox.framework": 1
 }

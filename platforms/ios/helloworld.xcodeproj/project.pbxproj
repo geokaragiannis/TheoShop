@@ -74,6 +74,9 @@
 		408329521FFC427AA17678FA /* pgm_Localizable_pl.json in Resources */ = {isa = PBXBuildFile; fileRef = C06EE70AF4FE48A69814D582 /* pgm_Localizable_pl.json */; };
 		BCEFD19723634519BAB35120 /* pgm_Localizable_da.json in Resources */ = {isa = PBXBuildFile; fileRef = 040A699D150C47D9A952936E /* pgm_Localizable_da.json */; };
 		EB4D09C051644AEE951DD94B /* pgm_Localizable_vi.json in Resources */ = {isa = PBXBuildFile; fileRef = 0766A78AC2594268943F9658 /* pgm_Localizable_vi.json */; };
+		AA933FEA56E949838AB8C032 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2379E74340DB494E9065EB72 /* CDVNotification.m */; };
+		3BF4BB509B16457BB24D3E4F /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE340471AF1B44C9A19CC559 /* CDVNotification.bundle */; };
+		5EB451A80F3B486CA8F4588E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5822D20E1847119087C79D /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +205,10 @@
 		C06EE70AF4FE48A69814D582 /* pgm_Localizable_pl.json */ = {isa = PBXFileReference; name = "pgm_Localizable_pl.json"; path = "pgm_Localizable_pl.json"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		040A699D150C47D9A952936E /* pgm_Localizable_da.json */ = {isa = PBXFileReference; name = "pgm_Localizable_da.json"; path = "pgm_Localizable_da.json"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		0766A78AC2594268943F9658 /* pgm_Localizable_vi.json */ = {isa = PBXFileReference; name = "pgm_Localizable_vi.json"; path = "pgm_Localizable_vi.json"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2379E74340DB494E9065EB72 /* CDVNotification.m */ = {isa = PBXFileReference; name = "CDVNotification.m"; path = "cordova-plugin-dialogs/CDVNotification.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		E16A47ECFD25475792F7DD7C /* CDVNotification.h */ = {isa = PBXFileReference; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		FE340471AF1B44C9A19CC559 /* CDVNotification.bundle */ = {isa = PBXFileReference; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.plug-in; explicitFileType = undefined; includeInIndex = 0; };
+		5B5822D20E1847119087C79D /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +234,7 @@
 				C841A5FCC79B4ED1AA3D8913 /* GoogleMapsBase.framework in Frameworks */,
 				78D7F729E8654F599D777AAA /* GoogleMaps.framework in Frameworks */,
 				B257BAD1A9F04C6FBEF53BCA /* GoogleMapsCore.framework in Frameworks */,
+				5EB451A80F3B486CA8F4588E /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +311,7 @@
 				C06EE70AF4FE48A69814D582 /* pgm_Localizable_pl.json */,
 				040A699D150C47D9A952936E /* pgm_Localizable_da.json */,
 				0766A78AC2594268943F9658 /* pgm_Localizable_vi.json */,
+				FE340471AF1B44C9A19CC559 /* CDVNotification.bundle */,
 			);
 			name = Resources;
 			path = "helloworld/Resources";
@@ -328,6 +337,7 @@
 				CB778F21C61742089B2C6D9D /* GoogleMapsBase.framework */,
 				4E5C5C51F1A44CE498320859 /* GoogleMaps.framework */,
 				0EF4054FD47A4B61B9F2F9A9 /* GoogleMapsCore.framework */,
+				5B5822D20E1847119087C79D /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -410,6 +420,8 @@
 				0CA015B8754D4905BAF74771 /* PluginViewController.h */,
 				07F34CA1B20244B1A1E0CB81 /* IPluginView.h */,
 				81553A8D3FB34CD2A7154F11 /* IPluginProtocol.h */,
+				2379E74340DB494E9065EB72 /* CDVNotification.m */,
+				E16A47ECFD25475792F7DD7C /* CDVNotification.h */,
 			);
 			name = Plugins;
 			path = "helloworld/Plugins";
@@ -505,6 +517,7 @@
 				408329521FFC427AA17678FA /* pgm_Localizable_pl.json in Resources */,
 				BCEFD19723634519BAB35120 /* pgm_Localizable_da.json in Resources */,
 				EB4D09C051644AEE951DD94B /* pgm_Localizable_vi.json in Resources */,
+				3BF4BB509B16457BB24D3E4F /* CDVNotification.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +576,7 @@
 				A1388F3DC3AD4A04A815AFC0 /* PluginStreetViewPanorama.m in Sources */,
 				6A1AAD3EA3FB42ED91101931 /* PluginStreetViewPanoramaController.m in Sources */,
 				571D201801D64C0FB4721721 /* PluginViewController.m in Sources */,
+				AA933FEA56E949838AB8C032 /* CDVNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

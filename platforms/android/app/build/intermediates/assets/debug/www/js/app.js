@@ -44,12 +44,19 @@
 
   }
 
+  var store_data = {
+    store_selected: null,
+    button_enabled: false
+  }
+
   function init() {
 
     var $$ = Dom7;
 
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7);
+
+    // var dialog = Framework7.dialog.create({ text: 'lala'})
 
     // Init Page Components
     Vue.component('page-main', {
@@ -73,8 +80,8 @@
 
       }
     })
-    Vue.component('login-screen', {
-      template: '#login-screen',
+    Vue.component('login-page', {
+      template: '#login-page',
       methods: {
         makeMap: function(){
           var map = $$('div')
@@ -211,6 +218,34 @@
       }
     })
 
+    Vue.component('select-store-page', {
+      template: '#select-store-page',
+      data: function() {
+        return store_data;
+      },
+
+      methods: {
+
+        alertDismissed: function(){
+
+        },
+
+        goToMain: function(){
+          console.log('store selected: ', store_data.store_selected)
+
+          if(store_data.store_selected == null){
+            navigator.notification.alert(
+              'Please Select a Store',  // message
+              this.alertDismissed,         // callback
+              'No Store Selected'            // title
+            );
+          } else{
+            f7.mainView.router.load({url: '/main/'})
+          }
+        }
+      }
+    })
+
     Vue.component('stores', {
       template: '#stores',
       methods: {
@@ -320,6 +355,7 @@
       },
       methods: {
         makeMap: function(){
+          f7.router.load({path: 'page-main'})
 
         }
       },
@@ -330,6 +366,9 @@
         success =
         user = "eshop|002"
         pass = "123"
+        // router.push({path: '/main/'})
+
+
 
         $$.ajax({
           type: "GET",
@@ -342,6 +381,10 @@
             console.log('json: ', data)
             app_data.big_list = data
             console.log('big_list: ', app_data.big_list)
+
+            f7.mainView.router.load({url: '/select-store-page/'})
+
+
           },
           error: function() {
             console.log('error in ajax call')
@@ -367,7 +410,7 @@
           },
           {
             path: '/login/',
-            component: 'login-screen'
+            component: 'login-page'
           },
           {
             path: '/sub-menu/',
@@ -392,6 +435,10 @@
           {
             path: '/stores/',
             component: 'stores'
+          },
+          {
+            path: '/select-store-page/',
+            component: 'select-store-page'
           }
         ],
       }

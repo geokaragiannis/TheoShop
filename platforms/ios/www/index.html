@@ -59,6 +59,7 @@
         <f7-list-item @change="store_selected = $event.target.value" radio value="check_2" name="demo-radio" title="Radio 2"></f7-list-item>
         <a v-on:click="goToMain()" class="button button-big button-fill select-store-button">Go</a>
       </f7-list>
+      <f7-preloader v-if="button_pressed" color="blue" size="50px" class="main-preloader"></f7-preloader>
     </f7-page>
 
   </template>

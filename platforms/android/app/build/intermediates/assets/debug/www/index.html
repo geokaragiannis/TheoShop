@@ -40,33 +40,51 @@
 
     <!-- Login Screen -->
     <f7-views>
-      <f7-view id="main-view">
+      <f7-view main id="main-view">
         <f7-pages>
-          <f7-page @page:init="makeMap" login-screen>
-            <f7-login-screen-title>Login</f7-login-screen-title>
-            <f7-list form>
-              <f7-list-item>
-                <f7-label>Username</f7-label>
-                <f7-input name="username" placeholder="Username" type="text"></f7-input>
-              </f7-list-item>
-              <f7-list-item>
-                <f7-label>Password</f7-label>
-                <f7-input name="password" type="password" placeholder="Password"></f7-input>
-              </f7-list-item>
-            </f7-list>
-            <f7-list>
-              <f7-list-button title="Sign In" link='/main/'></f7-list-button>
-              <f7-list-label>
-                <p>Click Sign In to close Login Screen</p>
-              </f7-list-label>
-            </f7-list>
-
-
+          <f7-page class="load-screen">
+            <f7-preloader color="blue" size="50px" class="main-preloader"></f7-preloader>
           </f7-page>
         </f7-pages>
       </f7-view>
     </f7-views>
   </div>
+
+  <template id="select-store-page">
+    <f7-page>
+      <h2> Select a Store </h2>
+      <f7-list class="select-list" >
+  <!-- Additional "radio" prop to enable radio list item -->
+        <f7-list-item @change="store_selected = $event.target.value" radio value="check_1" name="demo-radio" title="Radio 1"></f7-list-item>
+        <f7-list-item @change="store_selected = $event.target.value" radio value="check_2" name="demo-radio" title="Radio 2"></f7-list-item>
+        <a v-on:click="goToMain()" class="button button-big button-fill select-store-button">Go</a>
+      </f7-list>
+    </f7-page>
+
+  </template>
+
+  <template id="login-page">
+    <f7-page v-if="!logged_in" @page:init="makeMap" login-screen>
+      <f7-login-screen-title>Login</f7-login-screen-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-label>Username</f7-label>
+          <f7-input name="username" placeholder="Username" type="text"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Password</f7-label>
+          <f7-input name="password" type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+      </f7-list>
+      <f7-list>
+        <f7-list-button title="Sign In" link='/main/'></f7-list-button>
+        <f7-list-label>
+          <p>Click Sign In to close Login Screen</p>
+        </f7-list-label>
+      </f7-list>
+    </f7-page>
+  </template>
+
 
   <!-- Main Page -->
 
@@ -154,8 +172,9 @@
             <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)' link="sub-menu">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
-            <f7-list-item v-else :title='child.descr' v-on:click='goToFinal(child)' link="final-page">
-              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+            <f7-list-item v-else :title='child.descr' :after="child.price" v-on:click='goToFinal(child)' link="final-page">
+              <img id='parent_items_img' src="img/logo.png" slot='content-start'> </img>
+
             </f7-list-item>
           </div>
 
@@ -176,6 +195,8 @@
 
   </template>
 
+  <!-- FINAL PAGE -->
+
   <template id='final-page'>
     <f7-page>
       <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar>
@@ -194,7 +215,7 @@
 
       <f7-page-content>
         <f7-list class='final-page-list'>
-          <div class="card demo-card-header-pic">
+          <div class="card demo-card-header-pic" style="box-shadow: 3px 6px 10px;">
             <div style="background-image:url(img/cap.jpg)" class="card-header align-items-flex-end">
               <p class="card-image-title">
                 {{item_pressed.descr}}
@@ -205,8 +226,8 @@
             </div> -->
           </div>
 
-          <h2 class="custom-header">Espresso Shots </h2>
-          <f7-block inset strong>
+          <!-- <h2 class="custom-header">Espresso Shots </h2>
+          <f7-block >
             <div class='extra-shot-div row'>
               <div class="col-60">
                 <label class="item-content" id="extra-shot-number"> {{extra_shots}} Shots </label>
@@ -214,35 +235,46 @@
               <div class="add-delete-icons col-40">
                 <div class="row add-delete-icons-child">
                   <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-                  <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
+
                   <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
                 </div>
               </div>
             </div>
-          </f7-block>
+          </f7-block> -->
 
           <div v-for="cat in item_pressed.child">
-            <h2 class="custom-header"> {{cat.descr}} </h2>
-            <f7-block inset strong>
+            <!-- <h2 class="custom-header"> {{cat.descr}} </h2> -->
+            <f7-block style="padding:0; box-shadow: 3px 6px 10px">
               <f7-list v-if="cat.descr === 'SIZE' " no-hairlines-between>
-                <f7-list-item v-for="s in cat.child" radio value='12oz' name="size-radio">
-                  {{s.descr}}
-                </f7-list-item>
+                <f7-list-group>
+                  <f7-list-item :title="cat.descr" group-title></f7-list-item>
+                  <f7-list-item v-for="s in cat.child" radio value='12oz' name="size-radio">
+                    <p> {{s.descr}} </p>
+                    <p class='extra-price-size' v-if="s.price !== null"> + {{s.price}} </p>
+                  </f7-list-item>
+                </f7-list-group>
               </f7-list>
-              <f7-list v-else no-hairlines-between>
-                <div v-for="s in cat.child" class='extra-shot-div row'>
-                  <div class="col-60">
-                    <label class="item-content" id="extra-shot-number"> {{s.descr}} </label>
-                  </div>
-                  <div class="add-delete-icons col-40">
-                    <div class="row add-delete-icons-child">
-                      <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-                      <!-- <p class="col" id="extra-shot-number"> 4 </p> -->
-                      <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
-                    </div>
-                  </div>
-                </div>
-              </f7-list>
+
+              <f7-list v-else>
+                <f7-list-group>
+                  <f7-list-item :title="cat.descr" group-title></f7-list-item>
+                  <f7-list-item v-for="s in cat.child">
+                    <div class="row" style="width: 100%">
+                      <div class="col-60">
+                        <p class="extra-descr">{{s.descr}} </p>
+                      </div>
+                      <div class="row col-40 add-delete-buttons-div">
+                        <a class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
+                          <i class="icon f7-icons col" id="extra-delete"> delete </i>
+                        </a>
+                        <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> 12 </p>
+                        <a class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
+                          <i class="icon f7-icons col" id="extra-add"> add </i>
+                        </a>
+                      </div>
+                  </f7-list-item>
+                </f7-list-group>
+              <f7-list>
 
             </f7-block>
           </div>

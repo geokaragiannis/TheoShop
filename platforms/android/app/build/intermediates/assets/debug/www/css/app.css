@@ -2,6 +2,19 @@
 Your custom styles go here
  ========= */
 
+/* select store */
+ .main-preloader{
+   position: absolute;
+   top: 45%;
+   left: 40%;
+ }
+
+ .select-store-button{
+   background: cornflowerblue !important
+ }
+
+ /*  */
+
  .changed-body{
    height: 5%
  }
@@ -170,6 +183,10 @@ Your custom styles go here
 }
 
 
+.item-after{
+  color: cornflowerblue !important;
+}
+
 /* toolbar style in final page */
 
 .toolbar{
@@ -210,6 +227,12 @@ Your custom styles go here
 
 /* card */
 
+.extra-price-size{
+  font-weight: 100;
+  font-size: 14px;
+  color: cornflowerblue;
+}
+
 .card{
   /* margin: 0; */
 }
@@ -225,6 +248,52 @@ Your custom styles go here
 
 .custom-header{
   border-top: 1px solid #80808057;
+  color: cornflowerblue;
+}
+
+.accordion-item-toggle{
+  font-size: 1.3em;
+  padding-bottom: 0.5em;
+}
+
+.accordion-item-contnent{
+  text-align: right;
+  font-size: 1em !important;
+}
+
+.extra-descr{
+
+}
+
+.card{
+  margin: 0
+}
+
+
+.add-delete-buttons-div{
+
+  align-self: center
+}
+
+.extra-delete-button{
+  width: 50px;
+  background: cornflowerblue !important;
+}
+
+.extra-add-button{
+  width: 50px;
+  background: cornflowerblue !important;
+}
+
+#extra-delete{
+  /* margin-right: 50px; */
+  font-weight: 900;
+  font-size: 1.2em;
+}
+
+#extra-add{
+  font-weight: 900;
+  font-size: 1.2em;
 }
 
 /* extra shot  */
@@ -277,4 +346,28 @@ Your custom styles go here
 
 .profile-button{
   background: #2196f375;
+}
+
+.plus-minus-input {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.plus-minus-input .input-group-field {
+  text-align: center;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 1rem;
+}
+
+.plus-minus-input .input-group-field::-webkit-inner-spin-button,
+.plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+}
+
+.plus-minus-input .input-group-button .circle {
+  border-radius: 50%;
+  padding: 0.25em 0.8em;
 }

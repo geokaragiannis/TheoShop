@@ -46,7 +46,8 @@
 
   var store_data = {
     store_selected: null,
-    button_enabled: false
+    button_enabled: false,
+    button_pressed: false
   }
 
   function init() {
@@ -55,8 +56,6 @@
 
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7);
-
-    // var dialog = Framework7.dialog.create({ text: 'lala'})
 
     // Init Page Components
     Vue.component('page-main', {
@@ -226,13 +225,57 @@
 
       methods: {
 
+        makeCall: function(){
+          url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
+          success =
+          user = "eshop|002"
+          pass = "123"
+          $$.ajax({
+            type: "GET",
+            dataType: "json",
+            url: url,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));
+            },
+            success: function(data){
+              console.log('json: ', data)
+              app_data.big_list = data
+              console.log('big_list: ', app_data.big_list)
+              store_data.button_pressed = false
+              f7.mainView.router.load({url: '/main/'})
+            },
+            error: function() {
+              navigator.notification.alert(
+                'Something Happened',  // message
+                this.makeCall(),         // callback
+                           // title
+              );
+            }
+
+          });
+        },
+
+        alertDismissed: function(){
+
+        },
+
         goToMain: function(){
+
           console.log('store selected: ', store_data.store_selected)
+
+          if(store_data.store_selected == null){
+            navigator.notification.alert(
+              'Please Select a Store',  // message
+              this.alertDismissed,         // callback
+              'No Store Selected'            // title
+            );
+          } else{
+            store_data.button_pressed = true
+            this.makeCall()
+          }
         }
       }
     })
-
-
 
     Vue.component('stores', {
       template: '#stores',

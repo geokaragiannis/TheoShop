@@ -51,6 +51,9 @@
     <feature name="StreetViewPanorama">
         <param name="android-package" value="plugin.google.maps.PluginStreetViewPanorama" />
     </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
     <name>helloworld</name>
     <description>
         This is the project created from the template: phonegap-template-framework7-vue.

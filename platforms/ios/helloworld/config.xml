@@ -66,6 +66,9 @@
     <feature name="StreetViewPanorama">
         <param name="ios-package" value="PluginStreetViewPanorama" />
     </feature>
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
     <name>helloworld</name>
     <description>
         This is the project created from the template: phonegap-template-framework7-vue.
