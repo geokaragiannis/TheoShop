@@ -252,6 +252,10 @@ Your custom styles go here
 
 }
 
+.card{
+  margin: 0
+}
+
 
 .add-delete-buttons-div{
 
