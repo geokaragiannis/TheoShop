@@ -271,11 +271,11 @@
                         <p class="extra-descr">{{s.descr}} </p>
                       </div>
                       <div class="row col-40 add-delete-buttons-div">
-                        <a class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
+                        <a v-on:click="change_quantity(s, -1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
                           <i class="icon f7-icons col" id="extra-delete"> delete </i>
                         </a>
                         <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> {{s.quant}} </p>
-                        <a class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
+                        <a v-on:click="change_quantity(s, 1)" class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
                           <i class="icon f7-icons col" id="extra-add"> add </i>
                         </a>
                       </div>

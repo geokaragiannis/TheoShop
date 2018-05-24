@@ -134,7 +134,10 @@
                 // console.log('iii ', i)
                 this.addQuant(arr[i].child)
               } else {
-                arr[i].quant = 0
+                // arr[i].quant = 0
+                // do it like that, so that quant is a reactive getElement
+                // and vue can updare the DOM
+                Vue.set(arr[i], 'quant', 0)
                 // console.log('jjjj ', i)
               }
               i += 1
@@ -188,12 +191,12 @@
             console.log('extra shots ', final_page_data.extra_shots)
           }
         },
-        change_quantity(num){
-          console.log('item: ', final_page_data.item_pressed)
-
-          if (final_page_data.quantity > 1 || num > 0){
-            final_page_data.quantity += num;
-            console.log('quantity ', final_page_data.quantity)
+        change_quantity(item, num){
+          // when adding
+          if(item.quant >= 0 && num > 0 && item.quant < 10){
+            item.quant += num
+          }else if(item.quant <= 10 && num < 0 && item.quant >= 1 ){
+            item.quant += num
           }
         },
       }
