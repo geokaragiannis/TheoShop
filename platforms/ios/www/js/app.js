@@ -1,7 +1,10 @@
 (function () {
 
   var app_data = {
-    big_list: []
+    big_list: [],
+    ios: false,
+    android: false,
+    web: false,
   }
 
   var data = {
@@ -122,9 +125,28 @@
 
         },
 
+        addQuant: function(arr){
+            for (i = 0; i < arr.length; i++){
+              if (arr[i].isLeaf === 0){
+                console.log('rec arr: ', arr)
+                this.addQuant(arr[i].child)
+              } else {
+                arr[i].quant = 0
+              }
+            }
+
+
+          console.log('arr: ', arr)
+
+          // console.log('extras', final_page_data.item_pressed.child)
+        },
+
         goToFinal(item){
           final_page_data.item_pressed = item
           console.log('item pressed: ', final_page_data.item_pressed)
+          console.log('item pressed child: ', final_page_data.item_pressed.child)
+          this.addQuant(final_page_data.item_pressed.child)
+          console.log('after item_pressed: ', final_page_data.item_pressed.child)
         },
 
         backSubMenu: function(){
@@ -143,6 +165,8 @@
     Vue.component('cart', {
       template: '#cart'
     })
+
+
     Vue.component('final-page', {
       template: '#final-page',
       data: function(){
@@ -386,11 +410,19 @@
       },
       methods: {
         makeMap: function(){
-          f7.router.load({path: 'page-main'})
+
 
         }
       },
       mounted: function(){
+        // update the device variables:
+        if (f7.device.ios){
+          app_data.ios = true
+        } else if(f7.device.android){
+          app_data.android = true
+        } else{
+          app_data.web = true
+        }
         console.log('app mounted')
         // make ajax call
         url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"

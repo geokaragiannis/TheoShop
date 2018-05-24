@@ -52,7 +52,11 @@
 
   <template id="select-store-page">
     <f7-page>
-      <h2> Select a Store </h2>
+
+      <div class="row" style="padding-top: 20px">
+        <h2 class="col"> Select a Store </h2>
+        <h2> <a style="color:inherit; " class="h2 col" href="/stores/"> View on a Map </a>  </h2>
+      </div>
       <f7-list class="select-list" >
   <!-- Additional "radio" prop to enable radio list item -->
         <f7-list-item @change="store_selected = $event.target.value" radio value="check_1" name="demo-radio" title="Radio 1"></f7-list-item>
@@ -60,6 +64,7 @@
         <a v-on:click="goToMain()" class="button button-big button-fill select-store-button">Go</a>
       </f7-list>
       <f7-preloader v-if="button_pressed" color="blue" size="50px" class="main-preloader"></f7-preloader>
+
     </f7-page>
 
   </template>
