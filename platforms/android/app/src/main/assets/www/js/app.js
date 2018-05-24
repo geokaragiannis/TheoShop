@@ -1,7 +1,7 @@
 (function () {
 
   var app_data = {
-    big_list: [],
+    stores_list: [],
     ios: false,
     android: false,
     web: false,
@@ -48,6 +48,7 @@
   }
 
   var store_data = {
+    stores_list: [],
     store_selected: null,
     button_enabled: false,
     button_pressed: false
@@ -251,8 +252,7 @@
 
         makeCall: function(){
           url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
-          success =
-          user = "eshop|002"
+          user = "eshop|" + store_data.store_selected
           pass = "123"
           $$.ajax({
             type: "GET",
@@ -270,8 +270,8 @@
             },
             error: function() {
               navigator.notification.alert(
-                'Something Happened',  // message
-                this.makeCall(),         // callback
+                'Something Happened in the Connection with the Server',  // message
+                this.makeCall()       // callback
                            // title
               );
             }
@@ -425,9 +425,8 @@
         }
         console.log('app mounted')
         // make ajax call
-        url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
-        success =
-        user = "eshop|002"
+        url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/shop"
+        user = "eshop|001"
         pass = "123"
         // router.push({path: '/main/'})
 
@@ -441,9 +440,10 @@
               xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));
           },
           success: function(data){
-            console.log('json: ', data)
-            app_data.big_list = data
-            console.log('big_list: ', app_data.big_list)
+            console.log('list of stores: ', data)
+            app_data.stores_list = data
+            store_data.stores_list = data
+            console.log('list of stores 2: ', app_data.stores_list)
 
             f7.mainView.router.load({url: '/select-store-page/'})
 
