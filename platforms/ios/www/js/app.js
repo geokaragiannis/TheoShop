@@ -25,13 +25,15 @@
   var final_page_data = {
 
     item_pressed: null,
+    price: 0,
+    size_price: 0,
+    size_descr: null,
+    extras: [],
+    cart_items: [],
     checkbox_enabled: false,
     extra_shots: 2,
     extra_shot_price: 0.0,
     quantity: 1,
-    extra: ['No sugar', 'Medium Sweet', 'Sweet', 'Extra Sugar', 'Brown Sugar', 'Stevia Sweetener'],
-    milk: ['Whole Milk', '2% Reduced Milk', 'Non Fat Milk', 'Soy Milk', 'Almond Milk'],
-    flavors: ['Chocolate', 'Vanilla', 'Caramel Sauce', 'Pumkin Sauce', 'Hazelnut Syrup']
   };
 
   var profile_page_data = {
@@ -153,11 +155,15 @@
           final_page_data.item_pressed = item
           console.log('item pressed: ', final_page_data.item_pressed)
           console.log('item pressed child: ', final_page_data.item_pressed.child)
-          this.addQuant(final_page_data.item_pressed.child)
+          if(final_page_data.item_pressed.child != null)
+            this.addQuant(final_page_data.item_pressed.child)
+
           console.log('after item_pressed: ', final_page_data.item_pressed.child)
+          final_page_data.price = item.price
         },
 
         backSubMenu: function(){
+          console.log('papa')
           data.parent_stack.pop()
           // parent_list is now the top element in the stack
           data.parent_list = data.parent_stack[data.parent_stack.length - 1]
@@ -166,6 +172,10 @@
           data.is_last_level = false
           console.log('parent stack: ', data.parent_stack);
           console.log('parent: ', data.parent_list);
+          // not sure about this !!!!
+          if(data.parent_list == null)
+            f7.mainView.router.reloadPreviousPage('main');
+
         },
 
       }
@@ -181,6 +191,12 @@
         return final_page_data
       },
       methods: {
+        backFinal(){
+          final_page_data.quantity = 1
+          final_page_data.price = 0
+          final_page_data.size_price = 0
+          final_page_data.extras = []
+        },
         checkbox_clicked(){
           final_page_data.checkbox_enabled = true;
         },
@@ -191,14 +207,82 @@
             console.log('extra shots ', final_page_data.extra_shots)
           }
         },
-        change_quantity(item, num){
-          // when adding
-          if(item.quant >= 0 && num > 0 && item.quant < 10){
-            item.quant += num
-          }else if(item.quant <= 10 && num < 0 && item.quant >= 1 ){
-            item.quant += num
+        change_extras_quantity(extra, num){
+          // UI stuff here
+          cond = (extra.quant >= 0 && num > 0 && extra.quant < 10)
+                || (extra.quant <= 10 && num < 0 && extra.quant >= 1);
+
+          if(cond){
+            extra.quant += num
+            this.calculate_price(extra, num)
+          }
+
+          // Populate the extras list for the cart
+          //if empty push the extra in the array
+          // else search if the extra item already exists in the array
+            // if it exists, update its quantity
+            // else push it in the array
+          extra_exists = false;
+          index = null;
+          if (final_page_data.extras.length === 0){
+            final_page_data.extras.push({descr: extra.descr, quant: 1})
+          }else{
+            for(i = 0; i < final_page_data.extras.length; i++){
+              if(final_page_data.extras[i].descr == extra.descr){
+                final_page_data.extras[i].quant += num
+                extra_exists = true
+                index = i
+                return
+              }
+            }
+            final_page_data.extras.push({descr: extra.descr, quant: 1})
           }
         },
+        change_quantity(num){
+          cond = (final_page_data.quantity >= 1 && num > 0 && final_page_data.quantity < 10)
+                || (final_page_data.quantity <= 10 && num < 0 && final_page_data.quantity >= 2);
+          if(cond){
+            final_page_data.quantity += num
+          }
+        },
+
+        change_size(size){
+          final_page_data.size_descr = size.descr;
+          final_page_data.size_price = size.price;
+          console.log('size descr: ', final_page_data.size_descr)
+          console.log('size price: ', final_page_data.size_price)
+        },
+
+        calculate_price_from_size(num){
+
+        },
+
+        calculate_price(extra, num){
+          if (extra.price == null)
+            extra_price = 0
+          else
+            extra_price = num * extra.price
+
+          final_page_data.price += extra_price
+
+          console.log('final price: ', final_page_data.price)
+        },
+
+        add_to_cart(){
+          cart_item = {descr: final_page_data.item_pressed.descr,
+                      quant: final_page_data.quantity,
+                      extras: final_page_data.extras,
+                      size: final_page_data.size_descr};
+
+          console.log('cart item: ', cart_item)
+
+          final_page_data.cart_items.push(cart_item)
+          console.log('cart items: ', final_page_data.cart_items)
+
+          f7.mainView.router.back({url: 'sub-menu', force: true})
+          // f7.mainView.router.refreshPage();
+
+        }
       }
     })
     Vue.component('page-dynamic-routing', {
@@ -264,6 +348,7 @@
           $$.ajax({
             type: "GET",
             dataType: "json",
+            data: {shopId: store_data.store_selected},
             url: url,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));

@@ -143,7 +143,7 @@
 
   <template id="sub-menu">
 
-    <f7-page style="background: #ffffff" name="sub-menu" @page:back="backSubMenu()">
+    <f7-page style="background: #ffffff" @page:back="backSubMenu()">
       <!-- <f7-navbar sliding="false">
         <f7-nav-left sliding="false">
           <f7-link sliding="false" v-if="big_list_index != 0" v-on:click="backSubMenu()" icon="icon-back"> Back </f7-link>
@@ -205,15 +205,15 @@
   <!-- FINAL PAGE -->
 
   <template id='final-page'>
-    <f7-page>
+    <f7-page @page:back="backFinal()">
       <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar>
       <f7-toolbar>
         <div class="toolbar-inner">
           <div id='toolbar-usd'>
-            <a class='toolbar-a' href='#'> $ </a>
+            <a class='toolbar-a' href='#'> $ {{Math.trunc((quantity * (price + size_price)) * 100) / 100 }}</a>
           </div>
           <div id='toolbar-add'>
-            <a class='toolbar-a' href='#'> Add To Cart</a>
+            <a v-on:click="add_to_cart()" class='toolbar-a' href='#'> Add To Cart</a>
           </div>
         </div>
       </f7-toolbar>
@@ -228,26 +228,7 @@
                 {{item_pressed.descr}}
               </p>
             </div>
-            <!-- <div class="card-content card-content-padding">
-              <h3> </h3>
-            </div> -->
           </div>
-
-          <!-- <h2 class="custom-header">Espresso Shots </h2>
-          <f7-block >
-            <div class='extra-shot-div row'>
-              <div class="col-60">
-                <label class="item-content" id="extra-shot-number"> {{extra_shots}} Shots </label>
-              </div>
-              <div class="add-delete-icons col-40">
-                <div class="row add-delete-icons-child">
-                  <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-
-                  <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
-                </div>
-              </div>
-            </div>
-          </f7-block> -->
 
           <div v-for="cat in item_pressed.child">
             <!-- <h2 class="custom-header"> {{cat.descr}} </h2> -->
@@ -255,7 +236,7 @@
               <f7-list v-if="cat.descr === 'SIZE' " no-hairlines-between>
                 <f7-list-group>
                   <f7-list-item :title="cat.descr" group-title></f7-list-item>
-                  <f7-list-item v-for="s in cat.child" radio value='12oz' name="size-radio">
+                  <f7-list-item v-on:click="change_size(s)" v-for="s in cat.child" radio name="size-radio">
                     <p> {{s.descr}} </p>
                     <p class='extra-price-size' v-if="s.price !== null"> + {{s.price}} </p>
                   </f7-list-item>
@@ -271,20 +252,46 @@
                         <p class="extra-descr">{{s.descr}} </p>
                       </div>
                       <div class="row col-40 add-delete-buttons-div">
-                        <a v-on:click="change_quantity(s, -1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
+                        <a v-on:click="change_extras_quantity(s, -1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
                           <i class="icon f7-icons col" id="extra-delete"> delete </i>
                         </a>
                         <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> {{s.quant}} </p>
-                        <a v-on:click="change_quantity(s, 1)" class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
+                        <a v-on:click="change_extras_quantity(s, 1)" class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
                           <i class="icon f7-icons col" id="extra-add"> add </i>
                         </a>
                       </div>
+                    </div>
                   </f7-list-item>
                 </f7-list-group>
               <f7-list>
 
             </f7-block>
           </div>
+
+          <!-- Quantity -->
+          <f7-block style="padding:0; box-shadow: 3px 6px 10px">
+            <f7-list>
+              <f7-list-group>
+                <f7-list-item title="QUANTITY" group-title></f7-list-item>
+                <f7-list-item>
+                  <div class="row" style="width: 100%">
+                    <div class="col-60">
+                      <p class="extra-descr">Quantity </p>
+                    </div>
+                    <div class="row col-40 add-delete-buttons-div">
+                      <a v-on:click="change_quantity(-1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
+                        <i class="icon f7-icons col" id="extra-delete"> delete </i>
+                      </a>
+                      <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> {{quantity}} </p>
+                      <a v-on:click="change_quantity(1)" class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
+                        <i class="icon f7-icons col" id="extra-add"> add </i>
+                      </a>
+                    </div>
+                </f7-list-item>
+              </f7-list-group>
+            <f7-list>
+          </f7-block>
+
         </f7-list>
       </f7-page-content>
     </f7-page>
