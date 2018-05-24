@@ -127,13 +127,17 @@
         },
 
         addQuant: function(arr){
-            for (i = 0; i < arr.length; i++){
+          var i = 0
+          while(i < arr.length){
               if (arr[i].isLeaf === 0){
-                console.log('rec arr: ', arr)
+                // console.log('rec arr: ', arr)
+                // console.log('iii ', i)
                 this.addQuant(arr[i].child)
               } else {
                 arr[i].quant = 0
+                // console.log('jjjj ', i)
               }
+              i += 1
             }
 
 
