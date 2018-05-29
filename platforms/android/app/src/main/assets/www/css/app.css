@@ -172,6 +172,11 @@ Your custom styles go here
 
 /* cards */
 
+.final-page-image{
+  height: 100%;
+  width: 100%;
+}
+
 .demo-card-header-pic .card-header {
   height: 40vw;
   background-size: cover;

@@ -172,10 +172,9 @@
           data.is_last_level = false
           console.log('parent stack: ', data.parent_stack);
           console.log('parent: ', data.parent_list);
-          // not sure about this !!!!
+          // when parent_list is null, we go back to main page
           if(data.parent_list == null)
-            f7.mainView.router.reloadPreviousPage('main');
-
+            f7.mainView.router.back();
         },
 
       }
@@ -190,12 +189,14 @@
       data: function(){
         return final_page_data
       },
+
       methods: {
         backFinal(){
           final_page_data.quantity = 1
           final_page_data.price = 0
           final_page_data.size_price = 0
           final_page_data.extras = []
+          final_page_data.size_descr = null
         },
         checkbox_clicked(){
           final_page_data.checkbox_enabled = true;
@@ -279,8 +280,13 @@
           final_page_data.cart_items.push(cart_item)
           console.log('cart items: ', final_page_data.cart_items)
 
-          f7.mainView.router.back({url: 'sub-menu', force: true})
-          // f7.mainView.router.refreshPage();
+          // when we add to cart, we go to sub-menu, displaying the full menu
+          // (as if we were going to sub-menu from main-page)
+          data.parent_list = app_data.big_list
+          data.parent_stack = []
+          console.log('parent_list after adding to cart: ', data.parent_list)
+          data.parent_stack.push(app_data.big_list)
+          f7.mainView.router.back();
 
         }
       }
