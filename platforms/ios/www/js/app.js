@@ -193,7 +193,11 @@
         change_quantity: function(num, index){
           final_page_data.cart_items[index].quant += num
 
-          if(final_page_data.cart_items[index].quant <=0){
+          // update the number of cart items, to be displayed in sub-Menu
+          data.number_cart_items += num
+
+          if(final_page_data.cart_items[index].quant <= 0){
+
             final_page_data.cart_items.splice(index, 1)
             enumerate(final_page_data.cart_items)
             console.log('after removing: ', final_page_data.cart_items)
