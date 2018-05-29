@@ -247,16 +247,16 @@
           // else search if the extra item already exists in the array
             // if it exists, update its quantity
             // else push it in the array
-          extra_exists = false;
-          index = null;
+
           if (final_page_data.extras.length === 0){
             final_page_data.extras.push({descr: extra.descr, quant: 1})
           }else{
             for(i = 0; i < final_page_data.extras.length; i++){
               if(final_page_data.extras[i].descr == extra.descr){
                 final_page_data.extras[i].quant += num
-                extra_exists = true
-                index = i
+                // if the quantity was changed to 0, remove it from the extras
+                if(final_page_data.extras[i].quant === 0)
+                  final_page_data.extras.splice(i, 1)
                 return
               }
             }

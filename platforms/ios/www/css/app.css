@@ -396,11 +396,11 @@ Your custom styles go here
 
 /* cart */
 #floating-button-continue{
-  width: 80px;
-  height: 30px;
+  width: 100px;
+  height: 20px;
   font-size: 20px;
   padding: 20px;
-  border-radius: 25px;
+  border-radius: 20px;
 }
 
 .cart-list{
