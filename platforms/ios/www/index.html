@@ -186,6 +186,8 @@
             </f7-list-item>
           </div>
 
+        <!-- </f7-list-group> -->
+
           <!-- <div v-if="is_last_level" v-for="child in par.children">
             <f7-list-item :title='child.name' link="final-page">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
@@ -196,7 +198,7 @@
 
       <f7-fab href="/cart/">
         <f7-icon id="floating-button-icon" f7="icon-bag">
-          <f7-badge id="floating-button-badge" v-if="cart_items != 0" color="red">{{cart_items}}</f7-badge>
+          <f7-badge id="floating-button-badge" v-if="number_cart_items != 0" color="red">{{number_cart_items}}</f7-badge>
         </f7-icon>
       </f7-fab>
     </f7-page>
@@ -302,6 +304,62 @@
   <template id="cart">
     <f7-page>
       <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
+
+      <f7-fab id="floating-button-continue" href="/cart/">
+        <f7-icon position="right-bottom">
+          Continue
+        </f7-icon>
+      </f7-fab>
+
+      <f7-list class='cart-list' no-hairlines-between>
+        <f7-block class="cart-block" v-for="item in cart_items">
+          <div class="row">
+            <div class="col-30">
+              <img id='parent_items_img' src="img/logo.png"> </img>
+            </div>
+            <div class="col-70 cart-item-div">
+              <p class="cart-title">{{item.descr}}</p>
+              <p class="cart-item-p"> x {{item.quant}}</p>
+              <p class="cart-item-p"> {{item.size}}</p>
+              <div v-for="extra in item.extras">
+                <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
+              </div>
+              <div class="row add-delete-buttons-div">
+                <a v-on:click="change_quantity(-1, item._idx)" class="button button-round button-fill col-50 extra-delete-button" style="width: 50px">
+                  <i class="icon f7-icons col" id="extra-delete"> delete </i>
+                </a>
+                <a v-on:click="change_quantity(1, item._idx)" class="button button-round button-fill col-50 extra-add-button" style="width: 50px">
+                  <i class="icon f7-icons col" id="extra-add"> add </i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- <f7-list-item class="cart-item" :title="item.descr">
+
+
+          </f7-list-item>
+          <f7-list-item class="cart-item row">
+            <div class="cart-item-div">
+              <p class="cart-item-p"> x {{item.quant}}</p>
+              <p class="cart-item-p"> {{item.size}}</p>
+              <div v-for="extra in item.extras">
+                <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
+              </div>
+            </div>
+          </f7-list-item> -->
+
+
+
+        </f7-block>
+      </f7-list>
+
+
+
+
+
+
+
     </f7-page>
 
   </template>

@@ -393,3 +393,39 @@ Your custom styles go here
   border-radius: 50%;
   padding: 0.25em 0.8em;
 }
+
+/* cart */
+#floating-button-continue{
+  width: 80px;
+  height: 30px;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.cart-list{
+  margin-top: 70px
+}
+.cart-block{
+  background: white;
+  box-shadow: 3px 6px 10px;
+}
+
+.cart-item{
+  display: inherit;
+  font-size: 0.8em;
+}
+
+.cart-item-div{
+  width: 100%;
+  text-align: left;
+}
+
+.cart-title{
+  font-size: 1.3em;
+  color: cornflowerblue;
+}
+
+.cart-item-p{
+  margin: 0.5em;
+}

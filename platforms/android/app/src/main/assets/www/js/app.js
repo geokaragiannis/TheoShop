@@ -1,5 +1,11 @@
 (function () {
 
+  // Enumerates an array.
+  var enumerate = function(v) {
+      var k=0;
+      return v.map(function(e) {e._idx = k++;});
+  };
+
   var app_data = {
     stores_list: [],
     ios: false,
@@ -13,7 +19,7 @@
     parent_list: [],
     children_list: [],
     parent_stack: [],
-    cart_items: 0,
+    number_cart_items: 0,
     is_last_level: false,
 
     sub_menu_navbar_title: 'Menu'
@@ -177,7 +183,24 @@
       }
     })
     Vue.component('cart', {
-      template: '#cart'
+      template: '#cart',
+
+      data: function(){
+        return final_page_data
+      },
+      methods: {
+
+        change_quantity: function(num, index){
+          final_page_data.cart_items[index].quant += num
+
+          if(final_page_data.cart_items[index].quant <=0){
+            final_page_data.cart_items.splice(index, 1)
+            enumerate(final_page_data.cart_items)
+            console.log('after removing: ', final_page_data.cart_items)
+          }
+        }
+
+      }
     })
 
 
@@ -275,11 +298,13 @@
           console.log('cart item: ', cart_item)
 
           final_page_data.cart_items.push(cart_item)
-          console.log('cart items: ', final_page_data.cart_items)
+
 
           // update the number of cart items, to be displayed in sub-Menu
-          data.cart_items += cart_item.quant
+          data.number_cart_items += cart_item.quant
 
+          enumerate(final_page_data.cart_items)
+          console.log('cart items: ', final_page_data.cart_items)
           // when we add to cart, we go to sub-menu, displaying the full menu
           // (as if we were going to sub-menu from main-page)
           data.parent_list = app_data.big_list
