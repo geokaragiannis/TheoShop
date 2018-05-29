@@ -13,12 +13,9 @@
     parent_list: [],
     children_list: [],
     parent_stack: [],
-    big_list_index: 0,
-    parent_level: 1,
-    parent_selected: 0,
-    children_level: 2,
+    cart_items: 0,
     is_last_level: false,
-    link_to: '/sub-menu/',
+
     sub_menu_navbar_title: 'Menu'
   };
 
@@ -280,9 +277,13 @@
           final_page_data.cart_items.push(cart_item)
           console.log('cart items: ', final_page_data.cart_items)
 
+          // update the number of cart items, to be displayed in sub-Menu
+          data.cart_items += cart_item.quant
+
           // when we add to cart, we go to sub-menu, displaying the full menu
           // (as if we were going to sub-menu from main-page)
           data.parent_list = app_data.big_list
+          // clear the stack
           data.parent_stack = []
           console.log('parent_list after adding to cart: ', data.parent_list)
           data.parent_stack.push(app_data.big_list)

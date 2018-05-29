@@ -195,8 +195,8 @@
       </f7-list>
 
       <f7-fab href="/cart/">
-        <f7-icon f7="icon-bag">
-          <f7-badge color="red">5</f7-badge>
+        <f7-icon id="floating-button-icon" f7="icon-bag">
+          <f7-badge id="floating-button-badge" v-if="cart_items != 0" color="red">{{cart_items}}</f7-badge>
         </f7-icon>
       </f7-fab>
     </f7-page>

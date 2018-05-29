@@ -98,6 +98,23 @@ Your custom styles go here
 
 }
 
+.floating-button{
+  height: 60px;
+  width: 60px
+}
+
+#floating-button-icon{
+  font-size: 29px;
+}
+
+#floating-button-badge{
+  height: 23px;
+  width: 23px;
+  line-height: 23px;
+  font-size: 15px;
+  top: -5px
+}
+
 #parent_items_img{
   width: 4em;
   height: 4em;
