@@ -79,6 +79,8 @@
 		5EB451A80F3B486CA8F4588E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5822D20E1847119087C79D /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A5F19910F31C43E1BC8A064B /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EB927C0CF24E4BBAF78B64 /* CDVStatusBar.m */; };
 		9AF9E6720E4347D58DEF8DD1 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3F04D21194FB581E95B2B /* CDVDevice.m */; };
+		31BD05D5CC9F4290BE32EFAD /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 257385790C304CB3ABD0C329 /* CDVSplashScreen.m */; };
+		DD497B3D490444F095FBE8BA /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F63982696EC3473E9AFE8810 /* CDVViewController+SplashScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +217,10 @@
 		930A8613C05745388C503872 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		13F3F04D21194FB581E95B2B /* CDVDevice.m */ = {isa = PBXFileReference; name = "CDVDevice.m"; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		967E6157A9FF4DA782515C3F /* CDVDevice.h */ = {isa = PBXFileReference; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		257385790C304CB3ABD0C329 /* CDVSplashScreen.m */ = {isa = PBXFileReference; name = "CDVSplashScreen.m"; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F63982696EC3473E9AFE8810 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		91FBB4F7353B4327AE766970 /* CDVSplashScreen.h */ = {isa = PBXFileReference; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		95B263B284BA438A991CDF44 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +438,10 @@
 				930A8613C05745388C503872 /* CDVStatusBar.h */,
 				13F3F04D21194FB581E95B2B /* CDVDevice.m */,
 				967E6157A9FF4DA782515C3F /* CDVDevice.h */,
+				257385790C304CB3ABD0C329 /* CDVSplashScreen.m */,
+				F63982696EC3473E9AFE8810 /* CDVViewController+SplashScreen.m */,
+				91FBB4F7353B4327AE766970 /* CDVSplashScreen.h */,
+				95B263B284BA438A991CDF44 /* CDVViewController+SplashScreen.h */,
 			);
 			name = Plugins;
 			path = "helloworld/Plugins";
@@ -589,6 +599,8 @@
 				AA933FEA56E949838AB8C032 /* CDVNotification.m in Sources */,
 				A5F19910F31C43E1BC8A064B /* CDVStatusBar.m in Sources */,
 				9AF9E6720E4347D58DEF8DD1 /* CDVDevice.m in Sources */,
+				31BD05D5CC9F4290BE32EFAD /* CDVSplashScreen.m in Sources */,
+				DD497B3D490444F095FBE8BA /* CDVViewController+SplashScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +621,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
@@ -639,7 +650,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;

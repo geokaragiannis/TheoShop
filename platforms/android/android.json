@@ -83,6 +83,10 @@
             {
               "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -185,6 +189,9 @@
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },
@@ -447,6 +454,14 @@
       "clobbers": [
         "device"
       ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -455,6 +470,7 @@
     "cordova-plugin-googlemaps": "2.3.3",
     "cordova-plugin-dialogs": "2.0.1",
     "cordova-plugin-statusbar": "2.4.2",
-    "cordova-plugin-device": "2.0.2"
+    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-splashscreen": "5.0.2"
   }
 }

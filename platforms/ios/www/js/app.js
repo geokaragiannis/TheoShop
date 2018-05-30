@@ -63,13 +63,13 @@
 
     var $$ = Dom7;
 
-    // Status Bar Configuration
-    console.log(StatusBar);
-    StatusBar.styleDefault();
-    if(StatusBar.isVisible){
-      $$('html').addClass('with-statusbar-overlay')
-      StatusBar.backgroundColorByHexString("#6395ed");
-    }
+    // // Status Bar Configuration
+    // console.log(StatusBar);
+    // StatusBar.styleDefault();
+    // if(StatusBar.isVisible){
+    //   $$('html').addClass('with-statusbar-overlay')
+    //   // StatusBar.backgroundColorByHexString("#6395ed");
+    // }
 
     console.log('device: ', device.model)
 

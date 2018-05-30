@@ -61,6 +61,10 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <name>helloworld</name>
     <description>
         This is the project created from the template: phonegap-template-framework7-vue.
@@ -81,6 +85,6 @@
     <preference name="xwalkZOrderOnTop" value="true" />
     <preference name="BackgroundColor" value="0" />
     <preference name="android-minSdkVersion" value="19" />
-    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#6395ed" />
 </widget>
