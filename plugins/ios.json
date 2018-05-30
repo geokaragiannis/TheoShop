@@ -7,7 +7,10 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
+    "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-geolocation": {
@@ -19,16 +22,13 @@
       "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background.",
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-dialogs": {
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.phonegap.helloworld"
-    },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },

@@ -52,6 +52,8 @@
       <key>NSAllowsArbitraryLoads</key>
       <true/>
     </dict>
+    <key>UILaunchStoryboardName</key>
+    <string>CDVLaunchScreen</string>
     <key>Google Maps API Key</key>
     <string>AIzaSyBT8F-LcmV2Vi_Mpvwj0b2MmcmHskVirgc</string>
     <key>NSLocationWhenInUseUsageDescription</key>
@@ -76,7 +78,5 @@
         </array>
       </dict>
     </array>
-    <key>UILaunchStoryboardName</key>
-    <string>CDVLaunchScreen</string>
   </dict>
 </plist>

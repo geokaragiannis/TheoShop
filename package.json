@@ -4,8 +4,8 @@
   "displayName": "helloworld",
   "cordova": {
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-whitelist": {},
@@ -26,14 +26,14 @@
   },
   "dependencies": {
     "cordova-android": "^7.0.0",
-    "cordova-ios": "~4.5.4",
+    "cordova-ios": "^4.5.4",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-googlemaps": "^2.3.3",
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git#2.7.0",
-    "cordova-plugin-whitelist": "1",
-    "cordova-plugin-dialogs": "^2.0.1",
+    "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
-    "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-splashscreen": "^5.0.2"
+    "cordova-plugin-whitelist": "1"
   }
 }
