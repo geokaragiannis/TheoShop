@@ -2,6 +2,10 @@
 Your custom styles go here
  ========= */
 
+ .statusbar-overlay{
+   height: 50px;
+ }
+
 /* select store */
  .main-preloader{
    position: absolute;
@@ -98,6 +102,23 @@ Your custom styles go here
 
 }
 
+.floating-button{
+  height: 60px;
+  width: 60px
+}
+
+#floating-button-icon{
+  font-size: 29px;
+}
+
+#floating-button-badge{
+  height: 23px;
+  width: 23px;
+  line-height: 23px;
+  font-size: 15px;
+  top: -5px
+}
+
 #parent_items_img{
   width: 4em;
   height: 4em;
@@ -171,6 +192,11 @@ Your custom styles go here
 
 
 /* cards */
+
+.final-page-image{
+  height: 100%;
+  width: 100%;
+}
 
 .demo-card-header-pic .card-header {
   height: 40vw;
@@ -370,4 +396,67 @@ Your custom styles go here
 .plus-minus-input .input-group-button .circle {
   border-radius: 50%;
   padding: 0.25em 0.8em;
+}
+
+/* cart */
+#floating-button-continue{
+  width: 100px;
+  height: 20px;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: cornflowerblue;
+  box-shadow: 3px 5px 13px 0px grey;
+  font-weight: 900;
+}
+
+#floating-button-price{
+  left: 15px;
+  width: 100px;
+  height: 20px;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: cornflowerblue;
+  box-shadow: 3px 5px 13px 0px grey;
+  font-weight: 900;
+}
+
+.cart-list{
+  margin-top: 70px;
+  padding-bottom: 60px
+}
+.no-items-in-cart{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: 100px;
+}
+
+.cart-block{
+  background: white;
+  box-shadow: 3px 6px 10px;
+}
+
+.cart-item{
+  display: inherit;
+  font-size: 0.8em;
+}
+
+.cart-item-div{
+  width: 100%;
+  text-align: left;
+}
+
+.cart-title{
+  font-size: 1.3em;
+  color: cornflowerblue;
+}
+
+.cart-item-p{
+  margin: 0.5em;
 }

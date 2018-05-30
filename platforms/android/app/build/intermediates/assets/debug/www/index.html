@@ -14,7 +14,7 @@
   <div id="app">
     <!-- Statusbar -->
     <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
-    <f7-statusbar></f7-statusbar>
+     <f7-statusbar reveal></f7-statusbar>
 
 
     <f7-panel left reveal layout="dark">
@@ -50,15 +50,22 @@
     </f7-views>
   </div>
 
+  <!-- Select Store Page  -->
+
   <template id="select-store-page">
     <f7-page>
-      <h2> Select a Store </h2>
+
+      <div class="row" style="padding-top: 20px">
+        <h2 class="col"> Select a Store </h2>
+        <h2> <a style="color:inherit; " class="h2 col" href="/stores/"> View on a Map </a>  </h2>
+      </div>
       <f7-list class="select-list" >
   <!-- Additional "radio" prop to enable radio list item -->
-        <f7-list-item @change="store_selected = $event.target.value" radio value="check_1" name="demo-radio" title="Radio 1"></f7-list-item>
-        <f7-list-item @change="store_selected = $event.target.value" radio value="check_2" name="demo-radio" title="Radio 2"></f7-list-item>
+        <f7-list-item v-for="store in stores_list" @change="store_selected = $event.target.value" radio :value="store.cd" :name="store.name" :title="store.name"></f7-list-item>
         <a v-on:click="goToMain()" class="button button-big button-fill select-store-button">Go</a>
       </f7-list>
+      <f7-preloader v-if="button_pressed" color="blue" size="50px" class="main-preloader"></f7-preloader>
+
     </f7-page>
 
   </template>
@@ -136,7 +143,7 @@
 
   <template id="sub-menu">
 
-    <f7-page style="background: #ffffff" name="sub-menu" @page:back="backSubMenu()">
+    <f7-page style="background: #ffffff" @page:back="backSubMenu()">
       <!-- <f7-navbar sliding="false">
         <f7-nav-left sliding="false">
           <f7-link sliding="false" v-if="big_list_index != 0" v-on:click="backSubMenu()" icon="icon-back"> Back </f7-link>
@@ -150,8 +157,8 @@
       <div class="navbar">
         <div class="navbar-inner">
           <div class="left">
-            <a href="#" class="back link">
-              <i v-on:click="backSubMenu()" class="icon icon-back"></i>
+            <a v-on:click="backSubMenu()" href="#" class="link">
+              <i class="icon icon-back"></i>
               <!-- Back link text rendered only for iOS theme -->
               <span>Back</span>
             </a>
@@ -169,14 +176,17 @@
           <f7-list-item group-title> {{par.descr}} </f7-list-item>
 
           <div v-for="child in par.child">
-            <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)' link="sub-menu">
+            <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)'>
               <img id='parent_items_img' src="img/logo.png" slot='content-start'>
             </f7-list-item>
             <f7-list-item v-else :title='child.descr' :after="child.price" v-on:click='goToFinal(child)' link="final-page">
               <img id='parent_items_img' src="img/logo.png" slot='content-start'> </img>
+              <!-- <img src="data:image/png;base64, base64 string here "> </img> -->
 
             </f7-list-item>
           </div>
+
+        <!-- </f7-list-group> -->
 
           <!-- <div v-if="is_last_level" v-for="child in par.children">
             <f7-list-item :title='child.name' link="final-page">
@@ -187,8 +197,8 @@
       </f7-list>
 
       <f7-fab href="/cart/">
-        <f7-icon f7="icon-bag">
-          <f7-badge color="red">5</f7-badge>
+        <f7-icon id="floating-button-icon" f7="icon-bag">
+          <f7-badge id="floating-button-badge" v-if="number_cart_items != 0" color="red">{{number_cart_items}}</f7-badge>
         </f7-icon>
       </f7-fab>
     </f7-page>
@@ -198,14 +208,14 @@
   <!-- FINAL PAGE -->
 
   <template id='final-page'>
-    <f7-page>
+    <f7-page @page:back="backFinal()">
       <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar>
       <f7-toolbar>
         <div class="toolbar-inner">
           <div id='toolbar-usd'>
-            <a class='toolbar-a' href='#'> $ </a>
+            <a class='toolbar-a' href='#'> $ {{Math.trunc((quantity * (price + size_price)) * 100) / 100 }}</a>
           </div>
-          <div id='toolbar-add'>
+          <div v-on:click="add_to_cart()" id='toolbar-add'>
             <a class='toolbar-a' href='#'> Add To Cart</a>
           </div>
         </div>
@@ -216,31 +226,13 @@
       <f7-page-content>
         <f7-list class='final-page-list'>
           <div class="card demo-card-header-pic" style="box-shadow: 3px 6px 10px;">
-            <div style="background-image:url(img/cap.jpg)" class="card-header align-items-flex-end">
+            <div id="demo1" class="card-header align-items-flex-end">
+              <img class="final-page-image" src="data:image/png;base64, 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"> </img>
               <p class="card-image-title">
                 {{item_pressed.descr}}
               </p>
             </div>
-            <!-- <div class="card-content card-content-padding">
-              <h3> </h3>
-            </div> -->
           </div>
-
-          <!-- <h2 class="custom-header">Espresso Shots </h2>
-          <f7-block >
-            <div class='extra-shot-div row'>
-              <div class="col-60">
-                <label class="item-content" id="extra-shot-number"> {{extra_shots}} Shots </label>
-              </div>
-              <div class="add-delete-icons col-40">
-                <div class="row add-delete-icons-child">
-                  <i v-on:click="change_extra_shot(-1)" class="icon f7-icons col" id="extra-shot-delete"> delete </i>
-
-                  <i v-on:click="change_extra_shot(1)" class="icon f7-icons col" id="extra-shot-add"> add </i>
-                </div>
-              </div>
-            </div>
-          </f7-block> -->
 
           <div v-for="cat in item_pressed.child">
             <!-- <h2 class="custom-header"> {{cat.descr}} </h2> -->
@@ -248,7 +240,7 @@
               <f7-list v-if="cat.descr === 'SIZE' " no-hairlines-between>
                 <f7-list-group>
                   <f7-list-item :title="cat.descr" group-title></f7-list-item>
-                  <f7-list-item v-for="s in cat.child" radio value='12oz' name="size-radio">
+                  <f7-list-item v-on:click="change_size(s)" v-for="s in cat.child" radio name="size-radio">
                     <p> {{s.descr}} </p>
                     <p class='extra-price-size' v-if="s.price !== null"> + {{s.price}} </p>
                   </f7-list-item>
@@ -264,20 +256,46 @@
                         <p class="extra-descr">{{s.descr}} </p>
                       </div>
                       <div class="row col-40 add-delete-buttons-div">
-                        <a class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
+                        <a v-on:click="change_extras_quantity(s, -1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
                           <i class="icon f7-icons col" id="extra-delete"> delete </i>
                         </a>
-                        <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> 12 </p>
-                        <a class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
+                        <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> {{s.quant}} </p>
+                        <a v-on:click="change_extras_quantity(s, 1)" class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
                           <i class="icon f7-icons col" id="extra-add"> add </i>
                         </a>
                       </div>
+                    </div>
                   </f7-list-item>
                 </f7-list-group>
               <f7-list>
 
             </f7-block>
           </div>
+
+          <!-- Quantity -->
+          <f7-block style="padding:0; box-shadow: 3px 6px 10px">
+            <f7-list>
+              <f7-list-group>
+                <f7-list-item title="QUANTITY" group-title></f7-list-item>
+                <f7-list-item>
+                  <div class="row" style="width: 100%">
+                    <div class="col-60">
+                      <p class="extra-descr">Quantity </p>
+                    </div>
+                    <div class="row col-40 add-delete-buttons-div">
+                      <a v-on:click="change_quantity(-1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
+                        <i class="icon f7-icons col" id="extra-delete"> delete </i>
+                      </a>
+                      <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> {{quantity}} </p>
+                      <a v-on:click="change_quantity(1)" class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
+                        <i class="icon f7-icons col" id="extra-add"> add </i>
+                      </a>
+                    </div>
+                </f7-list-item>
+              </f7-list-group>
+            <f7-list>
+          </f7-block>
+
         </f7-list>
       </f7-page-content>
     </f7-page>
@@ -286,6 +304,73 @@
   <template id="cart">
     <f7-page>
       <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
+
+      <f7-fab v-if="cart_items.length !== 0" id="floating-button-continue" href="#">
+        <f7-icon position="right-bottom">
+          Continue
+        </f7-icon>
+      </f7-fab>
+
+      <f7-fab v-if="cart_items.length !== 0" id="floating-button-price" >
+        <f7-icon>
+          $ {{cart_price}}
+        </f7-icon>
+      </f7-fab>
+
+      <div class="no-items-in-cart" v-if="cart_items.length === 0">
+        <h2> No Items In Your Cart </h2>
+      </div>
+
+      <f7-list class='cart-list' no-hairlines-between >
+        <f7-block class="cart-block" v-for="item in cart_items">
+          <div class="row">
+            <div class="col-30">
+              <img id='parent_items_img' src="img/logo.png"> </img>
+            </div>
+            <div class="col-70 cart-item-div">
+              <p class="cart-title">{{item.descr}}</p>
+              <p class="cart-item-p"> x {{item.quant}}</p>
+              <p class="cart-item-p"> {{item.size}}</p>
+              <div v-for="extra in item.extras">
+                <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
+              </div>
+              <p class="cart-item-p"> $ {{item.total_price}} </p>
+              <div class="row add-delete-buttons-div" style="width: 150px; padding-bottom: 20px">
+                <a v-on:click="change_quantity(-1, item._idx)" class="button button-round button-fill col-50 extra-delete-button" style="width: 50px">
+                  <i class="icon f7-icons col" id="extra-delete"> delete </i>
+                </a>
+                <a v-on:click="change_quantity(1, item._idx)" class="button button-round button-fill col-50 extra-add-button" style="width: 50px">
+                  <i class="icon f7-icons col" id="extra-add"> add </i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- <f7-list-item class="cart-item" :title="item.descr">
+
+
+          </f7-list-item>
+          <f7-list-item class="cart-item row">
+            <div class="cart-item-div">
+              <p class="cart-item-p"> x {{item.quant}}</p>
+              <p class="cart-item-p"> {{item.size}}</p>
+              <div v-for="extra in item.extras">
+                <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
+              </div>
+            </div>
+          </f7-list-item> -->
+
+
+
+        </f7-block>
+      </f7-list>
+
+
+
+
+
+
+
     </f7-page>
 
   </template>

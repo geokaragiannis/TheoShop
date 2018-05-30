@@ -1,7 +1,16 @@
 (function () {
 
+  // Enumerates an array.
+  var enumerate = function(v) {
+      var k=0;
+      return v.map(function(e) {e._idx = k++;});
+  };
+
   var app_data = {
-    big_list: []
+    stores_list: [],
+    ios: false,
+    android: false,
+    web: false,
   }
 
   var data = {
@@ -10,25 +19,24 @@
     parent_list: [],
     children_list: [],
     parent_stack: [],
-    big_list_index: 0,
-    parent_level: 1,
-    parent_selected: 0,
-    children_level: 2,
+    number_cart_items: 0,
     is_last_level: false,
-    link_to: '/sub-menu/',
+
     sub_menu_navbar_title: 'Menu'
   };
 
   var final_page_data = {
 
     item_pressed: null,
-    checkbox_enabled: false,
+    price: 0,
+    size_price: 0,
+    size_descr: null,
+    extras: [],
+    cart_items: [],
+    cart_price: 0,
     extra_shots: 2,
     extra_shot_price: 0.0,
     quantity: 1,
-    extra: ['No sugar', 'Medium Sweet', 'Sweet', 'Extra Sugar', 'Brown Sugar', 'Stevia Sweetener'],
-    milk: ['Whole Milk', '2% Reduced Milk', 'Non Fat Milk', 'Soy Milk', 'Almond Milk'],
-    flavors: ['Chocolate', 'Vanilla', 'Caramel Sauce', 'Pumkin Sauce', 'Hazelnut Syrup']
   };
 
   var profile_page_data = {
@@ -45,8 +53,10 @@
   }
 
   var store_data = {
+    stores_list: [],
     store_selected: null,
-    button_enabled: false
+    button_enabled: false,
+    button_pressed: false
   }
 
   function init() {
@@ -55,8 +65,6 @@
 
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7);
-
-    // var dialog = Framework7.dialog.create({ text: 'lala'})
 
     // Init Page Components
     Vue.component('page-main', {
@@ -123,12 +131,42 @@
 
         },
 
+        addQuant: function(arr){
+          var i = 0
+          while(i < arr.length){
+              if (arr[i].isLeaf === 0){
+                // console.log('rec arr: ', arr)
+                // console.log('iii ', i)
+                this.addQuant(arr[i].child)
+              } else {
+                // arr[i].quant = 0
+                // do it like that, so that quant is a reactive getElement
+                // and vue can updare the DOM
+                Vue.set(arr[i], 'quant', 0)
+                // console.log('jjjj ', i)
+              }
+              i += 1
+            }
+
+
+          console.log('arr: ', arr)
+
+          // console.log('extras', final_page_data.item_pressed.child)
+        },
+
         goToFinal(item){
           final_page_data.item_pressed = item
           console.log('item pressed: ', final_page_data.item_pressed)
+          console.log('item pressed child: ', final_page_data.item_pressed.child)
+          if(final_page_data.item_pressed.child != null)
+            this.addQuant(final_page_data.item_pressed.child)
+
+          console.log('after item_pressed: ', final_page_data.item_pressed.child)
+          final_page_data.price = item.price
         },
 
         backSubMenu: function(){
+          console.log('papa')
           data.parent_stack.pop()
           // parent_list is now the top element in the stack
           data.parent_list = data.parent_stack[data.parent_stack.length - 1]
@@ -137,19 +175,64 @@
           data.is_last_level = false
           console.log('parent stack: ', data.parent_stack);
           console.log('parent: ', data.parent_list);
+          // when parent_list is null, we go back to main page
+          if(data.parent_list == null)
+            f7.mainView.router.back();
         },
 
       }
     })
     Vue.component('cart', {
-      template: '#cart'
+      template: '#cart',
+
+      data: function(){
+        return final_page_data
+      },
+      mounted: function(){
+        final_page_data.cart_price = 0
+        for(i = 0; i< final_page_data.cart_items.length; i++){
+          final_page_data.cart_price += final_page_data.cart_items[i].total_price
+        }
+      },
+      methods: {
+
+        change_quantity: function(num, index){
+          final_page_data.cart_items[index].quant += num
+          prev_price = final_page_data.cart_items[index].total_price
+          final_page_data.cart_items[index].total_price = Math.trunc((final_page_data.cart_items[index].quant *
+                                                          final_page_data.cart_items[index].single_price) * 100) / 100
+
+          final_page_data.cart_price += final_page_data.cart_items[index].total_price - prev_price
+          final_page_data.cart_price = Math.trunc(final_page_data.cart_price * 100)/100
+          // update the number of cart items, to be displayed in sub-Menu
+          data.number_cart_items += num
+
+          if(final_page_data.cart_items[index].quant <= 0){
+
+            final_page_data.cart_items.splice(index, 1)
+            enumerate(final_page_data.cart_items)
+            console.log('after removing: ', final_page_data.cart_items)
+          }
+        }
+
+      }
     })
+
+
     Vue.component('final-page', {
       template: '#final-page',
       data: function(){
         return final_page_data
       },
+
       methods: {
+        backFinal(){
+          final_page_data.quantity = 1
+          final_page_data.price = 0
+          final_page_data.size_price = 0
+          final_page_data.extras = []
+          final_page_data.size_descr = null
+        },
         checkbox_clicked(){
           final_page_data.checkbox_enabled = true;
         },
@@ -160,14 +243,104 @@
             console.log('extra shots ', final_page_data.extra_shots)
           }
         },
-        change_quantity(num){
-          console.log('item: ', final_page_data.item_pressed)
+        change_extras_quantity(extra, num){
+          // UI stuff here
+          cond = (extra.quant >= 0 && num > 0 && extra.quant < 10)
+                || (extra.quant <= 10 && num < 0 && extra.quant >= 1);
 
-          if (final_page_data.quantity > 1 || num > 0){
-            final_page_data.quantity += num;
-            console.log('quantity ', final_page_data.quantity)
+          if(cond){
+            extra.quant += num
+            this.calculate_price(extra, num)
+          }
+
+          // Populate the extras list for the cart
+          //if empty push the extra in the array
+          // else search if the extra item already exists in the array
+            // if it exists, update its quantity
+            // else push it in the array
+
+          if (final_page_data.extras.length === 0){
+            final_page_data.extras.push({descr: extra.descr, quant: 1})
+          }else{
+            for(i = 0; i < final_page_data.extras.length; i++){
+              if(final_page_data.extras[i].descr == extra.descr){
+                final_page_data.extras[i].quant += num
+                // if the quantity was changed to 0, remove it from the extras
+                if(final_page_data.extras[i].quant === 0)
+                  final_page_data.extras.splice(i, 1)
+                return
+              }
+            }
+            final_page_data.extras.push({descr: extra.descr, quant: 1})
           }
         },
+        change_quantity(num){
+          cond = (final_page_data.quantity >= 1 && num > 0 && final_page_data.quantity < 10)
+                || (final_page_data.quantity <= 10 && num < 0 && final_page_data.quantity >= 2);
+          if(cond){
+            final_page_data.quantity += num
+          }
+        },
+
+        change_size(size){
+          final_page_data.size_descr = size.descr;
+          final_page_data.size_price = size.price;
+          console.log('size descr: ', final_page_data.size_descr)
+          console.log('size price: ', final_page_data.size_price)
+        },
+
+        calculate_price_from_size(num){
+
+        },
+
+        calculate_price(extra, num){
+          if (extra.price == null)
+            extra_price = 0
+          else
+            extra_price = num * extra.price
+
+          // price is the price of the item plus the price of the extras
+          final_page_data.price += extra_price
+
+          console.log('final price: ', final_page_data.price)
+        },
+
+        add_to_cart(){
+          // total_price is the overall price of the item added to cart (quantity * (price of item + extras + size))
+          // single_price is the price of the item added to cart without the quantity
+          total_price = Math.trunc((final_page_data.quantity *
+                                   (final_page_data.price + final_page_data.size_price)) * 100) / 100
+
+          single_price = Math.trunc((final_page_data.price + final_page_data.size_price) * 100) / 100
+
+          cart_item = {descr: final_page_data.item_pressed.descr,
+                      quant: final_page_data.quantity,
+                      extras: final_page_data.extras,
+                      size: final_page_data.size_descr,
+                      single_price: single_price,
+                      total_price: total_price
+                      };
+
+          console.log('cart item: ', cart_item)
+
+          final_page_data.cart_items.push(cart_item)
+
+
+          // update the number of cart items, to be displayed in sub-Menu
+          data.number_cart_items += cart_item.quant
+
+          enumerate(final_page_data.cart_items)
+          console.log('cart items: ', final_page_data.cart_items)
+          // when we add to cart, we go to sub-menu, displaying the full menu
+          // (as if we were going to sub-menu from main-page)
+          data.parent_list = app_data.big_list
+          // clear the stack
+          data.parent_stack = []
+          console.log('parent_list after adding to cart: ', data.parent_list)
+          data.parent_stack.push(app_data.big_list)
+          f7.mainView.router.back();
+
+        }
       }
     })
     Vue.component('page-dynamic-routing', {
@@ -226,11 +399,42 @@
 
       methods: {
 
+        makeCall: function(){
+          url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
+          user = "eshop|" + store_data.store_selected
+          pass = "123"
+          $$.ajax({
+            type: "GET",
+            dataType: "json",
+            data: {shopId: store_data.store_selected},
+            url: url,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));
+            },
+            success: function(data){
+              console.log('json: ', data)
+              app_data.big_list = data
+              console.log('big_list: ', app_data.big_list)
+              store_data.button_pressed = false
+              f7.mainView.router.load({url: '/main/'})
+            },
+            error: function() {
+              navigator.notification.alert(
+                'Something Happened in the Connection with the Server',  // message
+                this.makeCall()       // callback
+                           // title
+              );
+            }
+
+          });
+        },
+
         alertDismissed: function(){
 
         },
 
         goToMain: function(){
+
           console.log('store selected: ', store_data.store_selected)
 
           if(store_data.store_selected == null){
@@ -240,7 +444,8 @@
               'No Store Selected'            // title
             );
           } else{
-            f7.mainView.router.load({url: '/main/'})
+            store_data.button_pressed = true
+            this.makeCall()
           }
         }
       }
@@ -355,16 +560,23 @@
       },
       methods: {
         makeMap: function(){
-          f7.router.load({path: 'page-main'})
+
 
         }
       },
       mounted: function(){
+        // update the device variables:
+        if (f7.device.ios){
+          app_data.ios = true
+        } else if(f7.device.android){
+          app_data.android = true
+        } else{
+          app_data.web = true
+        }
         console.log('app mounted')
         // make ajax call
-        url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
-        success =
-        user = "eshop|002"
+        url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/shop"
+        user = "eshop|001"
         pass = "123"
         // router.push({path: '/main/'})
 
@@ -378,9 +590,10 @@
               xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));
           },
           success: function(data){
-            console.log('json: ', data)
-            app_data.big_list = data
-            console.log('big_list: ', app_data.big_list)
+            console.log('list of stores: ', data)
+            app_data.stores_list = data
+            store_data.stores_list = data
+            console.log('list of stores 2: ', app_data.stores_list)
 
             f7.mainView.router.load({url: '/select-store-page/'})
 

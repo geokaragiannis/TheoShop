@@ -63,6 +63,20 @@
 
     var $$ = Dom7;
 
+    // Status Bar Configuration
+    console.log(StatusBar);
+    StatusBar.styleDefault();
+    if(StatusBar.isVisible){
+      $$('html').addClass('with-statusbar-overlay')
+      StatusBar.backgroundColorByHexString("#6395ed");
+    }
+    // scroll up if statusbar is tapped
+    window.addEventListener('statusTap', function() {
+      document.body.scrollTop = 0;
+    });
+
+
+
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7);
 

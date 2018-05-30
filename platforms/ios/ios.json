@@ -71,6 +71,18 @@
             {
               "xml": "<feature name=\"Notification\"><param name=\"ios-package\" value=\"CDVNotification\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
+              "count": 1
             }
           ]
         }
@@ -128,6 +140,9 @@
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
+    "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },
@@ -384,6 +399,14 @@
       "merges": [
         "navigator.notification"
       ]
+    },
+    {
+      "id": "cordova-plugin-statusbar.statusbar",
+      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+      "pluginId": "cordova-plugin-statusbar",
+      "clobbers": [
+        "window.StatusBar"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -391,6 +414,7 @@
     "cordova-plugin-geolocation": "4.0.1",
     "com.googlemaps.ios": "2.7.0",
     "cordova-plugin-googlemaps": "2.3.3",
-    "cordova-plugin-dialogs": "2.0.1"
+    "cordova-plugin-dialogs": "2.0.1",
+    "cordova-plugin-statusbar": "2.4.2"
   }
 }
