@@ -2,6 +2,14 @@
 Your custom styles go here
  ========= */
 
+ .white{
+   color: white !important;
+ }
+
+ .navbar-inner{
+   background-color: #6395ed;
+ }
+
  .panel-overlay{
    background: #6395ed;
  }
@@ -51,7 +59,7 @@ Your custom styles go here
  }
 
  .row-main-1{
-   background: #2196f375;
+   background: #6395ed;
  }
 
 
@@ -59,7 +67,7 @@ Your custom styles go here
 
   height: 18vh !important;
   width: 48%;
-  background: #2196f375;
+  background: #6395ed;
  }
 
  .inside-button-main{

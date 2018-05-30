@@ -158,13 +158,13 @@
       <div class="navbar">
         <div class="navbar-inner">
           <div class="left">
-            <a v-on:click="backSubMenu()" href="#" class="link">
-              <i class="icon icon-back"></i>
+            <a v-on:click="backSubMenu()" href="#" class="link white">
+              <i class="icon f7-icons">chevron-left</i>
               <!-- Back link text rendered only for iOS theme -->
               <span>Back</span>
             </a>
           </div>
-          <div class="title"> {{sub_menu_navbar_title}} </div>
+          <div class="title white"> {{sub_menu_navbar_title}} </div>
           <div class="right"> </div>
         </div>
       </div>
@@ -210,7 +210,21 @@
 
   <template id='final-page'>
     <f7-page @page:back="backFinal()">
-      <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar>
+      <!-- <f7-navbar title='Final Page' sliding back-link="Back"></f7-navbar> -->
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a class="link back white">
+              <i class="icon f7-icons">chevron-left</i>
+              <!-- Back link text rendered only for iOS theme -->
+              <span>Back</span>
+            </a>
+          </div>
+          <div class="title white"> Final Page </div>
+          <div class="right"> </div>
+        </div>
+      </div>
+
       <f7-toolbar>
         <div class="toolbar-inner">
           <div id='toolbar-usd'>
@@ -304,7 +318,19 @@
 
   <template id="cart">
     <f7-page>
-      <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a class="link back white">
+              <i class="icon f7-icons">chevron-left</i>
+              <!-- Back link text rendered only for iOS theme -->
+              <span>Back</span>
+            </a>
+          </div>
+          <div class="title white"> Final Page </div>
+          <div class="right"> </div>
+        </div>
+      </div>
 
       <f7-fab v-if="cart_items.length !== 0" id="floating-button-continue" href="#">
         <f7-icon position="right-bottom">
