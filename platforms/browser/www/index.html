@@ -215,8 +215,8 @@
           <div id='toolbar-usd'>
             <a class='toolbar-a' href='#'> $ {{Math.trunc((quantity * (price + size_price)) * 100) / 100 }}</a>
           </div>
-          <div id='toolbar-add'>
-            <a v-on:click="add_to_cart()" class='toolbar-a' href='#'> Add To Cart</a>
+          <div v-on:click="add_to_cart()" id='toolbar-add'>
+            <a class='toolbar-a' href='#'> Add To Cart</a>
           </div>
         </div>
       </f7-toolbar>
@@ -305,9 +305,15 @@
     <f7-page>
       <f7-navbar title='Shopping Cart' sliding back-link="Back"></f7-navbar>
 
-      <f7-fab v-if="cart_items.length !== 0" id="floating-button-continue" href="/cart/">
+      <f7-fab v-if="cart_items.length !== 0" id="floating-button-continue" href="#">
         <f7-icon position="right-bottom">
           Continue
+        </f7-icon>
+      </f7-fab>
+
+      <f7-fab v-if="cart_items.length !== 0" id="floating-button-price" >
+        <f7-icon>
+          $ {{cart_price}}
         </f7-icon>
       </f7-fab>
 
@@ -328,6 +334,7 @@
               <div v-for="extra in item.extras">
                 <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
               </div>
+              <p class="cart-item-p"> $ {{item.total_price}} </p>
               <div class="row add-delete-buttons-div" style="width: 150px; padding-bottom: 20px">
                 <a v-on:click="change_quantity(-1, item._idx)" class="button button-round button-fill col-50 extra-delete-button" style="width: 50px">
                   <i class="icon f7-icons col" id="extra-delete"> delete </i>

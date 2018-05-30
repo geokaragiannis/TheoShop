@@ -401,6 +401,21 @@ Your custom styles go here
   font-size: 20px;
   padding: 20px;
   border-radius: 20px;
+  background-color: cornflowerblue;
+  box-shadow: 3px 5px 13px 0px grey;
+  font-weight: 900;
+}
+
+#floating-button-price{
+  left: 15px;
+  width: 100px;
+  height: 20px;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: cornflowerblue;
+  box-shadow: 3px 5px 13px 0px grey;
+  font-weight: 900;
 }
 
 .cart-list{

@@ -33,7 +33,7 @@
     size_descr: null,
     extras: [],
     cart_items: [],
-    checkbox_enabled: false,
+    cart_price: 0,
     extra_shots: 2,
     extra_shot_price: 0.0,
     quantity: 1,
@@ -188,11 +188,22 @@
       data: function(){
         return final_page_data
       },
+      mounted: function(){
+        final_page_data.cart_price = 0
+        for(i = 0; i< final_page_data.cart_items.length; i++){
+          final_page_data.cart_price += final_page_data.cart_items[i].total_price
+        }
+      },
       methods: {
 
         change_quantity: function(num, index){
           final_page_data.cart_items[index].quant += num
+          prev_price = final_page_data.cart_items[index].total_price
+          final_page_data.cart_items[index].total_price = Math.trunc((final_page_data.cart_items[index].quant *
+                                                          final_page_data.cart_items[index].single_price) * 100) / 100
 
+          final_page_data.cart_price += final_page_data.cart_items[index].total_price - prev_price
+          final_page_data.cart_price = Math.trunc(final_page_data.cart_price * 100)/100
           // update the number of cart items, to be displayed in sub-Menu
           data.number_cart_items += num
 
@@ -288,16 +299,27 @@
           else
             extra_price = num * extra.price
 
+          // price is the price of the item plus the price of the extras
           final_page_data.price += extra_price
 
           console.log('final price: ', final_page_data.price)
         },
 
         add_to_cart(){
+          // total_price is the overall price of the item added to cart (quantity * (price of item + extras + size))
+          // single_price is the price of the item added to cart without the quantity
+          total_price = Math.trunc((final_page_data.quantity *
+                                   (final_page_data.price + final_page_data.size_price)) * 100) / 100
+
+          single_price = Math.trunc((final_page_data.price + final_page_data.size_price) * 100) / 100
+
           cart_item = {descr: final_page_data.item_pressed.descr,
                       quant: final_page_data.quantity,
                       extras: final_page_data.extras,
-                      size: final_page_data.size_descr};
+                      size: final_page_data.size_descr,
+                      single_price: single_price,
+                      total_price: total_price
+                      };
 
           console.log('cart item: ', cart_item)
 
