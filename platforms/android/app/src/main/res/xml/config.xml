@@ -58,6 +58,9 @@
         <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
     <name>helloworld</name>
     <description>
         This is the project created from the template: phonegap-template-framework7-vue.
@@ -79,5 +82,5 @@
     <preference name="BackgroundColor" value="0" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarBackgroundColor" value="#6395ed" />
 </widget>

@@ -19,7 +19,8 @@
         "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
       },
       "cordova-plugin-dialogs": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {}
     }
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git#2.7.0",
     "cordova-plugin-whitelist": "1",
     "cordova-plugin-dialogs": "^2.0.1",
-    "cordova-plugin-statusbar": "^2.4.2"
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-device": "^2.0.2"
   }
 }

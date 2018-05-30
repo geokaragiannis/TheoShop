@@ -2,6 +2,10 @@
 Your custom styles go here
  ========= */
 
+ .panel-overlay{
+   background: #6395ed;
+ }
+
 /* select store */
  .main-preloader{
    position: absolute;

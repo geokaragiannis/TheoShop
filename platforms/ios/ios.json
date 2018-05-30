@@ -83,6 +83,10 @@
             {
               "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -143,6 +147,9 @@
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.phonegap.helloworld"
+    },
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },
@@ -407,6 +414,14 @@
       "clobbers": [
         "window.StatusBar"
       ]
+    },
+    {
+      "id": "cordova-plugin-device.device",
+      "file": "plugins/cordova-plugin-device/www/device.js",
+      "pluginId": "cordova-plugin-device",
+      "clobbers": [
+        "device"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -415,6 +430,7 @@
     "com.googlemaps.ios": "2.7.0",
     "cordova-plugin-googlemaps": "2.3.3",
     "cordova-plugin-dialogs": "2.0.1",
-    "cordova-plugin-statusbar": "2.4.2"
+    "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-device": "2.0.2"
   }
 }

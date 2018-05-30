@@ -259,6 +259,14 @@ module.exports = [
     "clobbers": [
       "window.StatusBar"
     ]
+  },
+  {
+    "id": "cordova-plugin-device.device",
+    "file": "plugins/cordova-plugin-device/www/device.js",
+    "pluginId": "cordova-plugin-device",
+    "clobbers": [
+      "device"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -269,7 +277,8 @@ module.exports.metadata =
   "com.googlemaps.ios": "2.7.0",
   "cordova-plugin-googlemaps": "2.3.3",
   "cordova-plugin-dialogs": "2.0.1",
-  "cordova-plugin-statusbar": "2.4.2"
+  "cordova-plugin-statusbar": "2.4.2",
+  "cordova-plugin-device": "2.0.2"
 };
 // BOTTOM OF METADATA
 });

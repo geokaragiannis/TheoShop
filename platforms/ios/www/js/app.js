@@ -70,10 +70,8 @@
       $$('html').addClass('with-statusbar-overlay')
       StatusBar.backgroundColorByHexString("#6395ed");
     }
-    // scroll up if statusbar is tapped
-    window.addEventListener('statusTap', function() {
-      document.body.scrollTop = 0;
-    });
+
+    console.log('device: ', device.model)
 
 
 

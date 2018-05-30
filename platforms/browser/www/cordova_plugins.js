@@ -233,6 +233,20 @@ module.exports = [
         "id": "cordova-plugin-statusbar.StatusBarProxy",
         "pluginId": "cordova-plugin-statusbar",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+        "id": "cordova-plugin-device.DeviceProxy",
+        "pluginId": "cordova-plugin-device",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -242,7 +256,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "4.0.1",
     "cordova-plugin-googlemaps": "2.3.3",
     "cordova-plugin-dialogs": "2.0.1",
-    "cordova-plugin-statusbar": "2.4.2"
+    "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-device": "2.0.2"
 }
 // BOTTOM OF METADATA
 });

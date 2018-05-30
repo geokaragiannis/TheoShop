@@ -73,6 +73,9 @@
         <param name="ios-package" value="CDVStatusBar" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
     <name>helloworld</name>
     <description>
         This is the project created from the template: phonegap-template-framework7-vue.
@@ -105,5 +108,5 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarBackgroundColor" value="#6395ed" />
 </widget>

@@ -78,6 +78,7 @@
 		3BF4BB509B16457BB24D3E4F /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE340471AF1B44C9A19CC559 /* CDVNotification.bundle */; };
 		5EB451A80F3B486CA8F4588E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5822D20E1847119087C79D /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A5F19910F31C43E1BC8A064B /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EB927C0CF24E4BBAF78B64 /* CDVStatusBar.m */; };
+		9AF9E6720E4347D58DEF8DD1 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3F04D21194FB581E95B2B /* CDVDevice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,8 @@
 		5B5822D20E1847119087C79D /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		08EB927C0CF24E4BBAF78B64 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		930A8613C05745388C503872 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		13F3F04D21194FB581E95B2B /* CDVDevice.m */ = {isa = PBXFileReference; name = "CDVDevice.m"; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		967E6157A9FF4DA782515C3F /* CDVDevice.h */ = {isa = PBXFileReference; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +430,8 @@
 				E16A47ECFD25475792F7DD7C /* CDVNotification.h */,
 				08EB927C0CF24E4BBAF78B64 /* CDVStatusBar.m */,
 				930A8613C05745388C503872 /* CDVStatusBar.h */,
+				13F3F04D21194FB581E95B2B /* CDVDevice.m */,
+				967E6157A9FF4DA782515C3F /* CDVDevice.h */,
 			);
 			name = Plugins;
 			path = "helloworld/Plugins";
@@ -583,6 +588,7 @@
 				571D201801D64C0FB4721721 /* PluginViewController.m in Sources */,
 				AA933FEA56E949838AB8C032 /* CDVNotification.m in Sources */,
 				A5F19910F31C43E1BC8A064B /* CDVStatusBar.m in Sources */,
+				9AF9E6720E4347D58DEF8DD1 /* CDVDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
