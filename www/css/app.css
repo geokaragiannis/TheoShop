@@ -41,6 +41,10 @@ Your custom styles go here
 
  /* main page  */
 
+ .side-menu-div{
+   margin-left: 15px;
+ }
+
 
  .block-main{
    position: absolute;
@@ -379,7 +383,7 @@ Your custom styles go here
 }
 
 .profile-button{
-  background: #2196f375;
+  background: cornflowerblue;
 }
 
 .plus-minus-input {
@@ -431,7 +435,7 @@ Your custom styles go here
 }
 
 .cart-list{
-  margin-top: 70px;
+  /* margin-top: 70px; */
   padding-bottom: 60px
 }
 .no-items-in-cart{

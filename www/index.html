@@ -101,7 +101,7 @@
 
       <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
       <div class="row row-main-1">
-        <div class="">
+        <div class="side-menu-div">
           <a href="#" data-panel="left" class="color-white open-panel icon-only link" id="panel-icon">
             <i class="icon f7-icons" style="font-size: 5vh">bars</i></a>
         </div>
@@ -145,15 +145,6 @@
   <template id="sub-menu">
 
     <f7-page style="background: #ffffff" @page:back="backSubMenu()">
-      <!-- <f7-navbar sliding="false">
-        <f7-nav-left sliding="false">
-          <f7-link sliding="false" v-if="big_list_index != 0" v-on:click="backSubMenu()" icon="icon-back"> Back </f7-link>
-          <f7-link sliding="false" v-else back-link-url="/main/" icon="icon-back"> Back </f7-link>
-
-        </f7-nav-left>
-        <f7-nav-title> Menu </f7-nav-title>
-        <f7-nav-right></f7-nav-right>
-      </f7-navbar> -->
 
       <div class="navbar">
         <div class="navbar-inner">
@@ -164,44 +155,37 @@
               <span>Back</span>
             </a>
           </div>
-          <div class="title white"> {{sub_menu_navbar_title}} </div>
+          <div class="center white"> {{sub_menu_navbar_title}} </div>
           <div class="right"> </div>
         </div>
       </div>
-
-
-
-      <f7-list media-list no-hairlines-between='true' >
-        <f7-list-group v-for="par in parent_list">
-
-          <f7-list-item group-title> {{par.descr}} </f7-list-item>
-
-          <div v-for="child in par.child">
-            <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)'>
-              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
-            </f7-list-item>
-            <f7-list-item v-else :title='child.descr' :after="child.price" v-on:click='goToFinal(child)' link="final-page">
-              <img id='parent_items_img' src="img/logo.png" slot='content-start'> </img>
-              <!-- <img src="data:image/png;base64, base64 string here "> </img> -->
-
-            </f7-list-item>
-          </div>
-
-        <!-- </f7-list-group> -->
-
-          <!-- <div v-if="is_last_level" v-for="child in par.children">
-            <f7-list-item :title='child.name' link="final-page">
-              <img id='parent_items_img' src="img/logo.png" slot='content-start'>
-            </f7-list-item>
-          </div> -->
-
-      </f7-list>
 
       <f7-fab href="/cart/">
         <f7-icon id="floating-button-icon" f7="icon-bag">
           <f7-badge id="floating-button-badge" v-if="number_cart_items != 0" color="red">{{number_cart_items}}</f7-badge>
         </f7-icon>
       </f7-fab>
+
+      <f7-page-content>
+
+        <f7-list media-list no-hairlines-between='true' >
+          <f7-list-group v-for="par in parent_list">
+
+            <f7-list-item group-title> {{par.descr}} </f7-list-item>
+
+            <div v-for="child in par.child">
+              <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)'>
+                <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+              </f7-list-item>
+              <f7-list-item v-else :title='child.descr' :after="child.price" v-on:click='goToFinal(child)' link="final-page">
+                <img id='parent_items_img' src="img/logo.png" slot='content-start'> </img>
+                <!-- <img src="data:image/png;base64, base64 string here "> </img> -->
+
+              </f7-list-item>
+            </div>
+
+        </f7-list>
+      </f7-page-content>
     </f7-page>
 
   </template>
@@ -220,7 +204,7 @@
               <span>Back</span>
             </a>
           </div>
-          <div class="title white"> Final Page </div>
+          <div class="center white"> {{item_pressed.descr}} </div>
           <div class="right"> </div>
         </div>
       </div>
@@ -327,7 +311,7 @@
               <span>Back</span>
             </a>
           </div>
-          <div class="title white"> Final Page </div>
+          <div class="center white"> Shopping Cart </div>
           <div class="right"> </div>
         </div>
       </div>
@@ -344,60 +328,39 @@
         </f7-icon>
       </f7-fab>
 
-      <div class="no-items-in-cart" v-if="cart_items.length === 0">
-        <h2> No Items In Your Cart </h2>
-      </div>
+      <f7-page-content>
 
-      <f7-list class='cart-list' no-hairlines-between >
-        <f7-block class="cart-block" v-for="item in cart_items">
-          <div class="row">
-            <div class="col-30">
-              <img id='parent_items_img' src="img/logo.png"> </img>
-            </div>
-            <div class="col-70 cart-item-div">
-              <p class="cart-title">{{item.descr}}</p>
-              <p class="cart-item-p"> x {{item.quant}}</p>
-              <p class="cart-item-p"> {{item.size}}</p>
-              <div v-for="extra in item.extras">
-                <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
+        <div class="no-items-in-cart" v-if="cart_items.length === 0">
+          <h2> No Items In Your Cart </h2>
+        </div>
+
+        <f7-list class='cart-list' no-hairlines-between >
+          <f7-block class="cart-block" v-for="item in cart_items">
+            <div class="row">
+              <div class="col-30">
+                <img id='parent_items_img' src="img/logo.png"> </img>
               </div>
-              <p class="cart-item-p"> $ {{item.total_price}} </p>
-              <div class="row add-delete-buttons-div" style="width: 150px; padding-bottom: 20px">
-                <a v-on:click="change_quantity(-1, item._idx)" class="button button-round button-fill col-50 extra-delete-button" style="width: 50px">
-                  <i class="icon f7-icons col" id="extra-delete"> delete </i>
-                </a>
-                <a v-on:click="change_quantity(1, item._idx)" class="button button-round button-fill col-50 extra-add-button" style="width: 50px">
-                  <i class="icon f7-icons col" id="extra-add"> add </i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- <f7-list-item class="cart-item" :title="item.descr">
-
-
-          </f7-list-item>
-          <f7-list-item class="cart-item row">
-            <div class="cart-item-div">
-              <p class="cart-item-p"> x {{item.quant}}</p>
-              <p class="cart-item-p"> {{item.size}}</p>
-              <div v-for="extra in item.extras">
-                <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
+              <div class="col-70 cart-item-div">
+                <p class="cart-title">{{item.descr}}</p>
+                <p class="cart-item-p"> x {{item.quant}}</p>
+                <p class="cart-item-p"> {{item.size}}</p>
+                <div v-for="extra in item.extras">
+                  <p class="cart-item-p"> {{extra.descr}} x {{extra.quant}} </p>
+                </div>
+                <p class="cart-item-p"> $ {{item.total_price}} </p>
+                <div class="row add-delete-buttons-div" style="width: 150px; padding-bottom: 20px">
+                  <a v-on:click="change_quantity(-1, item._idx)" class="button button-round button-fill col-50 extra-delete-button" style="width: 50px">
+                    <i class="icon f7-icons col" id="extra-delete"> delete </i>
+                  </a>
+                  <a v-on:click="change_quantity(1, item._idx)" class="button button-round button-fill col-50 extra-add-button" style="width: 50px">
+                    <i class="icon f7-icons col" id="extra-add"> add </i>
+                  </a>
+                </div>
               </div>
             </div>
-          </f7-list-item> -->
-
-
-
-        </f7-block>
-      </f7-list>
-
-
-
-
-
-
-
+          </f7-block>
+        </f7-list>
+      </f7-page-content>
     </f7-page>
 
   </template>
@@ -407,7 +370,20 @@
 
   <template id="profile-page">
     <f7-page>
-      <f7-navbar title="Your Profile" back-link="Back" sliding></f7-navbar>
+
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left">
+            <a class="link back white">
+              <i class="icon f7-icons">chevron-left</i>
+              <!-- Back link text rendered only for iOS theme -->
+              <span>Back</span>
+            </a>
+          </div>
+          <div class="center white"> Your Profile </div>
+          <div class="right"> </div>
+        </div>
+      </div>
 
       <f7-list inline-labels inset no-hairlines-between class="profile-list" :disabled="disabled_data">
         <f7-list-item class="profile-page-list-item">
