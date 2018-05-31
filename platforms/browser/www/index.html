@@ -23,10 +23,7 @@
         <f7-navbar title="Left Panel"></f7-navbar>
         <f7-pages>
           <f7-page>
-            <f7-block inner>
-              <p>Welcome</p>
-            </f7-block>
-            <f7-block-title>Load page in main view</f7-block-title>
+
             <f7-list>
               <f7-list-item link="/profile-page/" title="Profile" link-view="#main-view" link-close-panel></f7-list-item>
               <f7-list-item link="/cart/" title="Shopping Cart" link-view="#main-view" link-close-panel></f7-list-item>
@@ -316,7 +313,7 @@
         </div>
       </div>
 
-      <f7-fab v-if="cart_items.length !== 0" id="floating-button-continue" href="#">
+      <f7-fab v-if="cart_items.length !== 0" id="floating-button-continue"href="#" data-popup=".popup-about" class="open-popup">
         <f7-icon position="right-bottom">
           Continue
         </f7-icon>
@@ -327,6 +324,8 @@
           $ {{cart_price}}
         </f7-icon>
       </f7-fab>
+
+
 
       <f7-page-content>
 

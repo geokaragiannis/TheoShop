@@ -220,7 +220,7 @@
           data.number_cart_items += num
 
           if(final_page_data.cart_items[index].quant <= 0){
-
+      
             final_page_data.cart_items.splice(index, 1)
             enumerate(final_page_data.cart_items)
             console.log('after removing: ', final_page_data.cart_items)
