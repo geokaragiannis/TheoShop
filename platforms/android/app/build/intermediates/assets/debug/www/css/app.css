@@ -1,9 +1,16 @@
 /* =========
 Your custom styles go here
  ========= */
+ .white{
+   color: white !important;
+ }
 
- .statusbar-overlay{
-   height: 50px;
+ .navbar-inner{
+   background-color: #6395ed;
+ }
+
+ .panel-overlay{
+   background: #6395ed;
  }
 
 /* select store */
@@ -33,6 +40,10 @@ Your custom styles go here
 
  /* main page  */
 
+ .side-menu-div{
+   margin-left: 15px;
+ }
+
 
  .block-main{
    position: absolute;
@@ -51,7 +62,7 @@ Your custom styles go here
  }
 
  .row-main-1{
-   background: #2196f375;
+   background: #6395ed;
  }
 
 
@@ -59,7 +70,7 @@ Your custom styles go here
 
   height: 18vh !important;
   width: 48%;
-  background: #2196f375;
+  background: #6395ed;
  }
 
  .inside-button-main{
@@ -371,7 +382,7 @@ Your custom styles go here
 }
 
 .profile-button{
-  background: #2196f375;
+  background: cornflowerblue;
 }
 
 .plus-minus-input {
@@ -423,7 +434,7 @@ Your custom styles go here
 }
 
 .cart-list{
-  margin-top: 70px;
+  /* margin-top: 70px; */
   padding-bottom: 60px
 }
 .no-items-in-cart{
