@@ -6,11 +6,26 @@
       return v.map(function(e) {e._idx = k++;});
   };
 
+
+  var random_text = function() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
   var app_data = {
     stores_list: [],
     ios: false,
     android: false,
     web: false,
+    name: null,
+    card_num: null,
+    cvv: null,
+    address: null,
   }
 
   var data = {
@@ -578,6 +593,49 @@
         makeMap: function(){
 
 
+        },
+        submit_card: function() {
+          var values = {
+            command: "cc:sale",
+            amount: 1,
+            amount_detail: {
+              tip: 0,
+              tax: 1
+            },
+            creditcard: {
+              cardholder: "Vivian Huang",
+              number: 4000101111112221,
+              expiration: 1219,
+              cvc: 123,
+              avs_street: "1234 Home",
+              avs_zip: "500011"
+            },
+            
+          }
+          var apikey = '_3UWUtSia70cb0OlIfW64e1XeBV4Vhk4';
+          var apipin = 121441;
+          var seed = random_text();
+          var prehash = apikey + seed + apipin;
+          var apihash = 's2/'+ seed + '/' + sha256(prehash);
+          var authKey = btoa(apikey + ':' + apihash)
+          $$.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "https://sandbox.usaepay.com/api/v2/transactions",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("User-Agent", "uelib v6.8");
+                xhr.setRequestHeader ("Content-Type", "application/json");
+                xhr.setRequestHeader ("Authorization", "Basic " + authKey);
+            },
+            data: JSON.stringify(values),
+            success: function(data){
+              console.log('usaepay : ', data)
+            },
+            error: function() {
+              console.log('error in ajax call')
+            }
+
+          });
         }
       },
       mounted: function(){

@@ -22,7 +22,40 @@
          <p>About</p>
 
          <!-- Close Popup -->
-        
+
+
+         <f7-list inline-labels inset no-hairlines-between class="profile-list" >
+           <f7-list-item class="profile-page-list-item">
+             <f7-icon f7="person" slot="media"></f7-icon>
+             <f7-label>Name</f7-label>
+             <f7-input id="name-input" type="text" placeholder="Your name" :value="name" clear-button></f7-input>
+           </f7-list-item>
+
+
+           <f7-list-item class="profile-page-list-item">
+             <f7-icon f7="home" slot="media"></f7-icon>
+             <f7-label>Address</f7-label>
+             <f7-input id="phone-input" type="tel" placeholder="Your billing address" :value="address" clear-button></f7-input>
+           </f7-list-item>
+
+           <f7-list-item class="profile-page-list-item">
+             <f7-icon f7="card" slot="media"></f7-icon>
+             <f7-label>Card</f7-label>
+             <f7-input id="phone-input" type="tel" placeholder="Your card number" :value="card_num" clear-button></f7-input>
+           </f7-list-item>
+
+           <f7-list-item class="profile-page-list-item">
+             <f7-icon f7="lock" slot="media"></f7-icon>
+             <f7-label>CVV</f7-label>
+             <f7-input id="phone-input" type="tel" placeholder="Your cvv2 number" :value="cvv" clear-button></f7-input>
+           </f7-list-item>
+
+
+         </f7-list>
+
+         <f7-button v-on:click="submit_card()"> Submit </f7-button>
+         <f7-button><a href="#" class="close-popup">Cancel</a></f7-button>
+
        </div>
      </div>
 
@@ -446,11 +479,23 @@
           </f7-input>
         </f7-list-item>
 
-        <f7-list-item class="profile-page-list-item">
+        <li class="profile-page-list-item">
+           <div class="item-content">
+             <div class="item-media"><i class="icon f7-icons">calendar</i></div>
+             <div class="item-inner">
+               <div class="item-title label">Birth date</div>
+               <div class="item-input">
+                 <input type="date" placeholder="Birth day" :value="birthday">
+               </div>
+             </div>
+           </div>
+         </li>
+
+        <!-- <f7-list-item class="profile-page-list-item">
           <f7-icon f7="calendar" slot="media"></f7-icon>
           <f7-label>Birthday</f7-label>
           <f7-input id="birthday-input" type="date" placeholder="Please choose..." :value="birthday"></f7-input>
-        </f7-list-item>
+        </f7-list-item> -->
 
       </f7-list>
 
@@ -529,7 +574,7 @@
   <script src="js/framework7.min.js"></script>
   <script src="js/vue.min.js"></script>
   <script src="js/framework7-vue.min.js"></script>
+  <script src="js/sha.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/connect.js" language="javascript"></script>
 </body>
 </html>
