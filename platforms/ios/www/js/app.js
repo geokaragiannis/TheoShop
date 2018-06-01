@@ -6,6 +6,17 @@
       return v.map(function(e) {e._idx = k++;});
   };
 
+  var get_years = function() {
+    var today = new Date()
+    var this_year = today.getFullYear()
+    var year_list = []
+    for (i = this_year; i< (this_year + 20); i++){
+      year_list.push(i)
+    }
+
+    return year_list
+  }
+
 
   var random_text = function() {
     var text = "";
@@ -19,14 +30,20 @@
 
   var app_data = {
     stores_list: [],
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+              'November', 'December'],
+    years: get_years(),
     ios: false,
     android: false,
     web: false,
     name: null,
     card_num: null,
-    cvv: null,
+    cvc: null,
     address: null,
-    zip: null
+    zip: null,
+    month: null,
+    year: null,
+    cart_price: null
   }
 
   var data = {
@@ -241,6 +258,11 @@
             enumerate(final_page_data.cart_items)
             console.log('after removing: ', final_page_data.cart_items)
           }
+        },
+
+        go_to_checkout: function() {
+          // get the cart price to display in checkout
+          app_data.cart_price = final_page_data.cart_price
         }
 
       }
@@ -595,24 +617,49 @@
 
 
         },
+        reset_card_data: function(){
+          console.log('reseting card data')
+          app_data.name = null;
+          app_data.address = null;
+          app_data.zip = null;
+          app_data.card_num = null;
+          app_data.cvc = null;
+        },
+        format_date: function(){
+          month = app_data.month
+          if(app_data.month < 10)
+            month = '0' + app_data.month
+          return month + app_data.year.toString().substr(-2)
+        },
+
         submit_card: function() {
+          exp_date = this.format_date()
+          console.log('usaepay date format: ', exp_date)
+          app_data.name = $$('#card-name').val();
+          app_data.address = $$('#card-address').val();
+          app_data.zip = $$('#card-zip').val();
+          app_data.card_num = $$('#card-card_num').val();
+          app_data.cvc = $$('#card-cvc').val();
+
           var values = {
             command: "cc:sale",
-            amount: 1,
+            amount: final_page_data.cart_price,
             amount_detail: {
               tip: 0,
-              tax: 1
+              tax: 0
             },
             creditcard: {
-              cardholder: "Vivian Huang",
-              number: 4000101111112221,
-              expiration: 1219,
-              cvc: 123,
-              avs_street: "1234 Home",
-              avs_zip: "500011"
+              cardholder: app_data.name,
+              number: app_data.card_num,
+              expiration: exp_date,
+              cvc: app_data.cvc,
+              avs_street: app_data.address,
+              avs_zip: app_data.zip
             },
 
           }
+
+          console.log('card values', values)
           var apikey = '_3UWUtSia70cb0OlIfW64e1XeBV4Vhk4';
           var apipin = 121441;
           var seed = random_text();
@@ -640,6 +687,31 @@
         }
       },
       mounted: function(){
+
+        var pickerDate = f7.picker({
+          input: '#picker-date',
+          rotateEffect: true,
+          cols: [
+              {
+                  textAlign: 'left',
+                  values: app_data.months
+              },
+              {
+                  values: app_data.years
+              },
+          ],
+          onChange(p, values, displayValues){
+
+            month = values[0]
+            // get the month number
+            app_data.month = app_data.months.indexOf(month) + 1
+            year = values[1]
+            app_data.year = year
+            console.log('after month and year: ', app_data.month, " ", app_data.year)
+
+          }
+        });
+
         // update the device variables:
         if (f7.device.ios){
           app_data.ios = true
