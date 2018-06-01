@@ -13,6 +13,16 @@ Your custom styles go here
    background: #6395ed;
  }
 
+ /* card popup */
+
+ .popup-card{
+   background: #efeff4;
+ }
+
+ .popup-title{
+   text-align: center;
+ }
+
 /* select store */
  .main-preloader{
    position: absolute;
@@ -377,7 +387,7 @@ Your custom styles go here
 }
 
 .profile-page-list-item{
-  padding-bottom: 1.5vh;
+  padding-bottom: 2.2vh;
 }
 
 .inside-profile-change-button{

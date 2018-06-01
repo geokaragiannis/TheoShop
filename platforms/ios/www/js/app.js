@@ -26,6 +26,7 @@
     card_num: null,
     cvv: null,
     address: null,
+    zip: null
   }
 
   var data = {
@@ -610,7 +611,7 @@
               avs_street: "1234 Home",
               avs_zip: "500011"
             },
-            
+
           }
           var apikey = '_3UWUtSia70cb0OlIfW64e1XeBV4Vhk4';
           var apipin = 121441;
@@ -623,7 +624,7 @@
             dataType: "json",
             url: "https://sandbox.usaepay.com/api/v2/transactions",
             beforeSend: function (xhr) {
-                xhr.setRequestHeader ("User-Agent", "uelib v6.8");
+                // xhr.setRequestHeader ("User-Agent", "uelib v6.8");
                 xhr.setRequestHeader ("Content-Type", "application/json");
                 xhr.setRequestHeader ("Authorization", "Basic " + authKey);
             },
