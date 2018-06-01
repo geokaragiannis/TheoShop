@@ -678,6 +678,8 @@
             data: JSON.stringify(values),
             success: function(data){
               console.log('usaepay : ', data)
+              // this.reset_card_data()
+              // f7.mainView.router.back();
             },
             error: function() {
               console.log('error in ajax call')

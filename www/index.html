@@ -27,37 +27,39 @@
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="person" slot="media"></f7-icon>
              <f7-label>Name</f7-label>
-             <f7-input id="card-name" type="text" placeholder="Your name" :value="name" clear-button></f7-input>
+             <f7-input id="card-name" type="text" placeholder="full name" :value="name" clear-button></f7-input>
            </f7-list-item>
 
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="home" slot="media"></f7-icon>
              <f7-label>Address</f7-label>
-             <f7-input id="card-address" type="tel" placeholder="Your billing address" :value="address" clear-button></f7-input>
+             <f7-input id="card-address" type="tel" placeholder="billing address" :value="address" clear-button></f7-input>
            </f7-list-item>
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="flag" slot="media"></f7-icon>
              <f7-label>Zip Code</f7-label>
-             <f7-input id="card-zip" type="tel" placeholder="Your cvv2 number" :value="zip" clear-button></f7-input>
+             <f7-input id="card-zip" type="tel" placeholder="zip code" :value="zip" clear-button></f7-input>
            </f7-list-item>
 
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="card" slot="media"></f7-icon>
              <f7-label>Card</f7-label>
-             <f7-input id="card-card_num" type="tel" placeholder="Your card number" :value="card_num" clear-button></f7-input>
+             <f7-input id="card-card_num" type="tel" placeholder="card number" :value="card_num" clear-button></f7-input>
            </f7-list-item>
 
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="lock" slot="media"></f7-icon>
              <f7-label>CVC</f7-label>
-             <f7-input id="card-cvc" type="tel" placeholder="Your cvc number" :value="cvc" clear-button></f7-input>
+             <f7-input id="card-cvc" type="tel" placeholder="cvc number" :value="cvc" clear-button></f7-input>
            </f7-list-item>
 
            <li class="profile-page-list-item">
               <div class="item-content">
+                 <div class="item-media"><i class="icon f7-icons">calendar</i></div>
                 <div class="item-inner">
+                  <div class="item-title label">Expires</div>
                   <div class="item-input">
-                    <input type="text" placeholder="Exp" readonly id="picker-date">
+                    <input type="text" placeholder="expiration date" readonly id="picker-date">
                   </div>
                 </div>
               </div>
@@ -69,9 +71,16 @@
 
          </f7-list>
 
-         <f7-button v-on:click="submit_card()"> Submit </f7-button>
-         <f7-button><a href="#" v-on:click="reset_card_data()" class="close-popup">Cancel</a></f7-button>
-
+         <div class="row inset list-block">
+           <div class="col-50">
+             <f7-button big class="profile-button">
+               <p class="inside-profile-change-button" v-on:click="submit_card()"> Submit </p>
+             </f7-button>
+           </div>
+           <div class="col-50">
+             <f7-button v-on:click="reset_card_data()" big class="profile-button close-popup"><a href="#" style="color: white;" class="close-popup" v-on:click="reset_card_data()">Cancel</a></f7-button>
+           </div>
+         </div>
        </div>
      </div>
 
