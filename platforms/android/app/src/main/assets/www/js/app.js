@@ -36,7 +36,7 @@
     cart_price: 0,
     extra_shots: 2,
     extra_shot_price: 0.0,
-    quantity: 1,
+    quantity: 1
   };
 
   var profile_page_data = {
@@ -220,7 +220,7 @@
           data.number_cart_items += num
 
           if(final_page_data.cart_items[index].quant <= 0){
-      
+
             final_page_data.cart_items.splice(index, 1)
             enumerate(final_page_data.cart_items)
             console.log('after removing: ', final_page_data.cart_items)
@@ -463,6 +463,10 @@
       }
     })
 
+    Vue.component('checkout-page', {
+      template: '#checkout-page',
+    });
+
     Vue.component('stores', {
       template: '#stores',
       methods: {
@@ -664,6 +668,10 @@
           {
             path: '/select-store-page/',
             component: 'select-store-page'
+          },
+          {
+            path: '/checkout-page/',
+            component: 'checkout-page'
           }
         ],
       }
