@@ -265,6 +265,7 @@
         go_to_checkout: function() {
           // get the cart price to display in checkout
           app_data.cart_price = final_page_data.cart_price
+          f7.popup('.popup-card', removeOnClose=true)
 
         }
 
@@ -699,8 +700,7 @@
               if(data.result_code === "A"){
                 // order was made successfully
                 app_data.order_was_made = true
-                // close the popover
-                f7.closeModal('.popup-card')
+
                 app_data.name = null;
                 app_data.address = null;
                 app_data.zip = null;
@@ -715,18 +715,30 @@
                 $$('#card-card_num').val(null)
                 $$('#card-cvc').val(null)
                 $$('#picker-date').val(null)
-                // go back to main page
-                f7.mainView.router.back({url: '/main/', force: true, ignoreCache: true})
+
 
                 // when the popup is closed and we go back to main page
                 // display the dialog
-                $$('.popup-card').on('popup:closed', function () {
-                  f7.confirm("Do You Want To View Status?", "Your Order Has Been Placed", function(){
-                    console.log('Wants to see status ')
-                    // Now go to the status page (clicked ok)
-                    // f7.mainView.router.loadPage('/cart/')
-                  })
-                });
+
+                f7.confirm("Do You Want To View Status?", "Your Order Has Been Placed",
+                            function(){
+                              console.log('Wants to see status ')
+                              // Now go to the status page (clicked ok)
+                              // f7.mainView.router.loadPage('/cart/')
+                              // close the popover
+                              f7.closeModal('.popup-card')
+                            },
+                            function(){
+                              console.log('Does not want to see status')
+                              // close the popover
+                              f7.closeModal('.popup-card')
+                              // go back to main page
+                              f7.mainView.router.back({url: '/main/', force: true, ignoreCache: true})
+
+                            })
+
+
+
 
               } else{
                 console.log("received an error from usaepay")
