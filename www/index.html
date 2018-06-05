@@ -45,34 +45,34 @@
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="home" slot="media"></f7-icon>
              <f7-label>Address</f7-label>
-             <f7-input id="card-address" type="tel" placeholder="billing address" :value="address" clear-button></f7-input>
+             <f7-input id="card-address" type="text" placeholder="billing address" :value="address" clear-button></f7-input>
            </f7-list-item>
            <f7-list-item class="profile-page-list-item">
-             <f7-icon f7="home" slot="media"></f7-icon>
+             <f7-icon f7="compass" slot="media"></f7-icon>
              <f7-label>City</f7-label>
-             <f7-input id="card-city" type="tel" placeholder="City" :value="city" clear-button></f7-input>
+             <f7-input id="card-city" type="text" placeholder="City" :value="city" clear-button></f7-input>
            </f7-list-item>
            <f7-list-item class="profile-page-list-item">
-             <f7-icon f7="home" slot="media"></f7-icon>
+             <f7-icon f7="world" slot="media"></f7-icon>
              <f7-label>State</f7-label>
-             <f7-input id="card-state" type="tel" placeholder="State" :value="state" clear-button></f7-input>
+             <f7-input id="card-state" type="text" placeholder="State" :value="state" clear-button></f7-input>
            </f7-list-item>
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="flag" slot="media"></f7-icon>
              <f7-label>Zip Code</f7-label>
-             <f7-input id="card-zip" type="tel" placeholder="zip code" :value="zip" clear-button></f7-input>
+             <f7-input id="card-zip" type="number" placeholder="zip code" :value="zip" clear-button></f7-input>
            </f7-list-item>
 
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="card" slot="media"></f7-icon>
              <f7-label>Card</f7-label>
-             <f7-input id="card-card_num" type="tel" placeholder="card number" :value="card_num" clear-button></f7-input>
+             <f7-input id="card-card_num" type="number" placeholder="card number" :value="card_num" clear-button></f7-input>
            </f7-list-item>
 
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="lock" slot="media"></f7-icon>
              <f7-label>CVC</f7-label>
-             <f7-input id="card-cvc" type="tel" placeholder="cvc number" :value="cvc" clear-button> </f7-input>
+             <f7-input id="card-cvc" number type="number" placeholder="cvc number" :value="cvc" clear-button> </f7-input>
              <a class="link open-popover" href="#" data-popover=".popover-cvc"> <i class="icon f7-icons" style="font-size:20px"> info </i> </a>
            </f7-list-item>
 
@@ -298,7 +298,7 @@
         </div>
       </div>
 
-      <f7-toolbar>
+      <f7-toolbar class="final-page-toolbar">
         <div class="toolbar-inner">
           <div id='toolbar-usd'>
             <a class='toolbar-a' href='#'> $ {{Math.trunc((quantity * (price + size_price)) * 100) / 100 }}</a>
@@ -308,8 +308,6 @@
           </div>
         </div>
       </f7-toolbar>
-
-        <!-- <f7-block title="demo" inner > </f7-block> -->
 
       <f7-page-content>
         <f7-list inset class='final-page-list'>
