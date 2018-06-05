@@ -29,6 +29,8 @@
 }
 
   var app_data = {
+    preloader: false,
+    order_was_made: false,
     stores_list: [],
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
               'November', 'December'],
@@ -263,6 +265,7 @@
         go_to_checkout: function() {
           // get the cart price to display in checkout
           app_data.cart_price = final_page_data.cart_price
+
         }
 
       }
@@ -624,6 +627,15 @@
           app_data.zip = null;
           app_data.card_num = null;
           app_data.cvc = null;
+          app_data.month = null;
+          app_data.year = null;
+          // updating the UI
+          $$('#card-name').val(null)
+          $$('#card-address').val(null)
+          $$('#card-zip').val(null)
+          $$('#card-card_num').val(null)
+          $$('#card-cvc').val(null)
+          $$('#picker-date').val(null)
         },
         format_date: function(){
           month = app_data.month
@@ -633,6 +645,8 @@
         },
 
         submit_card: function() {
+          // display the preloader
+          app_data.preloader = true;
           exp_date = this.format_date()
           console.log('usaepay date format: ', exp_date)
           app_data.name = $$('#card-name').val();
@@ -678,11 +692,48 @@
             data: JSON.stringify(values),
             success: function(data){
               console.log('usaepay : ', data)
-              // this.reset_card_data()
-              // f7.mainView.router.back();
+              // don't show the preloader
+              app_data.preloader = false;
+
+              // if we get an approved (code is "A")
+              if(data.result_code === "A"){
+                // order was made successfully
+                app_data.order_was_made = true
+                // close the popover
+                f7.closeModal('.popup-card')
+                app_data.name = null;
+                app_data.address = null;
+                app_data.zip = null;
+                app_data.card_num = null;
+                app_data.cvc = null;
+                app_data.month = null;
+                app_data.year = null;
+                // updating the UI
+                $$('#card-name').val(null)
+                $$('#card-address').val(null)
+                $$('#card-zip').val(null)
+                $$('#card-card_num').val(null)
+                $$('#card-cvc').val(null)
+                $$('#picker-date').val(null)
+                // go back to main page
+                f7.mainView.router.back({url: '/main/', force: true, ignoreCache: true})
+
+                // when the popup is closed and we go back to main page
+                // display the dialog
+                $$('.popup-card').on('popup:closed', function () {
+                  f7.confirm("Do You Want To View Status?", "Your Order Has Been Placed", function(){
+                    console.log('Wants to see status ')
+                    // Now go to the status page (clicked ok)
+                    // f7.mainView.router.loadPage('/cart/')
+                  })
+                });
+
+              } else{
+                console.log("received an error from usaepay")
+              }
             },
             error: function() {
-              console.log('error in ajax call')
+              console.log('error in ajax usaepa call')
             }
 
           });
@@ -727,10 +778,6 @@
         url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/shop"
         user = "eshop|001"
         pass = "123"
-        // router.push({path: '/main/'})
-
-
-
         $$.ajax({
           type: "GET",
           dataType: "json",

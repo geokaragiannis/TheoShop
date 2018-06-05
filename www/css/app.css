@@ -1,6 +1,11 @@
 /* =========
 Your custom styles go here
  ========= */
+
+ .item-inner{
+   font-size: 1em !important;
+
+ }
  .white{
    color: white !important;
  }
@@ -28,6 +33,7 @@ Your custom styles go here
    position: absolute;
    top: 45%;
    left: 40%;
+   z-index: 1000;
  }
 
  .select-store-button{
@@ -273,7 +279,7 @@ Your custom styles go here
 
 .final-page-list{
   margin-bottom: 150px;
-  margin-top: 45px;
+  margin-top: 10px;
 }
 
 /* card */
@@ -290,6 +296,7 @@ Your custom styles go here
 
 .card-header{
   height: 65vw !important;
+  padding: 0 !important
 }
 
 .card-image-title{

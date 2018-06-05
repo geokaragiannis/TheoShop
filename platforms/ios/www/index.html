@@ -31,6 +31,7 @@
 
      <div class="popup popup-card">
        <div class="block">
+         <f7-preloader v-if="preloader" color="blue" size="50px" class="main-preloader"></f7-preloader>
          <h2 class="popup-title">Checkout</h2>
          <h2 class="popup-title">Final Amount: {{cart_price}}</h2>
 
@@ -38,7 +39,7 @@
            <f7-list-item class="profile-page-list-item">
              <f7-icon f7="person" slot="media"></f7-icon>
              <f7-label>Name</f7-label>
-             <f7-input id="card-name" type="text" placeholder="full name" :value="name" clear-button></f7-input>
+             <f7-input id="card-name" type="text" placeholder="name on card" :value="name" clear-button></f7-input>
            </f7-list-item>
 
            <f7-list-item class="profile-page-list-item">
@@ -175,7 +176,7 @@
   <!-- Main Page -->
 
   <template id="page-main">
-    <f7-page>
+    <f7-page data-page="main">
 
       <!-- <f7-navbar title="Main" back-link="Back" sliding></f7-navbar> -->
       <div class="row row-main-1">
@@ -301,7 +302,7 @@
         <!-- <f7-block title="demo" inner > </f7-block> -->
 
       <f7-page-content>
-        <f7-list class='final-page-list'>
+        <f7-list inset class='final-page-list'>
           <div class="card demo-card-header-pic" style="box-shadow: 3px 6px 10px;">
             <div id="demo1" class="card-header align-items-flex-end">
               <img class="final-page-image" src="img/cap.jpg"> </img>
@@ -313,7 +314,7 @@
 
           <div v-for="cat in item_pressed.child">
             <!-- <h2 class="custom-header"> {{cat.descr}} </h2> -->
-            <f7-block style="padding:0; box-shadow: 3px 6px 10px" inset>
+            <f7-block style="padding:0; box-shadow: 3px 6px 10px">
               <f7-list v-if="cat.descr === 'SIZE' " no-hairlines-between>
                 <f7-list-group>
                   <f7-list-item :title="cat.descr" group-title></f7-list-item>
