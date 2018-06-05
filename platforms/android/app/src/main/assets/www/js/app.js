@@ -43,6 +43,8 @@
     cvc: null,
     address: null,
     zip: null,
+    city: null,
+    state: null,
     month: null,
     year: null,
     cart_price: null
@@ -127,6 +129,7 @@
         goToSubMenu: function(is){
           // console.log('test map_canvas ', $$('#map_canvas').hasClass('pipa'));
           // console.log('aa ', this.$f7)
+          data.parent_stack = []
           console.log('main page big_list ', app_data.big_list)
           data.parent_list = app_data.big_list
           console.log('parent_list: ', data.parent_list)
@@ -627,6 +630,8 @@
           app_data.address = null;
           app_data.zip = null;
           app_data.card_num = null;
+          app_data.city = null;
+          app_data.state = null;
           app_data.cvc = null;
           app_data.month = null;
           app_data.year = null;
@@ -636,6 +641,8 @@
           $$('#card-zip').val(null)
           $$('#card-card_num').val(null)
           $$('#card-cvc').val(null)
+          $$('#card-city').val(null)
+          $$('#card-state').val(null)
           $$('#picker-date').val(null)
         },
         format_date: function(){
@@ -654,6 +661,8 @@
           app_data.address = $$('#card-address').val();
           app_data.zip = $$('#card-zip').val();
           app_data.card_num = $$('#card-card_num').val();
+          app_data.city = $$('#card-city').val();
+          app_data.state = $$('#card-state').val();
           app_data.cvc = $$('#card-cvc').val();
 
           var values = {
@@ -670,7 +679,12 @@
               cvc: app_data.cvc,
               avs_street: app_data.address,
               avs_zip: app_data.zip
+
             },
+            billing_address:{
+              city: app_data.city,
+              state: app_data.state
+            }
 
           }
 
@@ -705,6 +719,8 @@
                 app_data.address = null;
                 app_data.zip = null;
                 app_data.card_num = null;
+                app_data.city = null;
+                app_data.state = null;
                 app_data.cvc = null;
                 app_data.month = null;
                 app_data.year = null;
@@ -713,6 +729,8 @@
                 $$('#card-address').val(null)
                 $$('#card-zip').val(null)
                 $$('#card-card_num').val(null)
+                $$('#card-city').val(null)
+                $$('#card-state').val(null)
                 $$('#card-cvc').val(null)
                 $$('#picker-date').val(null)
 
@@ -742,6 +760,7 @@
 
               } else{
                 console.log("received an error from usaepay")
+                f7.alert("Try again", "An error Occured")
               }
             },
             error: function() {
