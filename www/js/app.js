@@ -100,17 +100,7 @@
 
     var $$ = Dom7;
 
-    // // Status Bar Configuration
-    // console.log(StatusBar);
-    // StatusBar.styleDefault();
-    // if(StatusBar.isVisible){
-    //   $$('html').addClass('with-statusbar-overlay')
-    //   // StatusBar.backgroundColorByHexString("#6395ed");
-    // }
-
     console.log('device: ', device.model)
-
-
 
     // Init F7 Vue Plugin
     Vue.use(Framework7Vue, Framework7);
@@ -198,9 +188,6 @@
               i += 1
             }
 
-
-          console.log('arr: ', arr)
-
           // console.log('extras', final_page_data.item_pressed.child)
         },
 
@@ -216,7 +203,6 @@
         },
 
         backSubMenu: function(){
-          console.log('papa')
           data.parent_stack.pop()
           // parent_list is now the top element in the stack
           data.parent_list = data.parent_stack[data.parent_stack.length - 1]
@@ -290,9 +276,6 @@
           final_page_data.extras = []
           final_page_data.size_descr = null
         },
-        checkbox_clicked(){
-          final_page_data.checkbox_enabled = true;
-        },
         change_extra_shot(num){
 
           if (final_page_data.extra_shots > 1 || num >0){
@@ -346,10 +329,6 @@
           console.log('size price: ', final_page_data.size_price)
         },
 
-        calculate_price_from_size(num){
-
-        },
-
         calculate_price(extra, num){
           if (extra.price == null)
             extra_price = 0
@@ -382,7 +361,6 @@
           console.log('cart item: ', cart_item)
 
           final_page_data.cart_items.push(cart_item)
-
 
           // update the number of cart items, to be displayed in sub-Menu
           data.number_cart_items += cart_item.quant
@@ -458,6 +436,7 @@
       methods: {
 
         makeCall: function(){
+          // get the menu for the store selected 
           url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
           user = "eshop|" + store_data.store_selected
           pass = "123"

@@ -1,21 +1,27 @@
 /* =========
 Your custom styles go here
  ========= */
-/* 
- .item-inner{
-   font-size: 1em !important;
 
- } */
+ :root{
+   --main-color: #6395ed;
+   --title-size: 4.4vmax;
+   --list-item-size: 2.2vmax;
+ }
+
+ .item-inner{
+   font-size: var(--list-item-size) !important;
+
+ }
  .white{
    color: white !important;
  }
 
  .navbar-inner{
-   background-color: #6395ed;
+   background-color: var(--main-color);
  }
 
  .panel-overlay{
-   background: #6395ed;
+   background: var(--main-color);
  }
 
  /* card popup */
@@ -37,7 +43,7 @@ Your custom styles go here
  }
 
  .select-store-button{
-   background: cornflowerblue !important
+   background: var(--main-color) !important
  }
 
  /*  */
@@ -78,7 +84,7 @@ Your custom styles go here
  }
 
  .row-main-1{
-   background: #6395ed;
+   background: var(--main-color);
  }
 
 
@@ -86,7 +92,7 @@ Your custom styles go here
 
   height: 18vh !important;
   width: 48%;
-  background: #6395ed;
+  background: var(--main-color);
  }
 
  .inside-button-main{
@@ -186,8 +192,8 @@ Your custom styles go here
 
 .list-group-title{
   padding-bottom: 10px;
-  font-size: 2em;
-  color: cornflowerblue !important;
+  font-size: var(--title-size);
+  color: var(--main-color) !important;
   background: #ffffff !important;
 }
 
@@ -245,14 +251,14 @@ Your custom styles go here
 
 
 .item-after{
-  color: cornflowerblue !important;
+  color: var(--main-color) !important;
 }
 
 /* toolbar style in final page */
 
 .final-page-toolbar{
   height: 88px;
-  background: cornflowerblue;
+  background: var(--main-color);
   box-shadow: 0px -1px 6px 0px black;
 }
 
@@ -291,7 +297,7 @@ Your custom styles go here
 .extra-price-size{
   font-weight: 100;
   font-size: 14px;
-  color: cornflowerblue;
+  color: var(--main-color);
 }
 
 .card{
@@ -310,7 +316,7 @@ Your custom styles go here
 
 .custom-header{
   border-top: 1px solid #80808057;
-  color: cornflowerblue;
+  color: var(--main-color);
 }
 
 .accordion-item-toggle{
@@ -339,12 +345,12 @@ Your custom styles go here
 
 .extra-delete-button{
   width: 50px;
-  background: cornflowerblue !important;
+  background: var(--main-color) !important;
 }
 
 .extra-add-button{
   width: 50px;
-  background: cornflowerblue !important;
+  background: var(--main-color) !important;
 }
 
 #extra-delete{
@@ -407,7 +413,7 @@ Your custom styles go here
 }
 
 .profile-button{
-  background: cornflowerblue;
+  background: var(--main-color);
 }
 
 .plus-minus-input {
@@ -450,7 +456,7 @@ Your custom styles go here
   font-size: 20px;
   padding: 20px;
   border-radius: 20px;
-  background-color: cornflowerblue;
+  background-color: var(--main-color);
   box-shadow: 3px 5px 13px 0px grey;
   font-weight: 900;
 }
@@ -462,7 +468,7 @@ Your custom styles go here
   font-size: 20px;
   padding: 20px;
   border-radius: 20px;
-  background-color: cornflowerblue;
+  background-color: var(--main-color);
   box-shadow: 3px 5px 13px 0px grey;
   font-weight: 900;
 }
@@ -499,7 +505,7 @@ Your custom styles go here
 
 .cart-title{
   font-size: 1.3em;
-  color: cornflowerblue;
+  color: var(--main-color);
 }
 
 .cart-item-p{
