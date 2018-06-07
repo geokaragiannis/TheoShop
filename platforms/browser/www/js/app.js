@@ -621,6 +621,70 @@
         return app_data
       },
       methods: {
+        getPickerObject: function(){
+          var pickerDate = f7.picker({
+            input: '#picker-date',
+            rotateEffect: true,
+            cols: [
+                {
+                    textAlign: 'left',
+                    values: app_data.months
+                },
+                {
+                    values: app_data.years
+                },
+            ],
+            onChange(p, values, displayValues){
+
+              month = values[0]
+              // get the month number
+              app_data.month = app_data.months.indexOf(month) + 1
+              year = values[1]
+              app_data.year = year
+              console.log('after month and year: ', app_data.month, " ", app_data.year)
+
+            }
+          });
+        },
+        getDeviceInfo: function(){
+          // update the device variables:
+          if (f7.device.ios){
+            app_data.ios = true
+          } else if(f7.device.android){
+            app_data.android = true
+          } else{
+            app_data.web = true
+          }
+        },
+
+        getStores: function() {
+          url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/shop"
+          user = "eshop|001"
+          pass = "123"
+          $$.ajax({
+            type: "GET",
+            dataType: "json",
+            url: url,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));
+            },
+            success: function(data){
+              console.log('list of stores: ', data)
+              app_data.stores_list = data
+              store_data.stores_list = data
+              console.log('list of stores 2: ', app_data.stores_list)
+
+              f7.mainView.router.load({url: '/select-store-page/'})
+            },
+            error: function() {
+              console.log('error in ajax call in getting stores')
+
+              f7.alert("Not able to conect", "An error Occured")
+            }
+
+          });
+
+        },
         makeMap: function(){
 
 
@@ -756,9 +820,6 @@
 
                             })
 
-
-
-
               } else{
                 console.log("received an error from usaepay")
                 f7.alert("Try again", "An error Occured")
@@ -773,66 +834,12 @@
       },
       mounted: function(){
 
-        var pickerDate = f7.picker({
-          input: '#picker-date',
-          rotateEffect: true,
-          cols: [
-              {
-                  textAlign: 'left',
-                  values: app_data.months
-              },
-              {
-                  values: app_data.years
-              },
-          ],
-          onChange(p, values, displayValues){
+        this.getPickerObject()
 
-            month = values[0]
-            // get the month number
-            app_data.month = app_data.months.indexOf(month) + 1
-            year = values[1]
-            app_data.year = year
-            console.log('after month and year: ', app_data.month, " ", app_data.year)
-
-          }
-        });
-
-        // update the device variables:
-        if (f7.device.ios){
-          app_data.ios = true
-        } else if(f7.device.android){
-          app_data.android = true
-        } else{
-          app_data.web = true
-        }
+        this.getDeviceInfo()
         console.log('app mounted')
         // make ajax call
-        url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/shop"
-        user = "eshop|001"
-        pass = "123"
-        $$.ajax({
-          type: "GET",
-          dataType: "json",
-          url: url,
-          beforeSend: function (xhr) {
-              xhr.setRequestHeader ("Authorization", "Basic " + btoa(user + ":" + pass));
-          },
-          success: function(data){
-            console.log('list of stores: ', data)
-            app_data.stores_list = data
-            store_data.stores_list = data
-            console.log('list of stores 2: ', app_data.stores_list)
-
-            f7.mainView.router.load({url: '/select-store-page/'})
-
-
-          },
-          error: function() {
-            console.log('error in ajax call in getting stores')
-            f7.alert("Not able to conect", "An error Occured")
-          }
-
-        });
+        this.getStores()
 
       },
       // Init Framework7 by passing parameters here
@@ -900,6 +907,11 @@
     console.log('onResume')
   }
 
+  function noConnection(){
+    console.log('network type: ', navigator.connection.type)
+    f7.alert("Not able to conect", "Not connected to the Internet")
+  }
+
   var onSuccess = function(position) {
         console.log('Latitude: '    + position.coords.latitude          + '\n' +
               'Longitude: '         + position.coords.longitude         + '\n' +
@@ -923,6 +935,7 @@
   // Handle device ready event
   // Note: You may want to check out the vue-cordova package on npm for cordova specific handling with vue - https://www.npmjs.com/package/vue-cordova
   document.addEventListener('deviceready', init, false)
+  document.addEventListener('offline', noConnection, false)
   document.addEventListener("pause", onPause, false);
   document.addEventListener("resume", onResume, false);
   navigator.geolocation.getCurrentPosition(onSuccess, onError);
