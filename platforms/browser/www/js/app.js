@@ -317,7 +317,7 @@
             // else push it in the array
 
           if (final_page_data.extras.length === 0){
-            final_page_data.extras.push({descr: extra.descr, quant: 1})
+            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1})
           }else{
             for(i = 0; i < final_page_data.extras.length; i++){
               if(final_page_data.extras[i].descr == extra.descr){
@@ -328,7 +328,7 @@
                 return
               }
             }
-            final_page_data.extras.push({descr: extra.descr, quant: 1})
+            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1})
           }
         },
         change_quantity(num){
@@ -371,6 +371,7 @@
           single_price = Math.trunc((final_page_data.price + final_page_data.size_price) * 100) / 100
 
           cart_item = {descr: final_page_data.item_pressed.descr,
+                      id: final_page_data.item_pressed.id,
                       quant: final_page_data.quantity,
                       extras: final_page_data.extras,
                       size: final_page_data.size_descr,
@@ -827,7 +828,8 @@
 
           },
           error: function() {
-            console.log('error in ajax call')
+            console.log('error in ajax call in getting stores')
+            f7.alert("Not able to conect", "An error Occured")
           }
 
         });

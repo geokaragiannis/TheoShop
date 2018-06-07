@@ -78,6 +78,8 @@
 		FAF1F87F684046FFB5929751 /* PluginMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7D706DB2EE4F14842C3F89 /* PluginMapViewController.m */; };
 		FD3275FF0A0E4D28A2D2592F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F697EDFC9A447CB4797D0D /* CoreData.framework */; };
 		FD9DC2362DF548A9A0BAC176 /* pgm_Localizable_fr.json in Resources */ = {isa = PBXBuildFile; fileRef = B5D51F7E44724E82B03A8FEF /* pgm_Localizable_fr.json */; };
+		10E70A939D154F7086100AE5 /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8DA14B7BE14C3ABAFBA184 /* CDVConnection.m */; };
+		835C243F49D543D684D293CA /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F0E51CC23E4AF4BC18114D /* CDVReachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +227,10 @@
 		FCD2A595C07A48CFB9C63F7C /* PluginLocationService.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = PluginLocationService.h; path = "cordova-plugin-googlemaps/PluginLocationService.h"; sourceTree = "<group>"; };
 		FD25E186945F453D8A430ADC /* pgm_Localizable_uk.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = pgm_Localizable_uk.json; sourceTree = "<group>"; };
 		FD3A023D682C44FF8B7F6005 /* pgm_Localizable_da.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = pgm_Localizable_da.json; sourceTree = "<group>"; };
+		6E8DA14B7BE14C3ABAFBA184 /* CDVConnection.m */ = {isa = PBXFileReference; name = "CDVConnection.m"; path = "cordova-plugin-network-information/CDVConnection.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		75F0E51CC23E4AF4BC18114D /* CDVReachability.m */ = {isa = PBXFileReference; name = "CDVReachability.m"; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F81094001AFD46DF8ECCF40E /* CDVConnection.h */ = {isa = PBXFileReference; name = "CDVConnection.h"; path = "cordova-plugin-network-information/CDVConnection.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		16B86BB99C744F1286117337 /* CDVReachability.h */ = {isa = PBXFileReference; name = "CDVReachability.h"; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,6 +453,10 @@
 				1FD85A415E27455D8D18165F /* CDVViewController+SplashScreen.h */,
 				4213D22055BC44099B784240 /* CDVStatusBar.m */,
 				4D7B08BD9C1740189B6B761B /* CDVStatusBar.h */,
+				6E8DA14B7BE14C3ABAFBA184 /* CDVConnection.m */,
+				75F0E51CC23E4AF4BC18114D /* CDVReachability.m */,
+				F81094001AFD46DF8ECCF40E /* CDVConnection.h */,
+				16B86BB99C744F1286117337 /* CDVReachability.h */,
 			);
 			name = Plugins;
 			path = helloworld/Plugins;
@@ -621,6 +631,8 @@
 				CC8C074A70E344979BCFB22E /* CDVSplashScreen.m in Sources */,
 				F5684758D16C47C6AD483A23 /* CDVViewController+SplashScreen.m in Sources */,
 				47DDD78DDCDF4BCAB2D7B7A7 /* CDVStatusBar.m in Sources */,
+				10E70A939D154F7086100AE5 /* CDVConnection.m in Sources */,
+				835C243F49D543D684D293CA /* CDVReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

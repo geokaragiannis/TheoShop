@@ -144,19 +144,21 @@
 
   <template id="select-store-page">
     <f7-page>
+      <f7-page-content style="margin-right: 15px; margin-left: 15px">
+        <div class="row" style="padding-top: 20px">
+          <h2 class="col"> Select a Store </h2>
+          <h2> <a style="color:inherit; " class="h2 col" href="/stores/"> View on a Map </a>  </h2>
+        </div>
+        <f7-list class="select-list" >
+    <!-- Additional "radio" prop to enable radio list item -->
+          <f7-list-item v-for="store in stores_list" @change="store_selected = $event.target.value" radio :value="store.cd" :name="store.name" :title="store.name"></f7-list-item>
+          <a v-on:click="goToMain()" class="button button-big button-fill select-store-button">Go</a>
+        </f7-list>
+        <f7-preloader v-if="button_pressed" color="blue" size="50px" class="main-preloader"></f7-preloader>
 
-      <div class="row" style="padding-top: 20px">
-        <h2 class="col"> Select a Store </h2>
-        <h2> <a style="color:inherit; " class="h2 col" href="/stores/"> View on a Map </a>  </h2>
-      </div>
-      <f7-list class="select-list" >
-  <!-- Additional "radio" prop to enable radio list item -->
-        <f7-list-item v-for="store in stores_list" @change="store_selected = $event.target.value" radio :value="store.cd" :name="store.name" :title="store.name"></f7-list-item>
-        <a v-on:click="goToMain()" class="button button-big button-fill select-store-button">Go</a>
-      </f7-list>
-      <f7-preloader v-if="button_pressed" color="blue" size="50px" class="main-preloader"></f7-preloader>
-
+      </f7-page-content>
     </f7-page>
+
 
   </template>
 
@@ -264,10 +266,15 @@
 
             <div v-for="child in par.child">
               <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)'>
-                <img id='parent_items_img' src="img/logo.png" slot='content-start'>
+                <div slot='content-start'>
+                  <img v-if="child.descr === 'COFFEE'" class='parent-items-img padding-img' src="img/cap.jpg" slot='content-start'>
+                  <img v-else class='parent-items-img padding-img' src="img/mousakas.jpg" slot='content-start'>
+                </div>
               </f7-list-item>
               <f7-list-item v-else :title='child.descr' :after="child.price" v-on:click='goToFinal(child)' link="final-page">
-                <img id='parent_items_img' src="img/logo.png" slot='content-start'> </img>
+                <div slot='content-start'>
+                  <img class='parent-items-img padding-img' src="img/cap.jpg" slot='content-start'> </img>
+                </div>
                 <!-- <img src="data:image/png;base64, base64 string here "> </img> -->
 
               </f7-list-item>
@@ -313,7 +320,7 @@
         <f7-list inset class='final-page-list'>
           <div class="card demo-card-header-pic" style="box-shadow: 3px 6px 10px;">
             <div id="demo1" class="card-header align-items-flex-end">
-              <img class="final-page-image" src="img/cap.jpg"> </img>
+              <img class="final-page-image" src="img/tea.jpg"> </img>
               <p class="card-image-title">
                 {{item_pressed.descr}}
               </p>
@@ -424,10 +431,10 @@
         <f7-list class='cart-list' no-hairlines-between inset >
           <f7-block class="cart-block" v-for="item in cart_items">
             <div class="row">
-              <div class="col-30">
-                <img id='parent_items_img' src="img/logo.png"> </img>
+              <div class="col-40">
+                <img class='cart-items-img' src="img/cap.jpg"> </img>
               </div>
-              <div class="col-70 cart-item-div">
+              <div class="col-60 cart-item-div">
                 <p class="cart-title">{{item.descr}}</p>
                 <p class="cart-item-p"> x {{item.quant}}</p>
                 <p class="cart-item-p"> {{item.size}}</p>
