@@ -268,7 +268,7 @@
               <f7-list-item v-if="child.isLeaf == 0" :title='child.descr' v-on:click='goToSame(child)'>
                 <div slot='content-start'>
                   <img v-if="child.descr === 'COFFEE'" class='parent-items-img padding-img' src="img/cap.jpg" slot='content-start'>
-                  <img v-else class='parent-items-img padding-img' src="img/mousakas.jpg" slot='content-start'>
+                  <img v-else class='parent-items-img padding-img' src="img/pizza.png" slot='content-start'>
                 </div>
               </f7-list-item>
               <f7-list-item v-else :title='child.descr' :after="child.price" v-on:click='goToFinal(child)' link="final-page">
@@ -320,7 +320,7 @@
         <f7-list inset class='final-page-list'>
           <div class="card demo-card-header-pic" style="box-shadow: 3px 6px 10px;">
             <div id="demo1" class="card-header align-items-flex-end">
-              <img class="final-page-image" src="img/tea.jpg"> </img>
+              <img class="final-page-image" src="img/pizza.png"> </img>
               <p class="card-image-title">
                 {{item_pressed.descr}}
               </p>
