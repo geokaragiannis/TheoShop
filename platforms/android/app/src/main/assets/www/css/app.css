@@ -9,6 +9,7 @@ Your custom styles go here
  }
 
  .item-inner{
+   overflow: inherit !important;
    font-size: var(--list-item-size) !important;
 
  }
@@ -140,19 +141,19 @@ Your custom styles go here
 }
 
 .floating-button{
-  height: 60px;
-  width: 60px
+  height: 8vmax;
+  width: 8vmax
 }
 
 #floating-button-icon{
-  font-size: 29px;
+  font-size: 4vmax;
 }
 
 #floating-button-badge{
-  height: 23px;
-  width: 23px;
-  line-height: 23px;
-  font-size: 15px;
+  height: 2.2vmax;
+  width: 2.2vmax;
+  line-height: 2.2vmax;
+  font-size: 1.8vmax;
   top: -5px
 }
 

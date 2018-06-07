@@ -1,16 +1,38 @@
 /* =========
 Your custom styles go here
  ========= */
+
+ :root{
+   --main-color: #6395ed;
+   --title-size: 4.4vmax;
+   --list-item-size: 2.2vmax;
+ }
+
+ .item-inner{
+   overflow: inherit !important;
+   font-size: var(--list-item-size) !important;
+
+ }
  .white{
    color: white !important;
  }
 
  .navbar-inner{
-   background-color: #6395ed;
+   background-color: var(--main-color);
  }
 
  .panel-overlay{
-   background: #6395ed;
+   background: var(--main-color);
+ }
+
+ /* card popup */
+
+ .popup-card{
+   background: #efeff4;
+ }
+
+ .popup-title{
+   text-align: center;
  }
 
 /* select store */
@@ -18,10 +40,11 @@ Your custom styles go here
    position: absolute;
    top: 45%;
    left: 40%;
+   z-index: 1000;
  }
 
  .select-store-button{
-   background: cornflowerblue !important
+   background: var(--main-color) !important
  }
 
  /*  */
@@ -62,7 +85,7 @@ Your custom styles go here
  }
 
  .row-main-1{
-   background: #6395ed;
+   background: var(--main-color);
  }
 
 
@@ -70,7 +93,7 @@ Your custom styles go here
 
   height: 18vh !important;
   width: 48%;
-  background: #6395ed;
+  background: var(--main-color);
  }
 
  .inside-button-main{
@@ -113,29 +136,37 @@ Your custom styles go here
 
 }
 
+.sub-menu-list{
+  margin-bottom: 100px;
+}
+
 .floating-button{
-  height: 60px;
-  width: 60px
+  height: 8vmax;
+  width: 8vmax
 }
 
 #floating-button-icon{
-  font-size: 29px;
+  font-size: 4vmax;
 }
 
 #floating-button-badge{
-  height: 23px;
-  width: 23px;
-  line-height: 23px;
-  font-size: 15px;
+  height: 2.2vmax;
+  width: 2.2vmax;
+  line-height: 2.2vmax;
+  font-size: 1.8vmax;
   top: -5px
 }
 
-#parent_items_img{
-  width: 4em;
-  height: 4em;
+/* .item-content{
+  padding-left: 0 !important;
+} */
+
+.parent-items-img{
+  width: 8vmax;
+  height: 8vmax;
   border-radius: 50%;
-  padding-bottom: 6px;
-  padding-top: 6px;
+  padding: 6px !important;
+  /* line-height: 0px; */
 }
 
 #img-swiper-row{
@@ -162,8 +193,8 @@ Your custom styles go here
 
 .list-group-title{
   padding-bottom: 10px;
-  font-size: 2em;
-  color: cornflowerblue !important;
+  font-size: var(--title-size);
+  color: var(--main-color) !important;
   background: #ffffff !important;
 }
 
@@ -221,14 +252,14 @@ Your custom styles go here
 
 
 .item-after{
-  color: cornflowerblue !important;
+  color: var(--main-color) !important;
 }
 
 /* toolbar style in final page */
 
-.toolbar{
+.final-page-toolbar{
   height: 88px;
-  background: cornflowerblue;
+  background: var(--main-color);
   box-shadow: 0px -1px 6px 0px black;
 }
 
@@ -258,8 +289,8 @@ Your custom styles go here
 }
 
 .final-page-list{
-  margin-bottom: 100px;
-  margin-top: 45px;
+  margin-bottom: 150px;
+  margin-top: 10px;
 }
 
 /* card */
@@ -267,7 +298,7 @@ Your custom styles go here
 .extra-price-size{
   font-weight: 100;
   font-size: 14px;
-  color: cornflowerblue;
+  color: var(--main-color);
 }
 
 .card{
@@ -276,6 +307,7 @@ Your custom styles go here
 
 .card-header{
   height: 65vw !important;
+  padding: 0 !important
 }
 
 .card-image-title{
@@ -285,7 +317,7 @@ Your custom styles go here
 
 .custom-header{
   border-top: 1px solid #80808057;
-  color: cornflowerblue;
+  color: var(--main-color);
 }
 
 .accordion-item-toggle{
@@ -314,12 +346,12 @@ Your custom styles go here
 
 .extra-delete-button{
   width: 50px;
-  background: cornflowerblue !important;
+  background: var(--main-color) !important;
 }
 
 .extra-add-button{
   width: 50px;
-  background: cornflowerblue !important;
+  background: var(--main-color) !important;
 }
 
 #extra-delete{
@@ -373,7 +405,7 @@ Your custom styles go here
 }
 
 .profile-page-list-item{
-  padding-bottom: 1.5vh;
+  padding-bottom: 2.2vh;
 }
 
 .inside-profile-change-button{
@@ -382,7 +414,7 @@ Your custom styles go here
 }
 
 .profile-button{
-  background: cornflowerblue;
+  background: var(--main-color);
 }
 
 .plus-minus-input {
@@ -410,13 +442,22 @@ Your custom styles go here
 }
 
 /* cart */
+
+.cart-items-img{
+  width: 10vmax;
+  height: 10vmax;
+  border-radius: 50%;
+  padding: 15px !important;
+  /* line-height: 0px; */
+}
+
 #floating-button-continue{
   width: 100px;
   height: 20px;
   font-size: 20px;
   padding: 20px;
   border-radius: 20px;
-  background-color: cornflowerblue;
+  background-color: var(--main-color);
   box-shadow: 3px 5px 13px 0px grey;
   font-weight: 900;
 }
@@ -428,7 +469,7 @@ Your custom styles go here
   font-size: 20px;
   padding: 20px;
   border-radius: 20px;
-  background-color: cornflowerblue;
+  background-color: var(--main-color);
   box-shadow: 3px 5px 13px 0px grey;
   font-weight: 900;
 }
@@ -465,7 +506,7 @@ Your custom styles go here
 
 .cart-title{
   font-size: 1.3em;
-  color: cornflowerblue;
+  color: var(--main-color);
 }
 
 .cart-item-p{

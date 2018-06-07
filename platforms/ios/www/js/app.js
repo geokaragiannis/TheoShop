@@ -68,6 +68,7 @@
     price: 0,
     size_price: 0,
     size_descr: null,
+    size_id: null,
     extras: [],
     cart_items: [],
     cart_price: 0,
@@ -275,6 +276,7 @@
           final_page_data.size_price = 0
           final_page_data.extras = []
           final_page_data.size_descr = null
+          final_page_data.size_id = null
         },
         change_extra_shot(num){
 
@@ -324,6 +326,7 @@
 
         change_size(size){
           final_page_data.size_descr = size.descr;
+          final_page_data.size_id = size.id;
           final_page_data.size_price = size.price;
           console.log('size descr: ', final_page_data.size_descr)
           console.log('size price: ', final_page_data.size_price)
@@ -341,6 +344,15 @@
           console.log('final price: ', final_page_data.price)
         },
 
+
+        check_for_valid_order: function(cart_item){
+          // TODO add a size to every item (in server side)
+          if(cart_item.size_id !== null){
+            return true
+          }
+          return false
+        },
+
         add_to_cart(){
           // total_price is the overall price of the item added to cart (quantity * (price of item + extras + size))
           // single_price is the price of the item added to cart without the quantity
@@ -354,27 +366,38 @@
                       quant: final_page_data.quantity,
                       extras: final_page_data.extras,
                       size: final_page_data.size_descr,
+                      size_id: final_page_data.size_id,
                       single_price: single_price,
                       total_price: total_price
                       };
 
           console.log('cart item: ', cart_item)
 
-          final_page_data.cart_items.push(cart_item)
+          //before we put the cart_item to the cart_items List
+          // we first do a check that the cart_item fulfills some
+          // prerequisites.
 
-          // update the number of cart items, to be displayed in sub-Menu
-          data.number_cart_items += cart_item.quant
+          if(this.check_for_valid_order(cart_item)){
 
-          enumerate(final_page_data.cart_items)
-          console.log('cart items: ', final_page_data.cart_items)
-          // when we add to cart, we go to sub-menu, displaying the full menu
-          // (as if we were going to sub-menu from main-page)
-          data.parent_list = app_data.big_list
-          // clear the stack
-          data.parent_stack = []
-          console.log('parent_list after adding to cart: ', data.parent_list)
-          data.parent_stack.push(app_data.big_list)
-          f7.mainView.router.back();
+            final_page_data.cart_items.push(cart_item)
+
+            // update the number of cart items, to be displayed in sub-Menu
+            data.number_cart_items += cart_item.quant
+
+            enumerate(final_page_data.cart_items)
+            console.log('cart items: ', final_page_data.cart_items)
+            // when we add to cart, we go to sub-menu, displaying the full menu
+            // (as if we were going to sub-menu from main-page)
+            data.parent_list = app_data.big_list
+            // clear the stack
+            data.parent_stack = []
+            console.log('parent_list after adding to cart: ', data.parent_list)
+            data.parent_stack.push(app_data.big_list)
+            f7.mainView.router.back();
+          } else {
+            console.log('cart item not valid')
+            f7.alert("No size selected", "Forgot Something?")
+          }
 
         }
       }
@@ -436,7 +459,7 @@
       methods: {
 
         makeCall: function(){
-          // get the menu for the store selected 
+          // get the menu for the store selected
           url = "http://demo.qnr.com.gr:7003/EshopWs/api/eshop/eshopinfo"
           user = "eshop|" + store_data.store_selected
           pass = "123"

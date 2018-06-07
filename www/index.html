@@ -345,8 +345,9 @@
                   <f7-list-item :title="cat.descr" group-title></f7-list-item>
                   <f7-list-item v-for="s in cat.child">
                     <div class="row" style="width: 100%">
-                      <div class="col-55">
-                        <p class="extra-descr">{{s.descr}} </p>
+                      <div class="col-55 row">
+                        <p style="width: 80%" class="extra-descr">{{s.descr}} </p>
+                        <p v-if="s.price !== null" style="width: 20%" class="extra-price-size"> + {{s.price}}</p>
                       </div>
                       <div class="row add-delete-buttons-div" style="width:130px">
                         <a v-on:click="change_extras_quantity(s, -1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
