@@ -295,6 +295,11 @@
             this.calculate_price(extra, num)
           }
 
+          // the extras array contains items that contain:
+          // the description, id, quantity and parent_id of each extra
+          // the parent_id is the item that the user is currently adding extra to.
+
+
           // Populate the extras list for the cart
           //if empty push the extra in the array
           // else search if the extra item already exists in the array
@@ -302,7 +307,7 @@
             // else push it in the array
 
           if (final_page_data.extras.length === 0){
-            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1})
+            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1, p_id: final_page_data.item_pressed.id})
           }else{
             for(i = 0; i < final_page_data.extras.length; i++){
               if(final_page_data.extras[i].descr == extra.descr){
@@ -313,7 +318,7 @@
                 return
               }
             }
-            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1})
+            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1, p_id: final_page_data.item_pressed.id})
           }
         },
         change_quantity(num){
