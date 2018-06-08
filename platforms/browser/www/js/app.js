@@ -307,7 +307,7 @@
             // else push it in the array
 
           if (final_page_data.extras.length === 0){
-            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1, p_id: final_page_data.item_pressed.id})
+            final_page_data.extras.push({aa: final_page_data.extras.length + 1, descr: extra.descr, id: extra.id, quant: 1, p_id: final_page_data.item_pressed.id})
           }else{
             for(i = 0; i < final_page_data.extras.length; i++){
               if(final_page_data.extras[i].descr == extra.descr){
@@ -318,7 +318,7 @@
                 return
               }
             }
-            final_page_data.extras.push({descr: extra.descr, id: extra.id, quant: 1, p_id: final_page_data.item_pressed.id})
+            final_page_data.extras.push({aa: final_page_data.extras.length + 1, descr: extra.descr, id: extra.id, quant: 1, p_id: final_page_data.item_pressed.id})
           }
         },
         change_quantity(num){
@@ -373,7 +373,8 @@
                       size: final_page_data.size_descr,
                       size_id: final_page_data.size_id,
                       single_price: single_price,
-                      total_price: total_price
+                      total_price: total_price,
+                      aa: final_page_data.cart_items.length + 1
                       };
 
           console.log('cart item: ', cart_item)
