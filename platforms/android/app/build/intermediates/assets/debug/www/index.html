@@ -253,7 +253,11 @@
 
       <f7-fab href="/cart/">
         <f7-icon id="floating-button-icon" f7="icon-bag">
-          <f7-badge id="floating-button-badge" v-if="number_cart_items != 0" color="red">{{number_cart_items}}</f7-badge>
+          <f7-badge id="floating-button-badge" v-if="number_cart_items != 0" color="red">
+            
+              {{number_cart_items}}
+          
+          </f7-badge>
         </f7-icon>
       </f7-fab>
 
@@ -380,7 +384,7 @@
                       <a v-on:click="change_quantity(-1)" class="button button-round button-fill col-40 extra-delete-button" style="width: 50px">
                         <i class="icon f7-icons col" id="extra-delete"> delete </i>
                       </a>
-                      <p class="col-10" style="width: 20px; margin: 0; text-align: center;"> {{quantity}} </p>
+                      <p class="col-10" style="width: 20px; margin: 0; text-align: center; line-height: 30px;"> {{quantity}} </p>
                       <a v-on:click="change_quantity(1)" class="button button-round button-fill col-40 extra-add-button" style="width: 50px">
                         <i class="icon f7-icons col" id="extra-add"> add </i>
                       </a>

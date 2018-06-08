@@ -727,7 +727,7 @@
         submit_card: function() {
           // display the preloader
           app_data.preloader = true;
-          exp_date = this.format_date()
+          exp_date = (app_data.month !== null ? this.format_date() : null)
           console.log('usaepay date format: ', exp_date)
           app_data.name = $$('#card-name').val();
           app_data.address = $$('#card-address').val();
@@ -829,7 +829,7 @@
 
               } else{
                 console.log("received an error from usaepay")
-                f7.alert("Try again", "An error Occured")
+                f7.alert("Try again", "An error Occured With Your Card")
               }
             },
             error: function() {
@@ -837,6 +837,8 @@
             }
 
           });
+
+          // TODO Make a POST call to submit the order here
         }
       },
       mounted: function(){

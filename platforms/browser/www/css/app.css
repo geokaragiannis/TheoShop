@@ -44,7 +44,8 @@ Your custom styles go here
  }
 
  .select-store-button{
-   background: var(--main-color) !important
+   background: var(--main-color) !important;
+   font-size: var(--list-item-size) !important;
  }
 
  /*  */
@@ -151,10 +152,11 @@ Your custom styles go here
 
 #floating-button-badge{
   height: 2.2vmax;
-  width: 2.2vmax;
+  /* width: 2.2vmax; */
   line-height: 2.2vmax;
   font-size: 1.8vmax;
-  top: -5px
+  top: -0.9vmax;
+  min-width: 0px !important;
 }
 
 /* .item-content{
