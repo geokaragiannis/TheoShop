@@ -576,23 +576,25 @@
 
   <template id="stores">
     <f7-page style="background: #ffffff" name="stores" @page:init="loadMap()" @page:back="backStores()">
+
       <div class="navbar">
         <div class="navbar-inner">
           <div class="left">
-            <a href="#" class="back link">
-              <i v-on:click="backStores()" class="icon icon-back"></i>
+            <a v-on:click="backStores()" class="link back white">
+              <i class="icon f7-icons">chevron-left</i>
               <!-- Back link text rendered only for iOS theme -->
               <span>Back</span>
             </a>
           </div>
-          <div class="title"> Map </div>
+          <div class="center white"> Map </div>
           <div class="right"> </div>
         </div>
       </div>
 
+
       <!-- <f7-button style="margin-top: 100px" id='map_button' v-on:click="loadMap()"> Load Map </f7-button> -->
 
-      </div>
+    </f7-page>
 
   </template>
 
